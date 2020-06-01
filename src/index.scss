@@ -1,0 +1,120 @@
+$indent: 16px;
+$lineHeight: 22px;
+$fontColor: #666;
+
+.eleTree-group{
+    margin-left: $indent;
+    &:not(:first-of-type){
+        position: relative;
+        &::before{
+            content: "";
+            position: absolute;
+            border-left: 1px dotted $fontColor;
+            height: 100%;
+            left: -15px;
+        }
+        .eleTree-node{
+            .eleTree-title{
+                &::before{
+                    content: "";
+                    position: absolute;
+                    border-top: 1px dotted $fontColor;
+                    width: 13px;
+                    left: -13px;
+                    top: 11px;
+                }
+            }
+        }
+    }
+    .eleTree-node{
+        .eleTree-title{
+            position: relative;
+            line-height: $lineHeight;
+            .eleTree-icon{
+                display: inline-block;
+                position: relative;
+                width: 15px;
+                height: 15px;
+                top: 2px;
+                left: -5px;
+                cursor: pointer;
+                &:not(.eleTree-icon-hide){
+                    &::before,
+                    &::after{
+                        content: "";
+                        width: 8px;
+                        height: 2px;
+                        background-color: $fontColor;
+                        position: absolute;
+                        left: 3px;
+                        top: 6px;
+                        transform-origin: right;
+                        transform: rotate(40deg);
+                        cursor: pointer;
+                    }
+                    &::after{
+                        transform: rotate(-40deg);
+                    }
+                }
+                &.eleTree-icon-open{
+                    transform: rotate(90deg);
+                }
+            }
+            .eleTree-text{
+                font-size: 14px;
+                color: $fontColor;
+            }
+            .eleTree-checkbox{
+                border: 1px solid #d2d2d2;
+                font-size: 12px;
+                border-radius: 2px;
+                background-color: #fff;
+                color: #fff;
+                cursor: pointer;
+                text-align: center;
+                width: 13px;
+                height: 14px;
+                margin-right: 5px;
+                display: inline-block;
+                position: relative;
+                top: 3px;
+                &.eleTree-checkbox-checked{
+                    border-color: #5FB878;
+                    background-color: #5FB878;
+                    &::before,
+                    &::after{
+                        content: "";
+                        width: 6px;
+                        height: 1px;
+                        background-color: #fff;
+                        position: absolute;
+                        left: 0px;
+                        bottom: 4px;
+                        transform-origin: bottom;
+                        transform: rotate(45deg);
+                    }
+                    &::after{
+                        width: 10px;
+                        left: 3px;
+                        bottom: 7px;
+                        transform: rotate(130deg);
+                    }
+                }
+                &.eleTree-checkbox-half{
+                    border-color: #5FB878;
+                    background-color: #5FB878;
+                    &::before{
+                        content: "";
+                        position: absolute;
+                        width: 8px;
+                        height: 1px;
+                        background-color: #fff;
+                        display: inline-block;
+                        top: 6px;
+                        left: 2px;
+                    }
+                }
+            }
+        }
+    }
+}
