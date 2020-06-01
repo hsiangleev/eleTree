@@ -12,11 +12,16 @@ export default function changeParent(options, indexArr, isLast) {
     if(isLast){
         let d2 = options.data[arr[0]]
         for(let i = 1;i<arr.length;i++){
-            d2=d2.children[arr[i]]
+            d2=d2[options.request['children']][arr[i]]
         }
-        d1.checkedStatus = d2.children.every(v=>v.checked) ? 2 : (d2.children.some(v=>v.checked) ? 1 : 0)
+        d1.checkedStatus = d2[options.request['children']].every(v=>{
+            return options.defaultCheckedKeys.includes(v.id) || v.checked || v.checkedStatus === 2
+        }) ? 2 : (d2[options.request['children']].some(v=>{
+            return options.defaultCheckedKeys.includes(v.id) || v.checked || v.checkedStatus === 2 || v.checkedStatus === 1
+        }) ? 1 : 0)
+        d2.checkedStatus = d1.checkedStatus
     }else{
         d1.checkedStatus = d1.children.every(v=>v.checkedStatus === 2) ? 2 : (d1.children.some(v=>v.checkedStatus === 2 || v.checkedStatus === 1) ? 1 : 0)
     }
-    changeParent(options, arr)
+    changeParent(options, arr, isLast)
 }

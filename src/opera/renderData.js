@@ -7,17 +7,18 @@ export default function(options) {
         indexArr.push(-1)               // 递归一次增加一次占位
         oData.forEach((v, i)=>{
             let o = {
-                title: v.title,
-                id: v.id,
-                isOpen: v.isOpen || false,
-                checkedStatus: v.checked ? 2 : 0,
-                children: []
+                title: v[options.request['name']],
+                id: v[options.request['key']],
+                isOpen: options.defaultExpandAll || options.defaultExpandedKeys.includes(v.id) || v.isOpen || false,
+                checkedStatus: (options.defaultCheckedKeys.includes(v.id) || v.checked) ? 2 : 0,
+                children: [],
+                disabled: v[options.request['disabled']]
             }
             indexArr.splice(indexArr.length-1, 1, i)
             isFirst ? options.vnodeData.push(o) : pData.children.push(o)
-            if(v.children) changeData(v.children, indexArr, o)
+            if(v[options.request['children']]) changeData(v[options.request['children']], indexArr, o)
     
-            if(v.checked && !isChangePNode) {
+            if(!options.checkStrictly && o.checkedStatus === 2 && !isChangePNode) {
                 isChangePNode = true
                 changeParent(options, indexArr, true)
             }

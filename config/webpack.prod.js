@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = merge(common, {
     entry: {
-        main: './src/index.js',
+        main: './src/index.js'
     },
     mode: 'production',
     plugins: [

@@ -1,31 +1,10 @@
-$indent: 16px;
 $lineHeight: 22px;
 $fontColor: #666;
+$checkboxColor: #5FB878;
+$disabledColor: #c2c2c2;
 
 .eleTree-group{
-    margin-left: $indent;
-    &:not(:first-of-type){
-        position: relative;
-        &::before{
-            content: "";
-            position: absolute;
-            border-left: 1px dotted $fontColor;
-            height: 100%;
-            left: -15px;
-        }
-        .eleTree-node{
-            .eleTree-title{
-                &::before{
-                    content: "";
-                    position: absolute;
-                    border-top: 1px dotted $fontColor;
-                    width: 13px;
-                    left: -13px;
-                    top: 11px;
-                }
-            }
-        }
-    }
+    position: relative;
     .eleTree-node{
         .eleTree-title{
             position: relative;
@@ -36,7 +15,7 @@ $fontColor: #666;
                 width: 15px;
                 height: 15px;
                 top: 2px;
-                left: -5px;
+                left: -2px;
                 cursor: pointer;
                 &:not(.eleTree-icon-hide){
                     &::before,
@@ -79,8 +58,8 @@ $fontColor: #666;
                 position: relative;
                 top: 3px;
                 &.eleTree-checkbox-checked{
-                    border-color: #5FB878;
-                    background-color: #5FB878;
+                    border-color: $checkboxColor;
+                    background-color: $checkboxColor;
                     &::before,
                     &::after{
                         content: "";
@@ -99,10 +78,14 @@ $fontColor: #666;
                         bottom: 7px;
                         transform: rotate(130deg);
                     }
+                    &.eleTree-checkbox-disabled::before,
+                    &.eleTree-checkbox-disabled::after{
+                        background-color: $disabledColor;
+                    }
                 }
                 &.eleTree-checkbox-half{
-                    border-color: #5FB878;
-                    background-color: #5FB878;
+                    border-color: $checkboxColor;
+                    background-color: $checkboxColor;
                     &::before{
                         content: "";
                         position: absolute;
@@ -113,7 +96,19 @@ $fontColor: #666;
                         top: 6px;
                         left: 2px;
                     }
+                    &.eleTree-checkbox-disabled::before{
+                        background-color: $disabledColor;
+                    }
                 }
+                &.eleTree-checkbox-disabled{
+                    cursor: not-allowed;
+                    background-color: #f2f6fc;
+                    border-color: #dcdfe6;
+                    color: $disabledColor;
+                }
+            }
+            &.eleTree-title-active{
+                background-color: #f0f7ff;
             }
         }
     }
