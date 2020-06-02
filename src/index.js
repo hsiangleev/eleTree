@@ -1,5 +1,6 @@
 import vnode from './vnode'
 import renderData from './opera/renderData'
+import methods from './methods/index'
 import './index.scss'
 import { eleTreeConfig } from './config'
 import { init } from 'snabbdom'
@@ -41,6 +42,8 @@ const eleTree = {
         }else{
             throw '没有数据源，请检查是否有data或url参数'
         }
+
+        return methods(eleTreeConfig)
     }
 }
 

@@ -12,6 +12,7 @@ import getNodeIndex from '../opera/getNodeIndex'
 import changeParent from '../opera/changeParent'
 import changeChildren from '../opera/changeChildren'
 import getSiblingsNode from '../opera/getSiblingsNode'
+import getCurrentNodeData from '../opera/getCurrentNodeData'
 
 let changeVnode = function(options) {
     // 保存旧版的vnode
@@ -22,7 +23,6 @@ let changeVnode = function(options) {
 }
 
 export default function(options, v, event) {
-    // if(v.children.length === 0) return
     let classList = event.target.classList
     let isTargetCheckbox = classList.contains('eleTree-checkbox')
     let isTargetIcon = classList.contains('eleTree-icon')
@@ -40,6 +40,12 @@ export default function(options, v, event) {
                 changeVnode(options)
             })
         }
+        // 判断如果有click事件回调，则触发
+        if(Object.prototype.toString.call(options.addEventListener.checkbox) === '[object Function]'){
+            getCurrentNodeData(options, v).then(data=>{
+                options.addEventListener.checkbox({data, type: 'checkbox', event})
+            })
+        }
     }else if(isTargetIcon || isTargetText && options.expandOnClickNode){
         // 点击图标展开，点击文字判断是否展开
         v.isOpen = !v.isOpen
@@ -53,6 +59,12 @@ export default function(options, v, event) {
             })
         }else{
             changeVnode(options)
+        }
+        // 判断如果有click事件回调，则触发
+        if(Object.prototype.toString.call(options.addEventListener.click) === '[object Function]'){
+            getCurrentNodeData(options, v).then(data=>{
+                options.addEventListener.click({data, type: 'click', event})
+            })
         }
     }
     // 高亮显示

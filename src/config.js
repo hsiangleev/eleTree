@@ -35,11 +35,21 @@ export const eleTreeConfig = {
         name: "label",
         key: "id",
         children: "children",
-        disabled: "disabled",       // 被禁用的节点不会影响父节点的选中状态
+        disabled: "disabled",       // 被禁用的节点不会影响父子节点的选中状态
         checked: "checked",
+        isOpen: "isOpen",
         isLeaf: "isLeaf"
     },
 
+    addEventListener: {
+        click: null,
+        checkbox: null,
+    },
+    // 0: 父子互不影响，
+    // 1: 父子节点相互影响(当出现冲突时，以父节点为基准)
+    // 2: 父子节点相互影响(当出现冲突时，以子节点为基准)
+    // 冲突情况: 即所给数据为父节点选中，并且子节点部分选中
+    // checkStrictlyStatus: 1,
 
 
 

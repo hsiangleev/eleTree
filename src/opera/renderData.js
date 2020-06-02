@@ -12,13 +12,30 @@ export default function(options) {
                 isOpen: options.defaultExpandAll || options.defaultExpandedKeys.includes(v.id) || v.isOpen || false,
                 checkedStatus: (options.defaultCheckedKeys.includes(v.id) || v.checked) ? 2 : 0,
                 children: [],
-                disabled: v[options.request['disabled']] || false
+                disabled: v[options.request['disabled']] || false,
             }
+
+            let pStatus = null
+            if(!options.checkStrictly){
+                // 如果父节点禁用,则使用备用状态,否则使用父节点状态
+                pStatus = pData.disabled ? pData.disabledParentStatus === 2 : pData.checkedStatus === 2
+                // 如果节点禁用,则选中状态不受父子节点影响,也不影响父子节点
+                if(o.disabled){
+                    // 在当前节点记录父节点的选中状态(备用状态)
+                    o.disabledParentStatus = pStatus ? 2 :0
+                }else{
+                    // 节点选中状态有父节点决定
+                    o.checkedStatus = (o.checkedStatus || pStatus) ? 2 :0
+                }
+            }
+
             indexArr.splice(indexArr.length-1, 1, i)
             isFirst ? options.vnodeData.push(o) : pData.children.push(o)
             if(v[options.request['children']]) changeData(v[options.request['children']], indexArr, o)
-    
-            if(!options.checkStrictly && o.checkedStatus === 2 && !isChangePNode) {
+
+            
+            // 父子关联，当前节点选中，还未修改过，父节点还未选中，非禁用
+            if(!options.checkStrictly && o.checkedStatus === 2 && !isChangePNode && !pStatus && !o.disabled) {
                 isChangePNode = true
                 changeParent(options, indexArr, true)
             }
