@@ -13,7 +13,7 @@ export const eleTreeConfig = {
     checkStrictly: false,       // 在显示复选框的情况下，是否严格的遵循父子不互相关联的做法，默认为 false   1
     defaultCheckedKeys: [],     // 默认勾选的节点的 key 的数组      1
     accordion: false,           // 是否每次只打开一个同级树节点展开（手风琴效果）   1
-    indent: 16,                 // 相邻级节点间的水平缩进，单位为像素
+    indent: 16,                 // 相邻级节点间的水平缩进，单位为像素               1
     lazy: false,                // 是否懒加载子节点，需与 load 方法结合使用
     load: function() {},        // 加载子树数据的方法，仅当 lazy 属性为true 时生效
     draggable: false,           // 是否开启拖拽节点功能
@@ -31,19 +31,15 @@ export const eleTreeConfig = {
         statusCode: 0,
         dataName: "data"
     },
-    request: {
+    request: {          // 1
         name: "label",
         key: "id",
         children: "children",
-        disabled: "disabled",
+        disabled: "disabled",       // 被禁用的节点不会影响父节点的选中状态
         checked: "checked",
         isLeaf: "isLeaf"
     },
 
-    disabledConfig: {
-        // 父关联子，父节点禁用时，子节点同时被禁用
-        // 被禁用的节点是否会有半选状态
-    },
 
 
 

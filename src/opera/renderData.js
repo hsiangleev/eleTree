@@ -12,7 +12,7 @@ export default function(options) {
                 isOpen: options.defaultExpandAll || options.defaultExpandedKeys.includes(v.id) || v.isOpen || false,
                 checkedStatus: (options.defaultCheckedKeys.includes(v.id) || v.checked) ? 2 : 0,
                 children: [],
-                disabled: v[options.request['disabled']]
+                disabled: v[options.request['disabled']] || false
             }
             indexArr.splice(indexArr.length-1, 1, i)
             isFirst ? options.vnodeData.push(o) : pData.children.push(o)

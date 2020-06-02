@@ -20,11 +20,11 @@ const tree = {
                     "label": "马鞍山市",
                     "id": "001002",
                     "disabled": true,
+                    "checked": true,
                     "children": [
                         {
                             "label": "花山区",
                             "id": "001002001",
-                            "checked": true,
                             "children": [
                                 {
                                     "label": "aaa",

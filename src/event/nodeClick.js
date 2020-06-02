@@ -54,7 +54,6 @@ export default function(options, v, event) {
         }else{
             changeVnode(options)
         }
-        
     }
     // 高亮显示
     if(options.highlightCurrent){
