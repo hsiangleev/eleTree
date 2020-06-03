@@ -43,10 +43,10 @@ btn.onclick = function() {
     console.timeEnd()
 }
 
-ele.on('checkbox', function(data) {
-    console.log(this)
-})
-ele.on('click', function(data) {
-    console.log(this)
-    console.log(data)
-})
+// ele.on('checkbox', function(data) {
+//     console.log(this)
+// })
+// ele.on('click', function(data) {
+//     console.log(this)
+//     console.log(data)
+// })

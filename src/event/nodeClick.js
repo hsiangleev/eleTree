@@ -12,7 +12,7 @@ import changeParent from '../opera/changeParent'
 import changeChildren from '../opera/changeChildren'
 import getSiblingsNode from '../opera/getSiblingsNode'
 import getCurrentNodeData from '../opera/getCurrentNodeData'
-import { emit } from '../event/customEvent'
+import { events, emit } from '../event/customEvent'
 
 let changeVnode = function(options) {
     // 保存旧版的vnode
@@ -37,13 +37,13 @@ export default function(options, v, event) {
         // 判断是否父子不关联
         if(options.checkStrictly){
             changeVnode(options)
-            getNodeIndex(options, v).then(indexArr=>emitEvent(options, v, indexArr, 'checkbox', event))
+            events['checkbox'] && getNodeIndex(options, v).then(indexArr=>emitEvent(options, v, indexArr, 'checkbox', event))
         }else{
             getNodeIndex(options, v).then(indexArr=>{
                 changeParent(options, indexArr)
                 changeChildren(v)
                 changeVnode(options)
-                emitEvent(options, v, indexArr, 'checkbox', event)
+                events['checkbox'] && emitEvent(options, v, indexArr, 'checkbox', event)
             })
         }
     }else if(isTargetIcon || isTargetText && options.expandOnClickNode){
@@ -56,11 +56,11 @@ export default function(options, v, event) {
                     arr.forEach(item=>{if(item.isOpen && item.id!==v.id) item.isOpen = false})
                     changeVnode(options)
                 })
-                emitEvent(options, v, indexArr, 'click', event)
+                events['click'] && emitEvent(options, v, indexArr, 'click', event)
             })
         }else{
             changeVnode(options)
-            getNodeIndex(options, v).then(indexArr=>emitEvent(options, v, indexArr, 'click', event))
+            events['click'] && getNodeIndex(options, v).then(indexArr=>emitEvent(options, v, indexArr, 'click', event))
         }
     }
     // 高亮显示
