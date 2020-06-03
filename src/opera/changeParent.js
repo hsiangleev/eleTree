@@ -10,7 +10,7 @@ export default function changeParent(options, indexArr, isFirst) {
         d1=d1.children[arr[i]]
     }
     // 判断如果有子节点属性则使用子节点状态，否则使用当前节点状态
-    let f=(v)=>{return Object.prototype.toString.call(v.childrenStatus) !== '[object Undefined]' ? v.childrenStatus : v.checkedStatus}
+    let f=(v)=>{return Object.prototype.toString.call(v.disabledParentStatus) !== '[object Undefined]' ? v.disabledParentStatus : v.checkedStatus}
     if(isFirst){
         let d2 = options.data[arr[0]]
         for(let i = 1;i<arr.length;i++){
@@ -23,8 +23,8 @@ export default function changeParent(options, indexArr, isFirst) {
         }) ? 1 : 0)
         // 如果节点禁用，则增加一个新属性标记其子节点状态，该节点的选中状态不改变
         if(d1.disabled){
-            d1.childrenStatus = s
-            d2.childrenStatus = s
+            d1.disabledParentStatus = s
+            d2.disabledParentStatus = s
         }else{
             d1.checkedStatus = s
             d2.checkedStatus = s
@@ -33,7 +33,7 @@ export default function changeParent(options, indexArr, isFirst) {
         let s = d1.children.every(v=>f(v) === 2) ? 2 : (d1.children.some(v=>f(v) === 2 || f(v) === 1) ? 1 : 0)
         // 如果节点禁用，则增加一个新属性标记其子节点状态，该节点的选中状态不改变
         if(d1.disabled){
-            d1.childrenStatus = s
+            d1.disabledParentStatus = s
         }else{
             d1.checkedStatus = s
         }

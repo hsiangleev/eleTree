@@ -1,12 +1,5 @@
 
-import groupVnode from '../vnode/groupVnode'
-import { init } from 'snabbdom'
-let patch = init([
-    require('snabbdom/modules/class').default,
-    require('snabbdom/modules/props').default,
-    require('snabbdom/modules/style').default,
-    require('snabbdom/modules/eventlisteners').default,
-]);
+import reloadVnode from '../vnode/reloadVnode'
 import getNodeIndex from '../opera/getNodeIndex'
 import changeParent from '../opera/changeParent'
 import changeChildren from '../opera/changeChildren'
@@ -14,13 +7,6 @@ import getSiblingsNode from '../opera/getSiblingsNode'
 import getCurrentNodeData from '../opera/getCurrentNodeData'
 import { events, emit } from '../event/customEvent'
 
-let changeVnode = function(options) {
-    // 保存旧版的vnode
-    let oldVnode = options.node;
-    // 重新获取vnode
-    options.node = groupVnode(options, options.vnodeData, true, true)
-    patch(oldVnode, options.node)
-}
 // 事件触发
 let emitEvent = function(options, v, indexArr, type, event) {
     let data = getCurrentNodeData(options, v, indexArr)
@@ -36,31 +22,28 @@ export default function(options, v, event) {
         v.checkedStatus = v.checkedStatus === 2 ? 0 : 2
         // 判断是否父子不关联
         if(options.checkStrictly){
-            changeVnode(options)
-            events['checkbox'] && getNodeIndex(options, v).then(indexArr=>emitEvent(options, v, indexArr, 'checkbox', event))
+            reloadVnode(options)
+            events['checkbox'] && emitEvent(options, v, getNodeIndex(options, v.id), 'checkbox', event)
         }else{
-            getNodeIndex(options, v).then(indexArr=>{
-                changeParent(options, indexArr)
-                changeChildren(v)
-                changeVnode(options)
-                events['checkbox'] && emitEvent(options, v, indexArr, 'checkbox', event)
-            })
+            let indexArr = getNodeIndex(options, v.id)
+            changeParent(options, indexArr)
+            changeChildren(v)
+            reloadVnode(options)
+            events['checkbox'] && emitEvent(options, v, indexArr, 'checkbox', event)
         }
     }else if(isTargetIcon || isTargetText && options.expandOnClickNode){
         // 点击图标展开，点击文字判断是否展开
         v.isOpen = !v.isOpen
         // 手风琴效果
         if(options.accordion){
-            getNodeIndex(options, v).then(indexArr=>{
-                getSiblingsNode(options, indexArr).then(arr=>{
-                    arr.forEach(item=>{if(item.isOpen && item.id!==v.id) item.isOpen = false})
-                    changeVnode(options)
-                })
-                events['click'] && emitEvent(options, v, indexArr, 'click', event)
-            })
+            let indexArr = getNodeIndex(options, v.id)
+            let arr = getSiblingsNode(options, indexArr)
+            arr.forEach(item=>{if(item.isOpen && item.id!==v.id) item.isOpen = false})
+            reloadVnode(options)
+            events['click'] && emitEvent(options, v, indexArr, 'click', event)
         }else{
-            changeVnode(options)
-            events['click'] && getNodeIndex(options, v).then(indexArr=>emitEvent(options, v, indexArr, 'click', event))
+            reloadVnode(options)
+            events['click'] && emitEvent(options, v, getNodeIndex(options, v.id), 'click', event)
         }
     }
     // 高亮显示

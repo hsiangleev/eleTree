@@ -39,7 +39,12 @@ let ele = eleTree.render({
 
 btn.onclick = function() {
     console.time()
-    console.log(ele.getChecked())
+    let res = ele.updateKeySelf('001', {
+        "label": "添加子节点",
+        "id": "001002002003001",
+        "checked": true
+    })
+    console.log(res)
     console.timeEnd()
 }
 

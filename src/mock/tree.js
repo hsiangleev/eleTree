@@ -20,7 +20,7 @@ const tree = {
                 {
                     "label": "马鞍山市",
                     "id": "001002",
-                    "disabled": true,
+                    // "disabled": true,
                     "isOpen": true,
                     // "checked": true,
                     "children": [
@@ -37,7 +37,7 @@ const tree = {
                                 },
                                 {
                                     "label": "bbb",
-                                    "checked": true,
+                                    // "checked": true,
                                     "id": "001002002002",
                                 },
                                 {

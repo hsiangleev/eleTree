@@ -1,3 +1,4 @@
+// 获取当前节点对于的原始数据
 // arr当前节点的索引数组
 export default function(options, v, arr) {
     let d = options.data[arr[0]]

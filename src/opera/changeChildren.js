@@ -2,7 +2,11 @@
 export default function(v) {
     let fn = function(data) {
         data.forEach(item=>{
-            if(!item.disabled) item.checkedStatus = v.checkedStatus === 2 ? 2 : 0
+            if(!item.disabled){
+                item.checkedStatus = v.checkedStatus === 2 ? 2 : 0
+            }else{
+                item.disabledParentStatus = v.checkedStatus === 2 ? 2 : 0
+            }
             item.children.length > 0 && fn(item.children)
         })
     }
