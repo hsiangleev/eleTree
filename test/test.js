@@ -9,12 +9,12 @@ document.body.appendChild(div)
 let ele = eleTree.render({
     el: '.eletree',
     // data: data,
-    method: 'get',
+    method: 'post',
     url: './api/tree',
     showCheckbox: true,
     // showLine: true,
     highlightCurrent: true,
-    defaultExpandAll: true,
+    // defaultExpandAll: true,
     expandOnClickNode: true,
     checkOnClickNode: false,
     // defaultExpandedKeys: ['001','001002','001002001'],
@@ -35,21 +35,18 @@ let ele = eleTree.render({
         isLeaf: "isLeaf"
     },
     // checkStrictlyStatus: 2,
-
-    addEventListener: {
-        click(data) {
-            // console.log(data)
-        },
-        checkbox(data) {
-            // console.log(data)
-        }
-    }
 })
 
 btn.onclick = function() {
     console.time()
-    ele.getChecked().then(arr=>{
-        console.log(arr)
-    })
+    console.log(ele.getChecked())
     console.timeEnd()
 }
+
+ele.on('checkbox', function(data) {
+    console.log(this)
+})
+ele.on('click', function(data) {
+    console.log(this)
+    console.log(data)
+})

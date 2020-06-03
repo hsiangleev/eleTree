@@ -21,12 +21,15 @@ const tree = {
                     "label": "马鞍山市",
                     "id": "001002",
                     "disabled": true,
+                    "isOpen": true,
                     // "checked": true,
                     "children": [
                         {
                             "label": "花山区",
                             "id": "001002001",
-                            "checked": true,
+                            "disabled": true,
+                            "isOpen": true,
+                            // "checked": true,
                             "children": [
                                 {
                                     "label": "aaa",
@@ -83,7 +86,7 @@ const data = {
     "data": []
 }
 let index = 0
-for(let i=0;i<20;i++){
+for(let i=0;i<10;i++){
     index++
     data.data.push({
         "label": "aa"+i,
@@ -92,29 +95,27 @@ for(let i=0;i<20;i++){
         "checked": true
     })
 }
-// data.data[0].children.push({
-//     "label": "bb"+0,
-//     "id": "bb"+0,
-//     "children": [],
-//     "checked": true
-// })
-// data.data[1].children.push({
-//     "label": "bb"+1,
-//     "id": "bb"+1,
-//     "children": [],
-//     "checked": true
-// })
 data.data.forEach((v)=>{
-    for(let i=0;i<150;i++){
+    for(let i=0;i<10;i++){
         index++
         v.children.push({
             "label": "bb"+i,
             "id": index,
             "children": [],
-            "checked": index > 1000 ? true : false
+            "checked": true
         })
+        for(let j=0;j<10;j++){
+            index++
+            v.children[i].children.push({
+                "label": "cc"+j,
+                "id": index,
+                "children": [],
+                "checked": true
+            })
+        }
     }
 })
+
 module.exports = {
-    'GET /api/tree': tree,
+    'POST /api/tree': tree,
 }

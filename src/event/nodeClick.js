@@ -7,12 +7,12 @@ let patch = init([
     require('snabbdom/modules/style').default,
     require('snabbdom/modules/eventlisteners').default,
 ]);
-
 import getNodeIndex from '../opera/getNodeIndex'
 import changeParent from '../opera/changeParent'
 import changeChildren from '../opera/changeChildren'
 import getSiblingsNode from '../opera/getSiblingsNode'
 import getCurrentNodeData from '../opera/getCurrentNodeData'
+import { emit } from '../event/customEvent'
 
 let changeVnode = function(options) {
     // 保存旧版的vnode
@@ -21,7 +21,11 @@ let changeVnode = function(options) {
     options.node = groupVnode(options, options.vnodeData, true, true)
     patch(oldVnode, options.node)
 }
-
+// 事件触发
+let emitEvent = function(options, v, indexArr, type, event) {
+    let data = getCurrentNodeData(options, v, indexArr)
+    emit(type, {data, type, event})
+}
 export default function(options, v, event) {
     let classList = event.target.classList
     let isTargetCheckbox = classList.contains('eleTree-checkbox')
@@ -33,17 +37,13 @@ export default function(options, v, event) {
         // 判断是否父子不关联
         if(options.checkStrictly){
             changeVnode(options)
+            getNodeIndex(options, v).then(indexArr=>emitEvent(options, v, indexArr, 'checkbox', event))
         }else{
             getNodeIndex(options, v).then(indexArr=>{
                 changeParent(options, indexArr)
                 changeChildren(v)
                 changeVnode(options)
-            })
-        }
-        // 判断如果有click事件回调，则触发
-        if(Object.prototype.toString.call(options.addEventListener.checkbox) === '[object Function]'){
-            getCurrentNodeData(options, v).then(data=>{
-                options.addEventListener.checkbox({data, type: 'checkbox', event})
+                emitEvent(options, v, indexArr, 'checkbox', event)
             })
         }
     }else if(isTargetIcon || isTargetText && options.expandOnClickNode){
@@ -56,15 +56,11 @@ export default function(options, v, event) {
                     arr.forEach(item=>{if(item.isOpen && item.id!==v.id) item.isOpen = false})
                     changeVnode(options)
                 })
+                emitEvent(options, v, indexArr, 'click', event)
             })
         }else{
             changeVnode(options)
-        }
-        // 判断如果有click事件回调，则触发
-        if(Object.prototype.toString.call(options.addEventListener.click) === '[object Function]'){
-            getCurrentNodeData(options, v).then(data=>{
-                options.addEventListener.click({data, type: 'click', event})
-            })
+            getNodeIndex(options, v).then(indexArr=>emitEvent(options, v, indexArr, 'click', event))
         }
     }
     // 高亮显示
