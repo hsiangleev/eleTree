@@ -55,3 +55,7 @@ btn.onclick = function() {
 //     console.log(this)
 //     console.log(data)
 // })
+
+ele.on('checkbox').then(data=>{
+    console.log(data)
+})

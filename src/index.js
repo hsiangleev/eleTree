@@ -1,5 +1,5 @@
 import vnode from './vnode'
-import renderData from './opera/renderData'
+import { renderData } from './opera/renderData'
 import methods from './methods/index'
 import './index.scss'
 import { eleTreeConfig } from './config'
