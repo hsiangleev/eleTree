@@ -33,6 +33,9 @@ module.exports = {
     markdown: {
         lineNumbers: true
     },
+    head: [
+        ['link', { rel: 'icon', type: 'image/png', href: '/favicon.ico' }]
+    ],
     configureWebpack: {
         resolve: {
             alias: {
