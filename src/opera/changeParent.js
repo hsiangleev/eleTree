@@ -1,4 +1,4 @@
-import { getCurrentDataByIndexArr, isUndefined } from './tools'
+import { getCurrentDataByIndexArr, isUndefined } from '~/opera/tools'
 // 根据子节点选中情况修改父节点状态
 // indexArr: 当前节点索引数组,由里向外递归,成功之后删除最后一个索引, 
 // isFirst: 是否为第一次执行(第一次执行子节点可能没有所有的数据,需要使用原始数据)

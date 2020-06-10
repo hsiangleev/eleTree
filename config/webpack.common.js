@@ -1,5 +1,4 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     output: {
@@ -8,13 +7,25 @@ module.exports = {
     },
     module: {
         rules: [
-            {test: /\.scss$/,use: ["style-loader", "css-loader", "sass-loader"]}
+            {test: /\.scss$/,use: ["style-loader", "css-loader", "sass-loader"]},
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        "plugins": [
+                            "@babel/plugin-syntax-dynamic-import"
+                        ]
+                    }
+                }
+            }
         ],
     },
-    
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'eleTree'
-        })
-    ]
+    resolve: {
+        alias: {
+            "~": path.join(__dirname, '../src/')
+        }
+    },
 }

@@ -1,4 +1,4 @@
-import getCurrentNodeData from '../opera/getCurrentNodeData'
+import getCurrentNodeData from '~/opera/getCurrentNodeData'
 // 接收两个 boolean 类型的参数，1. 是否只是叶子节点，默认值为 false 2. 是否包含半选节点，默认值为 false
 export default function(leafOnly = false, includeHalfChecked = false) {
     let results = []

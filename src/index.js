@@ -1,9 +1,12 @@
-import vnode from './vnode'
-import { renderData } from './opera/renderData'
-import methods from './methods/index'
-import './index.scss'
-import { eleTreeConfig } from './config'
+import groupVnode from '~/vnode/groupVnode'
+import { renderData } from '~/opera/renderData'
+import methods from '~/methods/index'
+import '~/index.scss'
+import { eleTreeConfig } from '~/config'
 import { init } from 'snabbdom'
+import ajax from '~/opera/ajax'
+import { isFun } from '~/opera/tools'
+import 'babel-polyfill'
 var patch = init([
     require('snabbdom/modules/class').default,
     require('snabbdom/modules/props').default,
@@ -12,22 +15,21 @@ var patch = init([
 ]);
 
 const asyncData = async()=>{
-    let axios = await import(/* webpackChunkName: "axios" */ 'axios')
-    let {data} = await axios.request({
+    let data = await ajax({
         method: eleTreeConfig.method || 'get',
         url: eleTreeConfig.url,
         data: eleTreeConfig.where || {},
         headers: eleTreeConfig.headers
     })
     if(data[eleTreeConfig.response['statusName']] !== eleTreeConfig.response['statusCode']) throw data.msg
-    Object.prototype.toString.call(eleTreeConfig.done) === "[object Function]" && eleTreeConfig.done(data)
+    isFun(eleTreeConfig.done) && eleTreeConfig.done(data)
     return data[eleTreeConfig.response['dataName']]    
 }
 const render = ()=>{
     renderData(eleTreeConfig)
     let el = document.createElement('div')
     document.querySelector(eleTreeConfig.el).appendChild(el)
-    patch(el, vnode(eleTreeConfig))
+    patch(el, groupVnode(eleTreeConfig, eleTreeConfig.vnodeData, true, true))
 }
 const eleTree = {
     render(opt) {
@@ -46,5 +48,6 @@ const eleTree = {
         return methods(eleTreeConfig)
     }
 }
+
 
 export default eleTree

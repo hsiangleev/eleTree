@@ -1,18 +1,11 @@
-import { on } from '../event/customEvent'
-import getChecked from './getChecked'
-import updateKeyChildren from './updateKeyChildren'
-import updateKeySelf from './updateKeySelf'
-import { isFun } from '../opera/tools'
+import { on } from '~/event/customEvent'
+import getChecked from '~/methods/getChecked'
+import updateKeyChildren from '~/methods/updateKeyChildren'
+import updateKeySelf from '~/methods/updateKeySelf'
 export default function(options) {
     return {
         on(type, callback) {
-            if(callback && isFun(callback)){
-                on({type, callback})
-            }else{
-                return new Promise(resolve=>{
-                    on({resolve, type})
-                })
-            }
+            on(type, callback)
         },
         getChecked: getChecked.bind(options),
         updateKeyChildren: updateKeyChildren.bind(options),

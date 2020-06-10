@@ -2,6 +2,7 @@ const merge = require('webpack-merge')
 const common = require('./webpack.common.js')
 const apiMocker = require('mocker-api')
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = merge(common, {
     entry: {
@@ -16,4 +17,10 @@ module.exports = merge(common, {
             apiMocker(app, path.resolve('./src/mock/tree.js'))
         }
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'eleTree',
+            template: 'test/index.html'
+        })
+    ],
 })

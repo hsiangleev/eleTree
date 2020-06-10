@@ -1,7 +1,7 @@
-import getNodeIndex from '../opera/getNodeIndex'
-import { renderData, changeData } from '../opera/renderData'
-import reloadVnode from '../vnode/reloadVnode'
-import { getCurrentDataByIndexArr } from '../opera/tools'
+import getNodeIndex from '~/opera/getNodeIndex'
+import { renderData, changeData } from '~/opera/renderData'
+import reloadVnode from '~/vnode/reloadVnode'
+import { getCurrentDataByIndexArr } from '~/opera/tools'
 /*
 * id: 节点id
 * data: 需要添加的子节点数据(Object)，不能修改子节点

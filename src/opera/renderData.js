@@ -1,4 +1,4 @@
-import changeParent from './changeParent'
+import changeParent from '~/opera/changeParent'
 // 根据所给数据重新整合一份dom节点符合的数据
 export function renderData(options) {
     let indexArr = []

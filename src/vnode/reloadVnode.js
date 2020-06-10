@@ -1,4 +1,4 @@
-import groupVnode from '../vnode/groupVnode'
+import groupVnode from '~/vnode/groupVnode'
 import { init } from 'snabbdom'
 let patch = init([
     require('snabbdom/modules/class').default,

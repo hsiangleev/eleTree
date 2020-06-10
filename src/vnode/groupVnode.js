@@ -1,5 +1,5 @@
-import eleVnode from './eleVnode'
-import lineVertical from './lineVertical'
+import eleVnode from '~/vnode/eleVnode'
+import lineVertical from '~/vnode/lineVertical'
 
 import { h } from 'snabbdom'
 // isFirst: 是否是第一层

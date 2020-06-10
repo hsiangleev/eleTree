@@ -1,11 +1,11 @@
 
-import reloadVnode from '../vnode/reloadVnode'
-import getNodeIndex from '../opera/getNodeIndex'
-import changeParent from '../opera/changeParent'
-import changeChildren from '../opera/changeChildren'
-import getCurrentNodeData from '../opera/getCurrentNodeData'
-import { events, emit } from '../event/customEvent'
-import { getCurrentDataByIndexArr, getParentDataByIndexArr } from '../opera/tools'
+import reloadVnode from '~/vnode/reloadVnode'
+import getNodeIndex from '~/opera/getNodeIndex'
+import changeParent from '~/opera/changeParent'
+import changeChildren from '~/opera/changeChildren'
+import getCurrentNodeData from '~/opera/getCurrentNodeData'
+import { events, emit } from '~/event/customEvent'
+import { getCurrentDataByIndexArr, getParentDataByIndexArr } from '~/opera/tools'
 
 // 事件触发
 let emitEvent = function(options, v, indexArr, type, event) {

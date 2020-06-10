@@ -1,5 +1,5 @@
 import { h } from 'snabbdom'
-import { isArray } from '../opera/tools'
+import { isArray } from '~/opera/tools'
 export default function(options, v) {
     let s1 = v.children 
         && isArray(v.children)
