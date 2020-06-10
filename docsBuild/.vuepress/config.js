@@ -1,7 +1,7 @@
 const path = require('path')
 module.exports = {
     title: 'eleTree',  // 设置网站标题
-    dest: './document',    // 设置输出目录
+    dest: './docs',    // 设置输出目录
     // base: '/mt-blog/', // 设置站点根路径
     // repo: 'https://github.com/txs1992/mt-blog', // 添加 github 链接,
     port: 3001,

@@ -6,8 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.dev.js",
     "build": "webpack --config ./config/webpack.prod.js",
-    "docs:start": "vuepress dev ./docs",
-    "docs:build": "vuepress build ./docs",
+    "docs:start": "vuepress dev ./docsBuild",
+    "docs:build": "vuepress build ./docsBuild",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
