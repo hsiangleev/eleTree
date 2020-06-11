@@ -5,7 +5,7 @@ import updateKeySelf from '~/methods/updateKeySelf'
 export default function(options) {
     return {
         on(type, callback) {
-            on(type, callback)
+            on(type, options.el, callback)
         },
         getChecked: getChecked.bind(options),
         updateKeyChildren: updateKeyChildren.bind(options),

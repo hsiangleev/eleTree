@@ -1,15 +1,32 @@
-### 虚拟dom重写eleTree树组件
+eleTree
 
-#### 说明
-1. 移除layui和jquery，完全基于snabbdom，渲染性能大大优化
-2. es6加webpack打包
+## 说明
 
-#### 使用
-1. npm install
-2. npm run start
-3. 访问[http://localhost:3000](http://localhost:3000)
+* 基于虚拟dom重写eleTree插件
+* 移除layui和jquery，完全基于snabbdom，渲染性能大大优化
+* es6加webpack打包，支持import导入，layui导入和CDN直接引入的方式
 
-#### 项目结构
-1. config目录配置webpack环境
-2. test目录下的test.js文件用于开发环境测试
-3. src目录下mock模拟后台数据请求，opera为数据节点操作的常用方法，vnode为渲染节点目录
+## 开发
+
+```bash
+git clone https://github.com/hsiangleev/eleTree.git
+cd eleTree
+npm install
+npm run start
+```
+
+浏览器访问[http://localhost:3000](http://localhost:3000)
+
+## 其他
+
+```bash
+# 生成
+npm run build
+
+# vuepress文档在线查看(浏览器访问http://localhost:3001)
+npm run docs:start
+
+# vuepress文档生成
+npm run docs:build
+
+```

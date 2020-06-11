@@ -1,17 +1,16 @@
 {
   "name": "eletree",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "2.1.2",
+  "description": "Tree components written using virtual dom",
+  "main": "dist/eleTree.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./config/webpack.dev.js",
-    "build": "webpack --config ./config/webpack.prod.js",
+    "start": "webpack-dev-server --config ./build/webpack.dev.js",
+    "build": "webpack --config ./build/webpack.prod.js",
     "docs:start": "vuepress dev ./docsBuild",
-    "docs:build": "vuepress build ./docsBuild",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "docs:build": "vuepress build ./docsBuild"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "hsiangleev",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
@@ -32,5 +31,5 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   },
-  "homepage": "https://hsiangleev.github.io/eleTree"
+  "repository": "https://github.com/hsiangleev/eleTree.git"
 }

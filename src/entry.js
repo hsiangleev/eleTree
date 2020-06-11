@@ -1,14 +1,10 @@
 import eleTree from './index'
 
-if (typeof define === 'function' && define.amd) {
-    define(eleTree)
-} else if (typeof exports === 'object') {
-    module.exports = eleTree
-} else if (window.layui && layui.define) {
+if (window.layui && layui.define) {
 	layui.define(function(exports) {
-		exports(eleTree, eleTree)
+		exports('eleTree', eleTree)
 	})
-} else {
+}else if (typeof window !== 'undefined') {
     window.eleTree = eleTree
 }
 

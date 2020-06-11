@@ -9,8 +9,10 @@ import { getCurrentDataByIndexArr, getParentDataByIndexArr } from '~/opera/tools
 
 // 事件触发
 let emitEvent = function(options, v, indexArr, type, event) {
-    let data = getCurrentNodeData(options, v, indexArr)
-    emit(type, {data, type, event})
+    if(events[type+"-"+options.el]){
+        let data = getCurrentNodeData(options, v, indexArr)
+        emit(type, options.el, {data, type, event})
+    }
 }
 export default function(options, v, event) {
     let classList = event.target.classList
@@ -26,12 +28,12 @@ export default function(options, v, event) {
         // 判断是否父子不关联
         if(options.checkStrictly){
             reloadVnode(options)
-            events['checkbox'] && emitEvent(options, v, indexArr, 'checkbox', event)
+            emitEvent(options, v, indexArr, 'checkbox', event)
         }else{
             changeParent(options, indexArr)
             changeChildren(options, v, originData)
             reloadVnode(options)
-            events['checkbox'] && emitEvent(options, v, indexArr, 'checkbox', event)
+            emitEvent(options, v, indexArr, 'checkbox', event)
         }
     }else if(isTargetIcon || isTargetText && options.expandOnClickNode){
         let indexArr = getNodeIndex(options, v.id)
@@ -50,10 +52,10 @@ export default function(options, v, event) {
             arr2 = indexArr.length === 1 ? arr2 : arr2[options.request['children']]
             arr2.forEach(item=>{if(item.isOpen && item.id!==v.id) item.isOpen = false})
             reloadVnode(options)
-            events['click'] && emitEvent(options, v, indexArr, 'click', event)
+            emitEvent(options, v, indexArr, 'click', event)
         }else{
             reloadVnode(options)
-            events['click'] && emitEvent(options, v, indexArr, 'click', event)
+            emitEvent(options, v, indexArr, 'click', event)
         }
     }
     // 高亮显示

@@ -3,7 +3,8 @@ const path = require('path')
 module.exports = {
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: '[name].[chunkhash].js'
+        filename: 'eleTree.js',
+        libraryTarget: 'umd',
     },
     module: {
         rules: [

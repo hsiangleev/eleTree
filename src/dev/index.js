@@ -47,10 +47,48 @@ btn.onclick = function() {
 }
 
 ele.on('checkbox', function(data) {
-    console.log(this)
+    // console.log(this)
     console.log(data)
 })
 // ele.on('click', function(data) {
 //     console.log(this)
 //     console.log(data)
+// })
+
+
+let ele2 = eleTree.render({
+    el: '.eletree2',
+    data: [
+        {
+            "label": "安徽省",
+            "id": "001",
+            "isOpen": true,
+        },
+        {
+            "label": "河南省",
+            "id": "002"
+        },
+        {
+            "label": "江苏省",
+            "id": "003",
+            "children": [
+                {
+                    "label": "苏州市",
+                    "id": "003001"
+                },
+                {
+                    "label": "南京市",
+                    "id": "003002"
+                }
+            ],
+        }
+    ],
+    showCheckbox: true,
+    highlightCurrent: true,
+    expandOnClickNode: true,
+    checkOnClickNode: false,
+})
+// ele2.on('checkbox', function(data) {
+//     // console.log(this)
+//     // console.log(data)
 // })

@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = merge(common, {
     entry: {
-        test: './test/test.js'
+        test: './src/dev/index.js'
     },
     devtool: 'inline-source-map',
     mode: 'development',
@@ -20,7 +20,7 @@ module.exports = merge(common, {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'eleTree',
-            template: 'test/index.html'
+            template: 'src/dev/index.html'
         })
     ],
 })
