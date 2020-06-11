@@ -88,7 +88,7 @@ let ele2 = eleTree.render({
     expandOnClickNode: true,
     checkOnClickNode: false,
 })
-// ele2.on('checkbox', function(data) {
-//     // console.log(this)
-//     // console.log(data)
-// })
+ele2.on('checkbox', function(data) {
+    // console.log(this)
+    console.log(data)
+})

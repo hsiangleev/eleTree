@@ -8,16 +8,27 @@ module.exports = {
     themeConfig: {
         // 添加导航栏
         nav: [
-            { text: 'eleTree', link: '/eleTree/' },
+            { text: 'eleTree', link: '/eleTree/installation' },
             { text: 'github', link: 'https://github.com/hsiangleev/eleTree' }
         ],
         // 为以下路由添加侧边栏
-        sidebar: {
-            '/eleTree/': [
-                "",
-                "installation"
-            ]
-        },
+        sidebar: [
+            {
+                title: '开发指南',
+                collapsable: false,
+                children: [
+                    "/eleTree/installation",
+                    "/eleTree/quickstart"
+                ]
+            },
+            {
+                title: '使用文档',
+                collapsable: false,
+                children: [
+                    "/eleTree/demo",
+                ]
+            },
+        ],
         lastUpdated: 'Last Updated'
     },
     plugins: [
