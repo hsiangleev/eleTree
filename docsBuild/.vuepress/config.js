@@ -41,7 +41,7 @@ module.exports = {
     },
     head: [
         ['link', { rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
-        ['script', { src: 'http://eletreejs.surge.sh/eleTree.js' }]
+        ['script', { src: '//eletreejs.surge.sh/eleTree.js' }]
     ],
     configureWebpack: {
         resolve: {
