@@ -5,6 +5,11 @@ $disabledColor: #c2c2c2;
 
 .eleTree-group{
     position: relative;
+    .eleTree-empty-text{
+        text-align: center;
+        font-weight: 500;
+        font-size: 14px;;
+    }
     .eleTree-node{
         .eleTree-title{
             position: relative;

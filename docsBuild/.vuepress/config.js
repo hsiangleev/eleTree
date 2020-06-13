@@ -25,7 +25,9 @@ module.exports = {
                 title: '使用文档',
                 collapsable: false,
                 children: [
-                    "/eleTree/demo",
+                    "/eleTree/usedocs-attr",
+                    "/eleTree/usedocs-methods",
+                    "/eleTree/usedocs-event",
                 ]
             },
         ],
@@ -38,7 +40,8 @@ module.exports = {
         lineNumbers: true
     },
     head: [
-        ['link', { rel: 'icon', type: 'image/png', href: '/favicon.ico' }]
+        ['link', { rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
+        ['script', { src: 'http://eletreejs.surge.sh/eleTree.js' }]
     ],
     configureWebpack: {
         resolve: {

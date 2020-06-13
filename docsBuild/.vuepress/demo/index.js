@@ -10,14 +10,20 @@ const hashCode = s => {
     }, 0)
 }
 const creatDemoComponent = async (ctx, content, name) => {
-    const isHTML = /\`\`\`\s*html/.test(content)
-    const isPlainComponent = /^\s*\<template\>/.test(content) || /\`\`\`/.test(content)
-    const wrapTemplate = code => `<template>\n<div>\n${code}\n</div>\n</template>`
-    if (isHTML) {
-        content = content.replace(/\`\`\`\s*html([\s\S]*)\`\`\`/, wrapTemplate('$1'))
-    } else if (!isPlainComponent) {
-        content = wrapTemplate(content)
+    // const isHTML = /\`\`\`\s*html/.test(content)
+    // const isPlainComponent = /^\s*\<template\>/.test(content) || /\`\`\`/.test(content)
+    // const wrapTemplate = code => `<template>\n<div>\n${code}\n</div>\n</template>`
+    // if (isHTML) {
+    //     content = content.replace(/\`\`\`\s*html([\s\S]*)\`\`\`/,`<template>\n<div>\n$1\n</div>\n</template>`)
+    // }
+
+    if(!(/<template>/.test(content))){
+        content = content.replace(/([\s\S]+)(<script>)/,"<template>\n<div>\n$1\n</div>\n</template>\n$2\n")
     }
+    if(!(/export default/.test(content))){
+        content = content.replace(/([\s\S]+<script>\s)([\s\S]+)(<\/script>)/,`$1\nexport default {\nmounted() {\n$2\n}\n}\n$3`)
+    }
+
     // 写入临时文件
     await ctx.writeTemp(`dynamic/demo/${name}.vue`, content, { encoding: 'utf8' })
 }
@@ -45,6 +51,7 @@ module.exports = (opts, ctx) => {
                     let t = code.split(/```[\s\S]*?(?=\<)/)
                     if (t.length > 1) {
                         code = t.slice(1).join('')
+                        code = code.replace(/(\`\`\`)$/,"")
                     }
                     const tagName = `demo-block-${relativePath ? hashCode(relativePath) : key}-${index}`
                     creatDemoComponent(ctx, code, tagName)

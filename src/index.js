@@ -17,15 +17,15 @@ var patch = init([
 class thisTree {
     constructor(opt) {
         this.config = Object.assign({}, eleTreeConfig, opt)
-        if(isArray(this.config.data) && this.config.data.length > 0){
-            this.render()
-        }else if(this.config.url){
+        if(this.config.url){
             this.asyncData().then(data=>{
                 this.config.data = data
                 this.render()
             })
+        }else if(isArray(this.config.data)){
+            this.render()
         }else{
-            throw '没有数据源，请检查是否有data或url参数'
+            throw '没有url参数或data数据不为数组，请检查数据'
         }
     }
     render() {
