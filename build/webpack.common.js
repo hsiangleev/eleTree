@@ -1,4 +1,5 @@
 const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
     output: {
@@ -8,7 +9,7 @@ module.exports = {
     },
     module: {
         rules: [
-            {test: /\.scss$/,use: ["style-loader", "css-loader", "sass-loader"]},
+            {test: /\.(scss|css)$/,use: ["style-loader", "css-loader", "sass-loader"]},
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -21,7 +22,27 @@ module.exports = {
                         ]
                     }
                 }
-            }
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'images/'
+                    }
+                }
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/'
+                    }
+                }
+            },
         ],
     },
     resolve: {
@@ -29,4 +50,11 @@ module.exports = {
             "~": path.join(__dirname, '../src/')
         }
     },
+    plugins: [
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: path.resolve(__dirname, '../src/public/images'), to: '../dist/images/' },
+            ],
+        }),
+    ],
 }

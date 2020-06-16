@@ -1,4 +1,5 @@
 import iconVnode from '~/vnode/iconVnode'
+import dropdownVnode from '~/vnode/dropdownVnode'
 import checkboxVnode from '~/vnode/checkboxVnode'
 import textVnode from '~/vnode/textVnode'
 import lineHorizontal from '~/vnode/lineHorizontal'
@@ -12,8 +13,9 @@ export default function(options, v, isFirst) {
     },
     [
         lineHorizontal(options, isFirst),
-        iconVnode(options, v), 
+        dropdownVnode(options, v), 
         checkboxVnode(options, v),
+        iconVnode(options, v),
         textVnode(options, v)
     ])
 }

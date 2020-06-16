@@ -6,7 +6,7 @@ const tree = {
         {
             "label": "安徽省",
             "id": "001",
-            "isOpen": true,
+            // "isOpen": true,
             // "checked": true,
             "children": [
                 {
@@ -21,14 +21,14 @@ const tree = {
                     "label": "马鞍山市",
                     "id": "001002",
                     // "disabled": true,
-                    "isOpen": true,
+                    // "isOpen": true,
                     // "checked": true,
                     "children": [
                         {
                             "label": "花山区",
                             "id": "001002001",
                             "disabled": true,
-                            "isOpen": true,
+                            // "isOpen": true,
                             // "checked": true,
                             "children": [
                                 {
@@ -86,7 +86,7 @@ const data = {
     "data": []
 }
 let index = 0
-for(let i=0;i<10;i++){
+for(let i=0;i<20;i++){
     index++
     data.data.push({
         "label": "aa"+i,
@@ -96,7 +96,7 @@ for(let i=0;i<10;i++){
     })
 }
 data.data.forEach((v)=>{
-    for(let i=0;i<10;i++){
+    for(let i=0;i<100;i++){
         index++
         v.children.push({
             "label": "bb"+i,
@@ -104,7 +104,7 @@ data.data.forEach((v)=>{
             "children": [],
             "checked": true
         })
-        for(let j=0;j<10;j++){
+        for(let j=0;j<100;j++){
             index++
             v.children[i].children.push({
                 "label": "cc"+j,
@@ -115,6 +115,22 @@ data.data.forEach((v)=>{
         }
     }
 })
+
+const lazyData = {
+    "code": 0,
+    "msg": "",
+    "data": []
+}
+let index2 = 0
+for(let i=0;i<10;i++){
+    index++
+    lazyData.data.push({
+        "label": "aa"+i,
+        "id": index2,
+        "children": [],
+        "checked": true
+    })
+}
 
 module.exports = {
     'POST /api/tree': tree,

@@ -2,6 +2,7 @@ import groupVnode from '~/vnode/groupVnode'
 import { renderData } from '~/opera/renderData'
 import methods from '~/methods/index'
 import '~/index.scss'
+import '~/public/css/icon.css'
 import { eleTreeConfig } from '~/config'
 import { init } from 'snabbdom'
 import ajax from '~/opera/ajax'
@@ -33,6 +34,7 @@ class thisTree {
         let el = document.createElement('div')
         document.querySelector(this.config.el).appendChild(el)
         patch(el, groupVnode(this.config, this.config.vnodeData, true, true))
+        isFun(this.config.done) && this.config.done(this.config.data)
     }
     async asyncData() {
         let data = await ajax({
@@ -42,7 +44,6 @@ class thisTree {
             headers: this.config.headers
         })
         if(data[this.config.response['statusName']] !== this.config.response['statusCode']) throw data.msg
-        isFun(this.config.done) && this.config.done(data)
         return data[this.config.response['dataName']]    
     }
 }

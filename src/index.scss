@@ -14,7 +14,7 @@ $disabledColor: #c2c2c2;
         .eleTree-title{
             position: relative;
             line-height: $lineHeight;
-            .eleTree-icon{
+            .eleTree-dropdown{
                 display: inline-block;
                 position: relative;
                 width: 15px;
@@ -22,26 +22,28 @@ $disabledColor: #c2c2c2;
                 top: 2px;
                 left: -2px;
                 cursor: pointer;
-                &:not(.eleTree-icon-hide){
-                    &::before,
-                    &::after{
-                        content: "";
-                        width: 8px;
-                        height: 2px;
-                        background-color: $fontColor;
-                        position: absolute;
-                        left: 3px;
-                        top: 6px;
-                        transform-origin: right;
-                        transform: rotate(40deg);
-                        cursor: pointer;
+                &.eleTree-dropdown-code{
+                    &:not(.eleTree-dropdown-hide){
+                        &::before,
+                        &::after{
+                            content: "";
+                            width: 8px;
+                            height: 2px;
+                            background-color: $fontColor;
+                            position: absolute;
+                            left: 3px;
+                            top: 6px;
+                            transform-origin: right;
+                            transform: rotate(40deg);
+                            cursor: pointer;
+                        }
+                        &::after{
+                            transform: rotate(-40deg);
+                        }
                     }
-                    &::after{
-                        transform: rotate(-40deg);
+                    &.eleTree-dropdown-open{
+                        transform: rotate(90deg);
                     }
-                }
-                &.eleTree-icon-open{
-                    transform: rotate(90deg);
                 }
             }
             .eleTree-text{
@@ -62,7 +64,7 @@ $disabledColor: #c2c2c2;
                 display: inline-block;
                 position: relative;
                 top: 3px;
-                &.eleTree-checkbox-checked{
+                &.eleTree-checkbox-code_checked{
                     border-color: $checkboxColor;
                     background-color: $checkboxColor;
                     &::before,
@@ -83,12 +85,12 @@ $disabledColor: #c2c2c2;
                         bottom: 7px;
                         transform: rotate(130deg);
                     }
-                    &.eleTree-checkbox-disabled::before,
-                    &.eleTree-checkbox-disabled::after{
+                    &.eleTree-checkbox-code_disabled::before,
+                    &.eleTree-checkbox-code_disabled::after{
                         background-color: $disabledColor;
                     }
                 }
-                &.eleTree-checkbox-half{
+                &.eleTree-checkbox-code_half{
                     border-color: $checkboxColor;
                     background-color: $checkboxColor;
                     &::before{
@@ -101,11 +103,11 @@ $disabledColor: #c2c2c2;
                         top: 6px;
                         left: 2px;
                     }
-                    &.eleTree-checkbox-disabled::before{
+                    &.eleTree-checkbox-code_disabled::before{
                         background-color: $disabledColor;
                     }
                 }
-                &.eleTree-checkbox-disabled{
+                &.eleTree-checkbox-code_disabled{
                     cursor: not-allowed;
                     background-color: #f2f6fc;
                     border-color: #dcdfe6;
@@ -114,6 +116,14 @@ $disabledColor: #c2c2c2;
             }
             &.eleTree-title-active{
                 background-color: #f0f7ff;
+            }
+            .eleTree-icon{
+                display: inline-block;
+                position: relative;
+                top: 3px;
+                width: 13px;
+                height: 16px;
+                margin-right: 5px;
             }
         }
     }

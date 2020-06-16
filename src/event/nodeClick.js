@@ -17,6 +17,7 @@ let emitEvent = function(options, v, indexArr, type, event) {
 export default function(options, v, event) {
     let classList = event.target.classList
     let isTargetCheckbox = classList.contains('eleTree-checkbox')
+    let isTargetDropdown = classList.contains('eleTree-dropdown')
     let isTargetIcon = classList.contains('eleTree-icon')
     let isTargetText = classList.contains('eleTree-text')
     if(!v.disabled && (isTargetCheckbox || isTargetText && options.checkOnClickNode)) {
@@ -35,12 +36,13 @@ export default function(options, v, event) {
             reloadVnode(options)
             emitEvent(options, v, indexArr, 'checkbox', event)
         }
-    }else if(isTargetIcon || isTargetText && options.expandOnClickNode){
+    }else if(isTargetDropdown || options.expandOnClickNode && (isTargetText || isTargetIcon)){
         let indexArr = getNodeIndex(options, v.id)
         let originData = getCurrentDataByIndexArr(options.data, indexArr, options.request['children'])
         // 点击图标展开，点击文字判断是否展开
         v.isOpen = !v.isOpen
         originData.isOpen = !originData.isOpen
+        if(v.isOpen) v.isRenderChild = true
         // 手风琴效果
         if(options.accordion){
             // 修改数据

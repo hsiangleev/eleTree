@@ -15,7 +15,8 @@ let ele = eleTree.render({
     // defaultExpandAll: true,
     expandOnClickNode: true,
     checkOnClickNode: false,
-    // defaultExpandedKeys: ['001','001002','001002001'],
+    defaultExpandedKeys: ['001','001002001'],
+    autoExpandParent: true,
     // checkStrictly: true,
     // defaultCheckedKeys: ['001002002002','001002002003'],
     // accordion: true,
@@ -32,7 +33,24 @@ let ele = eleTree.render({
         isOpen: "isOpen",
         isLeaf: "isLeaf"
     },
-    // checkStrictlyStatus: 2,
+    // icon: {
+    //     fold: ".eletree_icon-file_fold",
+    //     leaf: ".eletree_icon-file_leaf",
+    //     checkFull: ".eletree_icon-check_full",
+    //     checkHalf: ".eletree_icon-check_half",
+    //     checkNone: ".eletree_icon-check_none",
+    //     dropdownOff: ".eletree_icon-dropdown_right",
+    //     dropdownOn: ".eletree_icon-dropdown_bottom",
+    // },
+    icon: {
+        fold: "img",
+        leaf: "img",
+        checkFull: ".eletree_icon-check_full",
+        checkHalf: ".eletree_icon-check_half",
+        checkNone: ".eletree_icon-check_none",
+        dropdownOff: "img",
+        dropdownOn: "img",
+    },
 })
 
 btn.onclick = function() {
@@ -48,7 +66,7 @@ btn.onclick = function() {
 
 ele.on('checkbox', function(data) {
     // console.log(this)
-    console.log(data)
+    // console.log(data)
 })
 // ele.on('click', function(data) {
 //     console.log(this)
@@ -56,15 +74,15 @@ ele.on('checkbox', function(data) {
 // })
 
 
-let ele2 = eleTree.render({
-    el: '.eletree2',
-    data: [],
-    showCheckbox: true,
-    highlightCurrent: true,
-    expandOnClickNode: true,
-    checkOnClickNode: false,
-})
-ele2.on('checkbox', function(data) {
-    // console.log(this)
-    console.log(data)
-})
+// let ele2 = eleTree.render({
+//     el: '.eletree2',
+//     data: [],
+//     showCheckbox: true,
+//     highlightCurrent: true,
+//     expandOnClickNode: true,
+//     checkOnClickNode: false,
+// })
+// ele2.on('checkbox', function(data) {
+//     // console.log(this)
+//     console.log(data)
+// })

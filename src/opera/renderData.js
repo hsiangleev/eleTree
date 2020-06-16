@@ -21,11 +21,12 @@ export function changeData(options, oData, indexArr, pData, isFirst) {
         let o = {
             title: v[options.request['name']],
             id: v[options.request['key']],
-            isOpen: options.defaultExpandAll || options.defaultExpandedKeys.includes(v.id) || v.isOpen || false,
+            isOpen: v.isOpen || options.defaultExpandAll || options.defaultExpandedKeys.includes(v.id) || (options.autoExpandParent && pData.isOpen) || false,
             checkedStatus: (options.defaultCheckedKeys.includes(v.id) || v.checked) ? 2 : 0,
             children: [],
             disabled: v[options.request['disabled']] || false,
         }
+        o.isRenderChild = o.isOpen      // 是否已经渲染子节点
 
         let pStatus = null
         if(!options.checkStrictly){
