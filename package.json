@@ -10,7 +10,7 @@
     "docs:build": "vuepress build ./docsBuild",
     "CDN": "surge --domain eletreejs.surge.sh ./dist",
     "docs:surge": "surge --domain eletree.surge.sh ./docs",
-    "build:all": "npm run build && npm run docs:build && npm run CDN && npm run docs:surge"
+    "build:all": "npm run build && npm run docs:build && npm run CDN"
   },
   "author": "hsiangleev",
   "license": "MIT",

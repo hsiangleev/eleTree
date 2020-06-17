@@ -20,8 +20,8 @@ export const eleTreeConfig = {
     contextmenuList: [],        // 启用右键菜单，支持的操作有："copy","add","edit","remove"
     searchNodeMethod: null,     // 对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏
     showLine: true,             // 是否显示连线，默认true    1
-    imgUrl: "./images/",        // 图片所在的文件夹路径（默认为相对于eletree.js文件同级的images文件夹下）
-    icon: {
+    imgUrl: "./images/",        // 图片所在的文件夹路径       1
+    icon: {                     // 自定义图标
         fold: "",
         leaf: "",
         checkFull: "",
@@ -50,11 +50,6 @@ export const eleTreeConfig = {
         isOpen: "isOpen",
         isLeaf: "isLeaf"
     },
-    // 0: 父子互不影响，
-    // 1: 父子节点相互影响(当出现冲突时，以父节点为基准)
-    // 2: 父子节点相互影响(当出现冲突时，以子节点为基准)
-    // 冲突情况: 即所给数据为父节点选中，并且子节点部分选中
-    // checkStrictlyStatus: 1,
 
 
 
