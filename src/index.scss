@@ -51,11 +51,7 @@ $disabledColor: #c2c2c2;
                 color: $fontColor;
             }
             .eleTree-checkbox{
-                border: 1px solid #d2d2d2;
-                font-size: 12px;
                 border-radius: 2px;
-                background-color: #fff;
-                color: #fff;
                 cursor: pointer;
                 text-align: center;
                 width: 13px;
@@ -64,53 +60,59 @@ $disabledColor: #c2c2c2;
                 display: inline-block;
                 position: relative;
                 top: 3px;
-                &.eleTree-checkbox-code_checked{
-                    border-color: $checkboxColor;
-                    background-color: $checkboxColor;
-                    &::before,
-                    &::after{
-                        content: "";
-                        width: 6px;
-                        height: 1px;
-                        background-color: #fff;
-                        position: absolute;
-                        left: 0px;
-                        bottom: 4px;
-                        transform-origin: bottom;
-                        transform: rotate(45deg);
+                &.eleTree-checkbox-code{
+                    font-size: 12px;
+                    border: 1px solid #d2d2d2;
+                    background-color: #fff;
+                    color: #fff;
+                    &.eleTree-checkbox-code_checked{
+                        border-color: $checkboxColor;
+                        background-color: $checkboxColor;
+                        &::before,
+                        &::after{
+                            content: "";
+                            width: 6px;
+                            height: 1px;
+                            background-color: #fff;
+                            position: absolute;
+                            left: 0px;
+                            bottom: 4px;
+                            transform-origin: bottom;
+                            transform: rotate(45deg);
+                        }
+                        &::after{
+                            width: 10px;
+                            left: 3px;
+                            bottom: 7px;
+                            transform: rotate(130deg);
+                        }
+                        &.eleTree-checkbox-code_disabled::before,
+                        &.eleTree-checkbox-code_disabled::after{
+                            background-color: $disabledColor;
+                        }
                     }
-                    &::after{
-                        width: 10px;
-                        left: 3px;
-                        bottom: 7px;
-                        transform: rotate(130deg);
-                    }
-                    &.eleTree-checkbox-code_disabled::before,
-                    &.eleTree-checkbox-code_disabled::after{
-                        background-color: $disabledColor;
-                    }
-                }
-                &.eleTree-checkbox-code_half{
-                    border-color: $checkboxColor;
-                    background-color: $checkboxColor;
-                    &::before{
-                        content: "";
-                        position: absolute;
-                        width: 8px;
-                        height: 1px;
-                        background-color: #fff;
-                        display: inline-block;
-                        top: 6px;
-                        left: 2px;
-                    }
-                    &.eleTree-checkbox-code_disabled::before{
-                        background-color: $disabledColor;
+                    &.eleTree-checkbox-code_half{
+                        border-color: $checkboxColor;
+                        background-color: $checkboxColor;
+                        &::before{
+                            content: "";
+                            position: absolute;
+                            width: 8px;
+                            height: 1px;
+                            background-color: #fff;
+                            display: inline-block;
+                            top: 6px;
+                            left: 2px;
+                        }
+                        &.eleTree-checkbox-code_disabled::before{
+                            background-color: $disabledColor;
+                        }
                     }
                 }
                 &.eleTree-checkbox-code_disabled{
+                    border: 1px solid #ccc;
                     cursor: not-allowed;
-                    background-color: #f2f6fc;
-                    border-color: #dcdfe6;
+                    background-color: #dcdfe6;
                     color: $disabledColor;
                 }
             }

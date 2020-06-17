@@ -43,13 +43,13 @@ let ele = eleTree.render({
     //     dropdownOn: ".eletree_icon-dropdown_bottom",
     // },
     icon: {
-        fold: "img",
-        leaf: "img",
+        fold: "fold.png",
+        leaf: "leaf.png",
         checkFull: ".eletree_icon-check_full",
         checkHalf: ".eletree_icon-check_half",
         checkNone: ".eletree_icon-check_none",
-        dropdownOff: "img",
-        dropdownOn: "img",
+        dropdownOff: "dropdownOff.png",
+        dropdownOn: "dropdownOn.png",
     },
 })
 

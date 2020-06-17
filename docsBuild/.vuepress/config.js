@@ -30,6 +30,13 @@ module.exports = {
                     "/eleTree/usedocs-event",
                 ]
             },
+            {
+                title: '示例',
+                collapsable: false,
+                children: [
+                    "/eleTree/demo-icon",
+                ]
+            },
         ],
         lastUpdated: 'Last Updated'
     },

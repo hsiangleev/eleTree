@@ -37,7 +37,7 @@ const tree = {
                                 },
                                 {
                                     "label": "bbb",
-                                    // "checked": true,
+                                    "checked": true,
                                     "id": "001002002002",
                                 },
                                 {
