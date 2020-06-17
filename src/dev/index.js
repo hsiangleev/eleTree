@@ -1,4 +1,5 @@
 import eleTree from '~/entry'
+import '~/public/css/icon.css'
 
 let btn = document.querySelector('button')
 let ele = eleTree.render({

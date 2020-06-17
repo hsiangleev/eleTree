@@ -9,7 +9,7 @@ export default function(options, v) {
         }else if(/\.(jpg|png|gif)$/.test(options.icon[type])){
             node = disabledStr 
                 ? h('span.eleTree-checkbox' + disabledStr) 
-                : h('span.eleTree-checkbox', {style: {'background-image': `url("./images/${options.icon[type]}")`, 'background-size': 'contain'}})
+                : h('span.eleTree-checkbox', {style: {'background-image': `url("${options.imgUrl + options.icon[type]}")`, 'background-size': 'contain'}})
         }else if(/^(\.)/.test(options.icon[type])){
             node = h(`span.eleTree-checkbox${disabledStr ? disabledStr : options.icon[type]}`)
         }

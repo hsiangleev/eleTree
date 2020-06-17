@@ -20,6 +20,7 @@
 | accordion | 是否每次只打开一个同级树节点展开（手风琴效果） | boolean | — | false |
 | indent | 相邻级节点间的水平缩进，单位为像素 | number | — | 16 |
 | showLine | 是否显示虚线 | boolean | — | true |
+| imgUrl | 图片所在的文件夹路径（默认为相对于eletree.js文件同级的images文件夹下） | string | — | ./images/ |
 | icon | 使用自定义图标或图片 | object | fold，leaf，checkFull，checkHalf，checkNone，dropdownOff，dropdownOn | 每个属性默认值均为空字符串 |
 | done | 树渲染完成之后的回调，参数为data数据 | function | — | — |
 

@@ -19,7 +19,8 @@ export const eleTreeConfig = {
     draggable: false,           // 是否开启拖拽节点功能
     contextmenuList: [],        // 启用右键菜单，支持的操作有："copy","add","edit","remove"
     searchNodeMethod: null,     // 对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏
-    showLine: true,            // 是否显示连线，默认true    1
+    showLine: true,             // 是否显示连线，默认true    1
+    imgUrl: "./images/",        // 图片所在的文件夹路径（默认为相对于eletree.js文件同级的images文件夹下）
     icon: {
         fold: "",
         leaf: "",

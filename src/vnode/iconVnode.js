@@ -7,7 +7,7 @@ export default function(options, v) {
         if(!options.icon[type]){
             node = null
         }else if(/\.(jpg|png|gif)$/.test(options.icon[type])){
-            node = h('span.eleTree-icon', {style: {'background-image': `url("./images/${options.icon[type]}")`, 'background-size': 'contain'}})
+            node = h('span.eleTree-icon', {style: {'background-image': `url("${options.imgUrl + options.icon[type]}")`, 'background-size': 'contain'}})
         }else if(/^(\.)/.test(options.icon[type])){
             node = h(`span.eleTree-icon${options.icon[type]}`)
         }
