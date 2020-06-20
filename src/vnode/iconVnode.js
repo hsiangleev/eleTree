@@ -12,7 +12,7 @@ export default function(options, v) {
             node = h(`span.eleTree-icon${options.icon[type]}`)
         }
     }
-    // 当前节点是否是非叶子节点
-    isFold ? fn('fold') : fn('leaf')
+    // 当前节点是否是叶子节点
+    options.lazy && v[options.request.isLeaf] || !options.lazy && !isFold ? fn('leaf') : fn('fold')
     return node
 }

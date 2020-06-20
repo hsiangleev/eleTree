@@ -10,7 +10,7 @@ let formatData = (obj, url = '')=>{
     //返回拼接好的信息
     return url;
 }
-let ajax = ({method = 'get', url, data, headers})=>{
+let ajax = ({method = 'get', url = '', data = {}, headers = {}})=>{
     return new Promise((resolve, reject)=>{
         method = method.toLocaleLowerCase()
         if(method === 'post') headers = Object.assign(headers, {"Content-Type": "application/x-www-form-urlencoded"})

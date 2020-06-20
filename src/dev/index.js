@@ -1,5 +1,6 @@
 import eleTree from '~/entry'
 import '~/public/css/icon.css'
+import ajax from '~/opera/ajax'
 
 let btn = document.querySelector('button')
 let ele = eleTree.render({
@@ -17,7 +18,8 @@ let ele = eleTree.render({
     expandOnClickNode: true,
     checkOnClickNode: false,
     defaultExpandedKeys: ['001','001002001'],
-    autoExpandParent: true,
+    // accordion: true,
+    // autoExpandParent: true,
     // checkStrictly: true,
     // defaultCheckedKeys: ['001002002002','001002002003'],
     // accordion: true,
@@ -42,6 +44,7 @@ let ele = eleTree.render({
     //     checkNone: ".eletree_icon-check_none",
     //     dropdownOff: ".eletree_icon-dropdown_right",
     //     dropdownOn: ".eletree_icon-dropdown_bottom",
+    //     loading: ".eleTree-animate-rotate.eletree_icon-loading1",
     // },
     icon: {
         fold: "fold.png",
@@ -51,19 +54,35 @@ let ele = eleTree.render({
         checkNone: ".eletree_icon-check_none",
         dropdownOff: "dropdownOff.png",
         dropdownOn: "dropdownOn.png",
+        loading: "",
     },
+    lazy: true
 })
 
 btn.onclick = function() {
     console.time()
-    let res = ele.updateKeySelf('001', {
-        "label": "添加子节点",
-        "id": "001002002003001",
-        "checked": true
-    })
+    let res = ele.updateKeyChildren('001', [
+        {
+            "label": "添加子节点",
+            "id": "001002002003001",
+            "checked": true
+        }
+    ])
     console.log(res)
     console.timeEnd()
 }
+
+ele.on('lazyload', function(d) {
+    var {data, load} = d
+    console.log(d)
+    ajax({
+        method: 'post',
+        url: '/api/lazyData',
+        data: {id: data.id}
+    }).then(d=>{
+        load(d)
+    })
+})
 
 ele.on('checkbox', function(data) {
     // console.log(this)

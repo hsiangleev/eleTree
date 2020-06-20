@@ -1,4 +1,5 @@
 import groupVnode from '~/vnode/groupVnode'
+import loadingVnode from '~/vnode/loadingVnode'
 import { renderData } from '~/opera/renderData'
 import methods from '~/methods/index'
 import '~/index.scss'
@@ -36,12 +37,17 @@ class thisTree {
         isFun(this.config.done) && this.config.done(this.config.data)
     }
     async asyncData() {
+        let el = document.createElement('div')
+        document.querySelector(this.config.el).appendChild(el)
+        patch(el, loadingVnode(this.config))
         let data = await ajax({
             method: this.config.method || 'get',
             url: this.config.url,
             data: this.config.where || {},
             headers: this.config.headers
         })
+        let loadingEl = document.querySelector(this.config.el + ">.eleTree-loading")
+        loadingEl.parentNode.removeChild(loadingEl)
         if(data[this.config.response['statusName']] !== this.config.response['statusCode']) throw data.msg
         return data[this.config.response['dataName']]    
     }

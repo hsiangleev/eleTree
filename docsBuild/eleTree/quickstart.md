@@ -37,16 +37,16 @@ eleTree.render({
                             // "checked": true,
                             "children": [
                                 {
-                                    "label": "aaa",
+                                    "label": "霍里街道",
                                     "id": "001002002001"
                                 },
                                 {
-                                    "label": "bbb",
+                                    "label": "桃源路",
                                     "checked": true,
                                     "id": "001002002002",
                                 },
                                 {
-                                    "label": "ccc",
+                                    "label": "湖东路",
                                     "id": "001002002003",
                                 }
                             ]

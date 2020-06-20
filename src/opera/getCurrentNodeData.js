@@ -6,13 +6,15 @@ export default function(options, v, arr) {
         d=d[options.request['children']][arr[i]]
     }
     let data = {}
+    // 返回的数据不包括一下属性值
+    let removeAttrArr = [options.request['children'], 'isRenderChild', 'isLazyNode']
     Object.keys(d).forEach(attr=>{
-        if(attr !== options.request['children']){
+        if(!removeAttrArr.includes(attr)){
             data[attr] = d[attr]
         }
     })
     if(options.showCheckbox) data[options.request['checked']] = v.checkedStatus === 2
-    data[options.request['isOpen']] = v.isOpen || false
+    data[options.request['isOpen']] = v.isOpen === 2 ? true : false
     data[options.request['disabled']] = v.disabled || false
     data[options.request['isLeaf']] = v[options.request['children']].length === 0
 

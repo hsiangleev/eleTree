@@ -8,6 +8,7 @@
 * checkNone：     未选中
 * fold：          折叠
 * leaf：          叶子节点
+* loading:        正在加载
 
 ::: tip 说明
 1. **当属性值为空的时候为默认的方式，即通过dom节点生成的下拉和checkbox，且没有树形图标**
@@ -52,11 +53,11 @@ eleTree.render({
                             "checked": true,
                             "children": [
                                 {
-                                    "label": "aaa",
+                                    "label": "霍里街道",
                                     "id": "001002002001"
                                 },
                                 {
-                                    "label": "bbb",
+                                    "label": "桃源路",
                                     "checked": true,
                                     "id": "001002002002",
                                 }
@@ -132,11 +133,11 @@ eleTree.render({
                             "isOpen": true,
                             "children": [
                                 {
-                                    "label": "aaa",
+                                    "label": "霍里街道",
                                     "id": "001002002001"
                                 },
                                 {
-                                    "label": "bbb",
+                                    "label": "桃源路",
                                     "checked": true,
                                     "id": "001002002002",
                                 }
@@ -212,11 +213,11 @@ eleTree.render({
                             "isOpen": true,
                             "children": [
                                 {
-                                    "label": "aaa",
+                                    "label": "霍里街道",
                                     "id": "001002002001"
                                 },
                                 {
-                                    "label": "bbb",
+                                    "label": "桃源路",
                                     "checked": true,
                                     "id": "001002002002",
                                 }

@@ -1,6 +1,6 @@
 {
   "name": "eletree",
-  "version": "2.1.2",
+  "version": "2.1.5",
   "description": "Tree components written using virtual dom",
   "main": "dist/eleTree.js",
   "scripts": {
@@ -10,6 +10,7 @@
     "docs:build": "vuepress build ./docsBuild",
     "CDN": "surge --domain eletreejs.surge.sh ./dist",
     "docs:surge": "surge --domain eletree.surge.sh ./docs",
+    "publish": "npm publish",
     "build:all": "npm run build && npm run docs:build && npm run CDN"
   },
   "author": "hsiangleev",

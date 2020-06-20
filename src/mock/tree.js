@@ -6,7 +6,7 @@ const tree = {
         {
             "label": "安徽省",
             "id": "001",
-            // "isOpen": true,
+            "isOpen": true,
             // "checked": true,
             "children": [
                 {
@@ -21,7 +21,7 @@ const tree = {
                     "label": "马鞍山市",
                     "id": "001002",
                     // "disabled": true,
-                    // "isOpen": true,
+                    "isOpen": true,
                     // "checked": true,
                     "children": [
                         {
@@ -43,6 +43,7 @@ const tree = {
                                 {
                                     "label": "ccc",
                                     "id": "001002002003",
+                                    "isLeaf": true,
                                 }
                             ]
                         },
@@ -116,22 +117,27 @@ data.data.forEach((v)=>{
     }
 })
 
-const lazyData = {
-    "code": 0,
-    "msg": "",
-    "data": []
-}
-let index2 = 0
-for(let i=0;i<10;i++){
-    index++
-    lazyData.data.push({
-        "label": "aa"+i,
-        "id": index2,
-        "children": [],
-        "checked": true
-    })
-}
 
 module.exports = {
-    'POST /api/tree': tree,
+    'POST /api/tree': (req, res)=>{
+        setTimeout(() => {
+            res.json(tree)
+        }, 0);
+    },
+    'POST /api/lazyData': (req, res)=>{
+        const { id } = req.body;
+        setTimeout(() => {
+            res.json([
+                {
+                    "label": "懒加载节点1",
+                    "id": "lazy001" + id,
+                },
+                {
+                    "label": "懒加载节点2",
+                    "id": "lazy002" + id,
+                    "isLeaf": true
+                },
+            ])
+        }, 200);
+    },
 }

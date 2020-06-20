@@ -6,7 +6,7 @@
 推荐使用 npm 的方式安装，它能更好地和 [webpack](https://webpack.js.org/) 打包工具配合使用。
 
 ```shell
-npm i eletree -S
+npm install eletree -D
 ```
 
 #### CDN
@@ -32,11 +32,9 @@ layui.config({
 
 #### 在线测试
 
-通过 CDN 的方式我们可以很容易地使用 eleTree 写出一个页面。[在线演示](https://codepen.io/hsiangleev/pen/ZEQQgyO?editors=1010)
+通过 CDN 的方式我们可以很容易地使用 eleTree 写出一个页面。[在线演示](https://codepen.io/hsiangleev/pen/ZEQQgyO)
 
-<iframe height="365" style="width: 100%;" scrolling="no" title="Element demo" src="//codepen.io/hsiangleev/pen/ZEQQgyO/?height=365&theme-id=light&default-tab=html" frameborder="no" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href='https://codepen.io/hsiangleev/pen/ZEQQgyO?editors=1010/'>Element demo</a> by hetech
-  (<a href='https://codepen.io/ziyoung'>@ziyoung</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height="365" style="width: 100%;" scrolling="no" title="ZEQQgyO" src="https://codepen.io/hsiangleev/embed/ZEQQgyO?height=265&theme-id=dark&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/hsiangleev/pen/ZEQQgyO'>ZEQQgyO</a> by 李祥
+  (<a href='https://codepen.io/hsiangleev'>@hsiangleev</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
-
-如果是通过 npm 安装，并希望配合 webpack 使用，请阅读下一节：[快速上手](/#/quickstart)。

@@ -1,6 +1,6 @@
 const path = require('path')
 module.exports = {
-    title: 'eleTree',  // 设置网站标题
+    title: 'eleTree2.0',  // 设置网站标题
     dest: './docs',    // 设置输出目录
     // base: '/mt-blog/', // 设置站点根路径
     repo: 'https://github.com/hsiangleev/eleTree/', // 添加 github 链接,
@@ -8,7 +8,8 @@ module.exports = {
     themeConfig: {
         // 添加导航栏
         nav: [
-            { text: 'eleTree', link: '/eleTree/installation' },
+            { text: 'eleTree2.0', link: '/eleTree/installation' },
+            { text: '1.0版本', link: 'https://layuiextend.hsianglee.cn/eletree/' },
             { text: 'github', link: 'https://github.com/hsiangleev/eleTree' }
         ],
         // 为以下路由添加侧边栏
@@ -35,10 +36,15 @@ module.exports = {
                 collapsable: false,
                 children: [
                     "/eleTree/demo-icon",
+                    "/eleTree/demo-lazyload",
                 ]
             },
         ],
-        lastUpdated: 'Last Updated'
+        lastUpdated: 'Last Updated',
+        // algolia: {
+        //     apiKey: '<API_KEY>',
+        //     indexName: '<INDEX_NAME>'
+        // }
     },
     plugins: [
         require('./demo/index.js')

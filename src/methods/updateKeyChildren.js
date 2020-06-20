@@ -11,7 +11,9 @@ export default function(id, data) {
     if(indexArr.length === 0) return
     
     let d = getCurrentDataByIndexArr(this.vnodeData, indexArr, 'children')
-    d.isOpen = true
+    // 添加子节点的时候自动展开当前节点
+    d.isOpen = 2
+    d.isRenderChild = true
     // 修改原始数据
     let d1 = getCurrentDataByIndexArr(this.data, indexArr, this.request['children'])
     if(d1[this.request['children']]){
@@ -19,6 +21,8 @@ export default function(id, data) {
     }else{
         d1[this.request['children']] = data
     }
-    changeData(this, d1[this.request['children']], indexArr, d)
+    d1[this.request['isOpen']] = true
+    d1.isRenderChild = true
+    changeData(this, d1[this.request['children']], indexArr, d, false, false)
     reloadVnode(this)
 }

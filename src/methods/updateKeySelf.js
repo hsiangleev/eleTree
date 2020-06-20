@@ -23,7 +23,7 @@ export default function(id, data) {
                 d1[v] = data[v]
             }
         })
-        changeData(this, pData[this.request['children']], parentArr, pVnodeData)
+        changeData(this, pData[this.request['children']], parentArr, pVnodeData, false, false)
         reloadVnode(this)
         return
     }

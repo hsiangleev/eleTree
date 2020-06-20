@@ -14,7 +14,7 @@ export const eleTreeConfig = {
     defaultCheckedKeys: [],     // 默认勾选的节点的 key 的数组      1
     accordion: false,           // 是否每次只打开一个同级树节点展开（手风琴效果）   1
     indent: 16,                 // 相邻级节点间的水平缩进，单位为像素               1
-    lazy: false,                // 是否懒加载子节点，需与 load 方法结合使用
+    lazy: false,                // 当不是懒加载时，叶子节点由当前节点是否由子节点判断，如果为懒加载，则叶子节点由当前节点的属性isLeaf: true决定
     load: function() {},        // 加载子树数据的方法，仅当 lazy 属性为true 时生效
     draggable: false,           // 是否开启拖拽节点功能
     contextmenuList: [],        // 启用右键菜单，支持的操作有："copy","add","edit","remove"
@@ -29,6 +29,7 @@ export const eleTreeConfig = {
         checkNone: "",
         dropdownOff: "",
         dropdownOn: "",
+        loading: "",
     },
 
     method: "get",      // 1

@@ -10,7 +10,7 @@ export default function(options, v, isOpen, isFirst) {
         }, 
         [
             titleVnode(options, v, isFirst), 
-            v.isRenderChild ? groupVnode(options, v.children || [], v.isOpen) : null
+            v.isRenderChild ? groupVnode(options, v.children || [], v.isOpen === 2) : null
         ]
     )
 }

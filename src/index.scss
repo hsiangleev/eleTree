@@ -130,3 +130,40 @@ $disabledColor: #c2c2c2;
         }
     }
 }
+
+
+@keyframes eleTree_rotate
+{
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes eleTree_rotate
+{
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.eleTree-animate-rotate{
+    display: inline-block;
+    animation: eleTree_rotate .8s linear infinite;
+    -webkit-animation: eleTree_rotate .8s linear infinite;
+}
+.eleTree-loading{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    &.eleTree-loading-code{
+        box-sizing: border-box;
+        border-radius: 50%;
+        background-color: transparent;
+        border: 3px solid #333;
+        border-top-color: transparent;
+    }
+}

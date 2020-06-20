@@ -2,12 +2,21 @@ import { h } from 'snabbdom'
 import { isArray } from '~/opera/tools'
 export default function(options, v) {
     let isFold = v.children && isArray(v.children) && v.children.length > 0
-    if(!isFold) return h('span.eleTree-dropdown.eleTree-dropdown-hide')
+
+    // 判断叶子节点
+    if(options.lazy && v[options.request.isLeaf] || !options.lazy && !isFold){
+        return h('span.eleTree-dropdown.eleTree-dropdown-hide')
+    }
+    
     let node = null
     let fn = async(type)=>{
         if(!options.icon[type]){
-            let s = type === 'dropdownOn' ? '.eleTree-dropdown-open' : ''
-            node = h('span.eleTree-dropdown.eleTree-dropdown-code' + s)
+            let s = type === 'dropdownOn' 
+                ? '.eleTree-dropdown-code.eleTree-dropdown-open' 
+                : type === 'loading' 
+                    ? '.eleTree-loading.eleTree-animate-rotate.eleTree-loading-code' 
+                    : '.eleTree-dropdown-code'
+            node = h('span.eleTree-dropdown' + s)
         }else if(/\.(jpg|png|gif)$/.test(options.icon[type])){
             node = h('span.eleTree-dropdown', {style: {'background-image': `url("${options.imgUrl + options.icon[type]}")`, 'background-size': 'contain'}})
         }else if(/^(\.)/.test(options.icon[type])){
@@ -15,6 +24,6 @@ export default function(options, v) {
         }
     }
     // 当前节点是否展开
-    v.isOpen ? fn('dropdownOn') : fn('dropdownOff')
+    v.isOpen === 2 ? fn('dropdownOn') : (v.isOpen === 1 ? fn('loading') : fn('dropdownOff'))
     return node
 }
