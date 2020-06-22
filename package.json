@@ -1,7 +1,7 @@
 {
   "name": "eletree",
   "version": "2.1.5",
-  "description": "Tree components written using virtual dom",
+  "description": "基于虚拟dom的树组件",
   "main": "dist/eleTree.js",
   "scripts": {
     "start": "webpack-dev-server --config ./build/webpack.dev.js",
@@ -13,7 +13,7 @@
     "publish": "npm publish",
     "build:all": "npm run build && npm run docs:build && npm run CDN"
   },
-  "author": "hsiangleev",
+  "author": "hsianglee",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.10.2",

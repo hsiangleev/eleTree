@@ -56,7 +56,7 @@ let ele = eleTree.render({
         dropdownOn: "dropdownOn.png",
         loading: "",
     },
-    lazy: true
+    // lazy: true
 })
 
 btn.onclick = function() {

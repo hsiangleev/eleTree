@@ -32,18 +32,17 @@ const tree = {
                             // "checked": true,
                             "children": [
                                 {
-                                    "label": "aaa",
+                                    "label": "霍里街道",
                                     "id": "001002002001"
                                 },
                                 {
-                                    "label": "bbb",
+                                    "label": "桃源路",
                                     "checked": true,
                                     "id": "001002002002",
                                 },
                                 {
-                                    "label": "ccc",
+                                    "label": "湖东路",
                                     "id": "001002002003",
-                                    "isLeaf": true,
                                 }
                             ]
                         },
@@ -61,7 +60,17 @@ const tree = {
         },
         {
             "label": "河南省",
-            "id": "002"
+            "id": "002",
+            "children": [
+                {
+                    "label": "郑州市",
+                    "id": "002001"
+                },
+                {
+                    "label": "开封市",
+                    "id": "002002"
+                }
+            ],
         },
         {
             "label": "江苏省",
@@ -74,6 +83,14 @@ const tree = {
                 {
                     "label": "南京市",
                     "id": "003002"
+                },
+                {
+                    "label": "无锡市",
+                    "id": "003003"
+                },
+                {
+                    "label": "徐州市",
+                    "id": "003004"
                 }
             ],
             // "checked": true

@@ -87,6 +87,17 @@ eleTree.render({
     highlightCurrent: true,
     expandOnClickNode: true,
     checkOnClickNode: false,
+    imgUrl: "/eleTree/images/",
+    icon: {
+        fold: "fold.png",
+        leaf: "leaf.png",
+        checkFull: ".eletree_icon-check_full",
+        checkHalf: ".eletree_icon-check_half",
+        checkNone: ".eletree_icon-check_none",
+        dropdownOff: ".eletree_icon-dropdown_right",
+        dropdownOn: ".eletree_icon-dropdown_bottom",
+        loading: ".eleTree-animate-rotate.eletree_icon-loading1",
+    },
 })
 </script>
 <style>
@@ -96,4 +107,3 @@ eleTree.render({
 </style>
 ```
 :::
-

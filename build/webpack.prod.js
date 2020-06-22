@@ -1,6 +1,16 @@
+const webpack = require('webpack')
+const package = require('../package.json');
 const merge = require('webpack-merge')
 const common = require('./webpack.common.js')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+const banner = `
+@name: ${package.name}
+@version: ${package.version}
+@description: ${package.description}
+@author: ${package.author}
+@license: ${package.license}
+`
 
 module.exports = merge(common, {
     entry: {
@@ -9,6 +19,7 @@ module.exports = merge(common, {
     mode: 'production',
     plugins: [
         new CleanWebpackPlugin(),
+        new webpack.BannerPlugin(banner)
     ],
     // optimization: {
     //     // 分割代码块
