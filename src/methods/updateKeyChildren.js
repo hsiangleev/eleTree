@@ -1,21 +1,18 @@
-import getNodeIndex from '~/opera/getNodeIndex'
 import { changeData } from '~/opera/renderData'
 import reloadVnode from '~/vnode/reloadVnode'
-import { getCurrentDataByIndexArr } from '~/opera/tools'
+import { getNodeDataById } from '~/opera/tools'
 /*
 * id: 节点id
 * data: 需要添加的子节点数据(Array)
 **/
 export default function(id, data) {
-    let indexArr = getNodeIndex(this, id)
+    let { indexArr, resultData: d } = getNodeDataById({ options: this, id, dataType: 'vnode' })
     if(indexArr.length === 0) return
-    
-    let d = getCurrentDataByIndexArr(this.vnodeData, indexArr, 'children')
     // 添加子节点的时候自动展开当前节点
     d.isOpen = 2
     d.isRenderChild = true
     // 修改原始数据
-    let d1 = getCurrentDataByIndexArr(this.data, indexArr, this.request['children'])
+    let { resultData: d1 } = getNodeDataById({ options: this, id, dataType: 'origin' })
     if(d1[this.request['children']]){
         d1[this.request['children']] = d1[this.request['children']].concat(data)
     }else{

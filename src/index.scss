@@ -1,7 +1,7 @@
 $lineHeight: 22px;
 $fontColor: #666;
 $checkboxColor: #5FB878;
-$disabledColor: #c2c2c2;
+$disabledColor: #aaa;
 
 .eleTree-group{
     position: relative;
@@ -22,6 +22,7 @@ $disabledColor: #c2c2c2;
                 top: 2px;
                 left: -2px;
                 cursor: pointer;
+                box-sizing: border-box;
                 &.eleTree-dropdown-code{
                     &:not(.eleTree-dropdown-hide){
                         &::before,
@@ -49,25 +50,29 @@ $disabledColor: #c2c2c2;
             .eleTree-text{
                 font-size: 14px;
                 color: $fontColor;
+                box-sizing: border-box;
             }
             .eleTree-checkbox{
                 border-radius: 2px;
                 cursor: pointer;
                 text-align: center;
-                width: 13px;
-                height: 14px;
+                width: 15px;
+                height: 16px;
                 margin-right: 5px;
                 display: inline-block;
                 position: relative;
                 top: 3px;
+                box-sizing: border-box;
                 &.eleTree-checkbox-code{
                     font-size: 12px;
                     border: 1px solid #d2d2d2;
                     background-color: #fff;
                     color: #fff;
                     &.eleTree-checkbox-code_checked{
-                        border-color: $checkboxColor;
-                        background-color: $checkboxColor;
+                        &:not(.eleTree-checkbox-code_disabled){
+                            border-color: $checkboxColor;
+                            background-color: $checkboxColor;
+                        }
                         &::before,
                         &::after{
                             content: "";
@@ -112,7 +117,7 @@ $disabledColor: #c2c2c2;
                 &.eleTree-checkbox-code_disabled{
                     border: 1px solid #ccc;
                     cursor: not-allowed;
-                    background-color: #dcdfe6;
+                    background-color: #eee;
                     color: $disabledColor;
                 }
             }
@@ -126,6 +131,7 @@ $disabledColor: #c2c2c2;
                 width: 13px;
                 height: 16px;
                 margin-right: 5px;
+                box-sizing: border-box;
             }
         }
     }

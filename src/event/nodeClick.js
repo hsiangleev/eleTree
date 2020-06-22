@@ -1,11 +1,10 @@
 
 import reloadVnode from '~/vnode/reloadVnode'
-import getNodeIndex from '~/opera/getNodeIndex'
 import changeParent from '~/opera/changeParent'
 import changeChildren from '~/opera/changeChildren'
 import getCurrentNodeData from '~/opera/getCurrentNodeData'
 import { events, emit } from '~/event/customEvent'
-import { getCurrentDataByIndexArr, getParentDataByIndexArr, isArray } from '~/opera/tools'
+import { getDataByIndexArr, getNodeDataById, isArray } from '~/opera/tools'
 
 import updateKeyChildren from '~/methods/updateKeyChildren'
 
@@ -23,8 +22,7 @@ export default function(options, v, event) {
     let isTargetIcon = classList.contains('eleTree-icon')
     let isTargetText = classList.contains('eleTree-text')
     if(!v.disabled && (isTargetCheckbox || isTargetText && options.checkOnClickNode)) {
-        let indexArr = getNodeIndex(options, v.id)
-        let originData = getCurrentDataByIndexArr(options.data, indexArr, options.request['children'])
+        let { indexArr, resultData: originData } = getNodeDataById({ options, id: v.id, dataType: 'origin' })
         // 点击checkbox选择，点击文字判断是否选择
         v.checkedStatus = v.checkedStatus === 2 ? 0 : 2
         originData[options.request['checked']] = v.checkedStatus === 2 ? true : false
@@ -39,8 +37,7 @@ export default function(options, v, event) {
             emitEvent({options, v, indexArr, type: 'checkbox', event})
         }
     }else if(isTargetDropdown || options.expandOnClickNode && (isTargetText || isTargetIcon)){
-        let indexArr = getNodeIndex(options, v.id)
-        let originData = getCurrentDataByIndexArr(options.data, indexArr, options.request['children'])
+        let { indexArr, resultData: originData } = getNodeDataById({ options, id: v.id, dataType: 'origin' })
         // 点击图标展开，点击文字判断是否展开
         if(v.isOpen === 2){
             v.isOpen = 0
@@ -58,11 +55,11 @@ export default function(options, v, event) {
         // 手风琴效果
         if(options.accordion){
             // 修改数据
-            let arr = getParentDataByIndexArr(options.vnodeData, indexArr, 'children')
+            let arr = getDataByIndexArr({ options, indexArr, dataType: 'vnode', nodeType: 'parent' })
             arr = indexArr.length === 1 ? arr : arr.children
             arr.forEach(item=>{if(item.isOpen === 2 && item.id!==v.id) item.isOpen = 0})
             // 修改原始数据
-            let arr2 = getParentDataByIndexArr(options.data, indexArr, options.request['children'])
+            let arr2 = getDataByIndexArr({ options, indexArr, dataType: 'origin', nodeType: 'parent' })
             arr2 = indexArr.length === 1 ? arr2 : arr2[options.request['children']]
             arr2.forEach(item=>{if(item.isOpen === 2 && item.id!==v.id) item.isOpen = 0})
         }

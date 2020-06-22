@@ -1,4 +1,4 @@
-import { getCurrentDataByIndexArr, isUndefined } from '~/opera/tools'
+import { getDataByIndexArr, isUndefined } from '~/opera/tools'
 // 根据子节点选中情况修改父节点状态
 // indexArr: 当前节点索引数组,由里向外递归,成功之后删除最后一个索引, 
 // isFirst: 是否为第一次执行(第一次执行子节点可能没有所有的数据,需要使用原始数据)
@@ -7,8 +7,8 @@ export default function changeParent(options, indexArr, isFirst) {
     arr.pop()
     if(arr.length===0) return
     // 查找当前节点父节点数据
-    let d1 = getCurrentDataByIndexArr(options.vnodeData, arr, 'children')
-    let d2 = getCurrentDataByIndexArr(options.data, arr, options.request['children'])
+    let d1 = getDataByIndexArr({ options, indexArr, dataType: 'vnode', nodeType: 'parent' })
+    let d2 = getDataByIndexArr({ options, indexArr, dataType: 'origin', nodeType: 'parent' })
     // 判断如果有子节点属性则使用子节点状态，否则使用当前节点状态
     let f=(v)=>{return !isUndefined(v.disabledParentStatus) ? v.disabledParentStatus : v.checkedStatus}
     if(isFirst){
