@@ -1,41 +1,39 @@
 import { getDataByIndexArr, isUndefined } from '~/opera/tools'
+import { symbolAttr } from '~/config'
 // 根据子节点选中情况修改父节点状态
-// indexArr: 当前节点索引数组,由里向外递归,成功之后删除最后一个索引, 
-// isFirst: 是否为第一次执行(第一次执行子节点可能没有所有的数据,需要使用原始数据)
-export default function changeParent(options, indexArr, isFirst) {
+/**
+ * 
+ * @param {*} options 
+ * @param {*} indexArr 当前节点索引
+ * @param {*} isBack 是否向祖父级节点递归（默认只修改一层）
+ */
+export default function changeParent(options, indexArr, isBack = false) {
+    let {key, isOpen, checked, children, disabled, isLeaf} = options.request
     var arr = [...indexArr]
     arr.pop()
     if(arr.length===0) return
-    // 查找当前节点父节点数据
-    let d1 = getDataByIndexArr({ options, indexArr, dataType: 'vnode', nodeType: 'parent' })
-    let d2 = getDataByIndexArr({ options, indexArr, dataType: 'origin', nodeType: 'parent' })
-    // 判断如果有子节点属性则使用子节点状态，否则使用当前节点状态
-    let f=(v)=>{return !isUndefined(v.disabledParentStatus) ? v.disabledParentStatus : v.checkedStatus}
-    if(isFirst){
-        let s = d2[options.request['children']].every(v=>{
-            return options.defaultCheckedKeys.includes(v.id) || v.checked || f(v) === 2
-        }) ? 2 : (d2[options.request['children']].some(v=>{
-            return options.defaultCheckedKeys.includes(v.id) || v.checked || f(v) === 2 || f(v) === 1
-        }) ? 1 : 0)
-        // 如果节点禁用，则增加一个新属性标记其子节点状态，该节点的选中状态不改变
-        if(d1.disabled){
-            d1.disabledParentStatus = s
-            d2.disabledParentStatus = s
-        }else{
-            d1.checkedStatus = s
-            d2.checkedStatus = s
-            d2[options.request['checked']] = s === 2 ? true : false
+    // 判断如果有节点禁用属性则使用子节点状态，否则使用当前节点状态
+    let f=(v)=>{return !isUndefined(v[symbolAttr.disabledParentStatus]) ? v[symbolAttr.disabledParentStatus] : v[checked]}
+    let pData = getDataByIndexArr({ options, indexArr: arr, nodeType: 'current' })
+    // 判断某个节点及其子孙节点是否全部被禁用（返回true则为未被禁用）
+    var fn=(v)=>{
+        // 函数返回值为了跳出递归，即条件成立返回true，如果递归函数为true返回true，其他情况一律返回false
+        if(!v[disabled]) return true
+        for(let i=0;i<v[children].length;i++){
+            if(fn(v[children][i])) return true
         }
-    }else{
-        let s = d1.children.every(v=>f(v) === 2) ? 2 : (d1.children.some(v=>f(v) === 2 || f(v) === 1) ? 1 : 0)
-        // 如果节点禁用，则增加一个新属性标记其子节点状态，该节点的选中状态不改变
-        if(d1.disabled){
-            d1.disabledParentStatus = s
-        }else{
-            d1.checkedStatus = s
-            d2[options.request['checked']] = s === 2 ? true : false
-        }
-        
+        return false
     }
-    changeParent(options, arr, isFirst)
+    // 过滤不包括该状态的子节点（如果某个节点及其子节点都是禁用的，则该节点状态不影响父节点的状态）
+    let filterData = pData[children].filter(v=>fn(v))
+    let s = filterData.every(v=>f(v) === 2) 
+        ? 2 
+        : (filterData.some(v=>f(v) === 2 || f(v) === 1) ? 1 : 0)
+    // 如果父节点禁用，该节点的选中状态不改变，并且增加一个新属性标记其节点状态（因为子节点状态虽然不影响禁用的父节点状态，但是会影响祖父节点的状态）
+    if(pData[disabled]){
+        pData[symbolAttr.disabledParentStatus] = s
+    }else{
+        pData[checked] = s
+    }
+    isBack && changeParent(options, arr, isBack)
 }

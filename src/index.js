@@ -3,7 +3,7 @@ import loadingVnode from '~/vnode/loadingVnode'
 import { renderData } from '~/opera/renderData'
 import methods from '~/methods/index'
 import '~/index.scss'
-import { eleTreeConfig } from '~/config'
+import { eleTreeConfig, symbolAttr } from '~/config'
 import { init } from 'snabbdom'
 import ajax from '~/opera/ajax'
 import { isFun, isArray } from '~/opera/tools'
@@ -18,6 +18,8 @@ var patch = init([
 class thisTree {
     constructor(opt) {
         this.config = Object.assign({}, eleTreeConfig, opt)
+        this.config[symbolAttr.node] = null             // 保存当前整个虚拟dom树（为了之后的替换）
+        this.config[symbolAttr.activeElm] = null        // 保存上一次点击的dom节点（高亮显示）
         if(this.config.url){
             this.asyncData().then(data=>{
                 this.config.data = data
@@ -30,10 +32,10 @@ class thisTree {
         }
     }
     render() {
-        renderData(this.config)
+        renderData(this.config, true)
         let el = document.createElement('div')
         document.querySelector(this.config.el).appendChild(el)
-        patch(el, groupVnode(this.config, this.config.vnodeData, true, true))
+        patch(el, groupVnode(this.config, this.config.data, true, true))
         isFun(this.config.done) && this.config.done(this.config.data)
     }
     async asyncData() {
@@ -48,8 +50,9 @@ class thisTree {
         })
         let loadingEl = document.querySelector(this.config.el + ">.eleTree-loading")
         loadingEl.parentNode.removeChild(loadingEl)
-        if(data[this.config.response['statusName']] !== this.config.response['statusCode']) throw data.msg
-        return data[this.config.response['dataName']]    
+        let response = this.config.response
+        if(data[response['statusName']] !== response['statusCode']) throw data.msg
+        return data[response['dataName']]    
     }
 }
 

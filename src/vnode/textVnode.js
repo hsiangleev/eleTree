@@ -1,5 +1,6 @@
 
 import { h } from 'snabbdom'
 export default function(options, v) {
-    return h('span.eleTree-text',v.title)
+    let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
+    return h('span.eleTree-text',v[name])
 }

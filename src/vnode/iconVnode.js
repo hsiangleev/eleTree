@@ -1,7 +1,8 @@
 import { h } from 'snabbdom'
 import { isArray } from '~/opera/tools'
 export default function(options, v) {
-    let isFold = v.children && isArray(v.children) && v.children.length > 0
+    let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
+    let isFold = v[children] && isArray(v[children]) && v[children].length > 0
     let node = null
     let fn = async(type)=>{
         if(!options.icon[type]){

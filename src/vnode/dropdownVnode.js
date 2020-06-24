@@ -1,10 +1,11 @@
 import { h } from 'snabbdom'
 import { isArray } from '~/opera/tools'
 export default function(options, v) {
-    let isFold = v.children && isArray(v.children) && v.children.length > 0
+    let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
+    let isFold = v[children] && isArray(v[children]) && v[children].length > 0
 
     // 判断叶子节点
-    if(options.lazy && v[options.request.isLeaf] || !options.lazy && !isFold){
+    if(options.lazy && v[isLeaf] || !options.lazy && !isFold){
         return h('span.eleTree-dropdown.eleTree-dropdown-hide')
     }
     
@@ -24,6 +25,6 @@ export default function(options, v) {
         }
     }
     // 当前节点是否展开
-    v.isOpen === 2 ? fn('dropdownOn') : (v.isOpen === 1 ? fn('loading') : fn('dropdownOff'))
+    v[isOpen] === 2 ? fn('dropdownOn') : (v[isOpen] === 1 ? fn('loading') : fn('dropdownOff'))
     return node
 }

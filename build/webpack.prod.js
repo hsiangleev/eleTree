@@ -10,6 +10,7 @@ const banner = `
 @description: ${package.description}
 @author: ${package.author}
 @license: ${package.license}
+@repository: ${package.repository}
 `
 
 module.exports = merge(common, {

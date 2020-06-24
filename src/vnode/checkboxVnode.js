@@ -1,8 +1,9 @@
 import { h } from 'snabbdom'
 export default function(options, v) {
+    let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
     let node = null
-    let disabledStr = v.disabled ? '.eleTree-checkbox-code_disabled' : ''
-    let checkboxStr = v.checkedStatus === 2 ? '.eleTree-checkbox-code_checked' : (v.checkedStatus === 1 ? '.eleTree-checkbox-code_half' : '')
+    let disabledStr = v[disabled] ? '.eleTree-checkbox-code_disabled' : ''
+    let checkboxStr = v[checked] === 2 ? '.eleTree-checkbox-code_checked' : (v[checked] === 1 ? '.eleTree-checkbox-code_half' : '')
     let originStr = `span.eleTree-checkbox.eleTree-checkbox-code${checkboxStr}${disabledStr}`
     let fn = async(type)=>{
         if(!options.icon[type]){
@@ -19,6 +20,6 @@ export default function(options, v) {
     }
 
     // 当前节点是否展开
-    v.checkedStatus === 2 ? fn('checkFull') : (v.checkedStatus === 1 ? fn('checkHalf') : fn('checkNone'))
+    v[checked] === 2 ? fn('checkFull') : (v[checked] === 1 ? fn('checkHalf') : fn('checkNone'))
     return options.showCheckbox ? node : null
 }

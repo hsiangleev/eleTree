@@ -4,7 +4,8 @@ import changeParent from '~/opera/changeParent'
 import changeChildren from '~/opera/changeChildren'
 import getCurrentNodeData from '~/opera/getCurrentNodeData'
 import { events, emit } from '~/event/customEvent'
-import { getDataByIndexArr, getNodeDataById, isArray } from '~/opera/tools'
+import { getDataByIndexArr, getNodeDataById, paramDetection } from '~/opera/tools'
+import { symbolAttr } from '~/config'
 
 import updateKeyChildren from '~/methods/updateKeyChildren'
 
@@ -16,84 +17,77 @@ let emitEvent = function({options, v, indexArr, type, event, otherOpt}) {
     }
 }
 export default function(options, v, event) {
+    let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
     let classList = event.target.classList
     let isTargetCheckbox = classList.contains('eleTree-checkbox')
     let isTargetDropdown = classList.contains('eleTree-dropdown')
     let isTargetIcon = classList.contains('eleTree-icon')
     let isTargetText = classList.contains('eleTree-text')
-    if(!v.disabled && (isTargetCheckbox || isTargetText && options.checkOnClickNode)) {
-        let { indexArr, resultData: originData } = getNodeDataById({ options, id: v.id, dataType: 'origin' })
+    if(!v[disabled] && (isTargetCheckbox || isTargetText && options.checkOnClickNode)) {
+        let { indexArr } = getNodeDataById({ options, id: v.id })
         // 点击checkbox选择，点击文字判断是否选择
-        v.checkedStatus = v.checkedStatus === 2 ? 0 : 2
-        originData[options.request['checked']] = v.checkedStatus === 2 ? true : false
+        v[checked] = v[checked] === 2 ? 0 : 2
         // 判断是否父子不关联
         if(options.checkStrictly){
             reloadVnode(options)
             emitEvent({options, v, indexArr, type: 'checkbox', event})
         }else{
-            changeParent(options, indexArr)
-            changeChildren(options, v, originData)
+            changeParent(options, indexArr, true)
+            changeChildren(options, v)
             reloadVnode(options)
             emitEvent({options, v, indexArr, type: 'checkbox', event})
         }
     }else if(isTargetDropdown || options.expandOnClickNode && (isTargetText || isTargetIcon)){
-        let { indexArr, resultData: originData } = getNodeDataById({ options, id: v.id, dataType: 'origin' })
+        let { indexArr } = getNodeDataById({ options, id: v.id })
         // 点击图标展开，点击文字判断是否展开
-        if(v.isOpen === 2){
-            v.isOpen = 0
-            originData[options.request.isOpen] = false
-        }else if(v.isOpen === 0){
-            v.isOpen = 2
-            originData[options.request.isOpen] = true
-        }else if(v.isOpen === 1){
+        if(v[isOpen] === 2){
+            v[isOpen] = 0
+        }else if(v[isOpen] === 0){
+            v[isOpen] = 2
+            v[symbolAttr.isRenderChild] = true
+        }else if(v[isOpen] === 1){
             return
-        }
-        if(v.isOpen === 2) {
-            v.isRenderChild = true
-            originData.isRenderChild = true
         }
         // 手风琴效果
         if(options.accordion){
             // 修改数据
-            let arr = getDataByIndexArr({ options, indexArr, dataType: 'vnode', nodeType: 'parent' })
+            let arr = getDataByIndexArr({ options, indexArr, nodeType: 'parent' })
             arr = indexArr.length === 1 ? arr : arr.children
-            arr.forEach(item=>{if(item.isOpen === 2 && item.id!==v.id) item.isOpen = 0})
-            // 修改原始数据
-            let arr2 = getDataByIndexArr({ options, indexArr, dataType: 'origin', nodeType: 'parent' })
-            arr2 = indexArr.length === 1 ? arr2 : arr2[options.request['children']]
-            arr2.forEach(item=>{if(item.isOpen === 2 && item.id!==v.id) item.isOpen = 0})
+            arr.forEach(item=>{if(item[isOpen] === 2 && item.id!==v.id) item[isOpen] = 0})
         }
         // 懒加载事件
-        if(options.lazy && !v.isLeaf){
+        if(options.lazy && !v[isLeaf]){
             // 是否已经懒加载过
-            if(!v.isLazyNode){
-                v.isOpen = 1
+            if(!v[symbolAttr.isLazyNode]){
+                v[isOpen] = 1
                 emitEvent({options, v, indexArr, type: 'lazyload', event, otherOpt: {
                     load: function(childNodeData) {
-                        if(!childNodeData || !isArray(childNodeData)){
-                            childNodeData = []
+                        if(paramDetection(childNodeData, 'Array', 'load懒加载方法参数必须为Array')) return null
+                        if(childNodeData.length > 0){
+                            updateKeyChildren.call(null, options, v.id, childNodeData)
+                            return
                         }
-                        updateKeyChildren.call(options, v.id, childNodeData)
-                        v.isOpen = 2
-                        originData[options.request.isOpen] = true
-                        if(v.children.length === 0) {
-                            v.isLeaf = true
-                            originData[options.request.isLeaf] = true
+                        // 初始有数据
+                        if(v[children].length > 0){
+                            v[isOpen] = 2
+                            reloadVnode(options)
+                            return
                         }
+                        // 初始无数据，也没有传入数据（叶子节点）
+                        v[isLeaf] = true
                         reloadVnode(options)
                     }
                 }})
             }
-            v.isLazyNode = true
-            originData.isLazyNode = true
+            v[symbolAttr.isLazyNode] = true
         }
         reloadVnode(options)
         emitEvent({options, v, indexArr, type: 'click', event})
     }
     // 高亮显示
     if(options.highlightCurrent){
-        options.activeElm && options.activeElm.classList.remove('eleTree-title-active')
+        options[symbolAttr.activeElm] && options[symbolAttr.activeElm].classList.remove('eleTree-title-active')
         this.elm.classList.add('eleTree-title-active')
-        options.activeElm = this.elm
+        options[symbolAttr.activeElm] = this.elm
     }
 }

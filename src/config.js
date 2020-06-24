@@ -51,10 +51,12 @@ export const eleTreeConfig = {
         isOpen: "isOpen",
         isLeaf: "isLeaf"
     },
+}
 
-
-
-    vnodeData: [],          // 数据转换
-    node: null,             // 保存整个虚拟dom树
-    activeElm: null,        // 保存上一次点击的dom节点
+export const symbolAttr = {
+    node: Symbol('node'),                       // 保存当前整个虚拟dom树（为了之后的替换）
+    activeElm: Symbol('activeElm'),             // 保存上一次点击的dom节点（高亮显示）
+    isRenderChild: Symbol('isRenderChild'),     // 是否已经渲染子节点
+    disabledParentStatus: Symbol('disabledParentStatus'),   // 禁用的父节点状态
+    isLazyNode: Symbol('isLazyNode'),           // 节点是否已经懒加载了
 }

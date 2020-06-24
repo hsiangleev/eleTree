@@ -1,20 +1,21 @@
 import { getDataByIndexArr } from '~/opera/tools'
+import { symbolAttr } from '~/config'
 // 获取当前节点对应的原始数据
 // arr当前节点的索引数组
 export default function(options, v, arr) {
-    let d = getDataByIndexArr({ options, indexArr: arr, dataType: 'origin', nodeType: 'current' })
+    let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
+    let d = getDataByIndexArr({ options, indexArr: arr, nodeType: 'current' })
     let data = {}
-    // 返回的数据不包括一下属性值
-    let removeAttrArr = [options.request['children'], 'isRenderChild', 'isLazyNode']
+    // 返回的数据不包括children
     Object.keys(d).forEach(attr=>{
-        if(!removeAttrArr.includes(attr)){
+        if(attr !== children){
             data[attr] = d[attr]
         }
     })
-    if(options.showCheckbox) data[options.request['checked']] = v.checkedStatus === 2
-    data[options.request['isOpen']] = v.isOpen === 2 ? true : false
-    data[options.request['disabled']] = v.disabled || false
-    data[options.request['isLeaf']] = v[options.request['children']].length === 0
+    if(options.showCheckbox) data[checked] = v[checked] === 2
+    data[isOpen] = v[isOpen] === 2 ? true : false
+    data[disabled] = v[disabled] || false
+    data[isLeaf] = options.lazy ? (v[isLeaf] || false) : v[children].length === 0
 
     return data
 }

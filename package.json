@@ -1,7 +1,7 @@
 {
   "name": "eletree",
   "version": "2.1.5",
-  "description": "基于虚拟dom的树组件",
+  "description": "Tree component based on virtual dom",
   "main": "dist/eleTree.js",
   "scripts": {
     "start": "webpack-dev-server --config ./build/webpack.dev.js",

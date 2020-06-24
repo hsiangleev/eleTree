@@ -1,7 +1,9 @@
 import titleVnode from '~/vnode/titleVnode'
 import groupVnode from '~/vnode/groupVnode'
 import { h } from 'snabbdom'
+import { symbolAttr } from '~/config'
 export default function(options, v, isOpen, isFirst) {
+    let { children } = options.request
     return h('div.eleTree-node',{
             style: {
                 display: isOpen ? 'block' : 'none'
@@ -10,7 +12,7 @@ export default function(options, v, isOpen, isFirst) {
         }, 
         [
             titleVnode(options, v, isFirst), 
-            v.isRenderChild ? groupVnode(options, v.children || [], v.isOpen === 2) : null
+            v[symbolAttr.isRenderChild] ? groupVnode(options, v[children] || [], v.isOpen === 2) : null
         ]
     )
 }

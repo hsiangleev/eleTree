@@ -3,8 +3,9 @@ export let events = {
 
 }
 // 事件保存
-export function on(type, el, callback) {
-    events[type+"-"+el] = callback
+export function on(options, type, callback) {
+    events[type+"-"+options.el] = callback
+    return this
 }
 // 事件触发
 export function emit(type, el, event, data) {

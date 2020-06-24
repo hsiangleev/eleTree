@@ -7,15 +7,10 @@ const tree = {
             "label": "安徽省",
             "id": "001",
             "isOpen": true,
-            // "checked": true,
             "children": [
                 {
                     "label": "淮北市",
                     "id": "001001"
-                },
-                {
-                    "label": "合肥市",
-                    "id": "001003"
                 },
                 {
                     "label": "马鞍山市",
@@ -28,20 +23,26 @@ const tree = {
                             "label": "花山区",
                             "id": "001002001",
                             "disabled": true,
+                            "checked": true,
                             // "isOpen": true,
                             // "checked": true,
                             "children": [
                                 {
                                     "label": "霍里街道",
+                                    "disabled": true,
+                                    "checked": true,
                                     "id": "001002002001"
                                 },
                                 {
                                     "label": "桃源路",
-                                    "checked": true,
+                                    // "disabled": true,
+                                    // "checked": true,
                                     "id": "001002002002",
                                 },
                                 {
                                     "label": "湖东路",
+                                    "disabled": true,
+                                    "checked": true,
                                     "id": "001002002003",
                                 }
                             ]
@@ -55,7 +56,11 @@ const tree = {
                             "id": "001002003"
                         }
                     ]
-                }
+                },
+                {
+                    "label": "合肥市",
+                    "id": "001003"
+                },
             ]
         },
         {
