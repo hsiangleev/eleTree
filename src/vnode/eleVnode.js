@@ -6,7 +6,7 @@ export default function(options, v, isOpen, isFirst) {
     let { children } = options.request
     return h('div.eleTree-node',{
             style: {
-                display: isOpen ? 'block' : 'none'
+                display: isOpen && !v[symbolAttr.isHideNode] ? 'block' : 'none'     // 显示条件（展开并且非隐藏的时候）
             },
             key: v.id, 
         }, 

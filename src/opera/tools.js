@@ -1,55 +1,22 @@
-/**
- * 通过索引数组查找数据查找数据
- * @param {*} opts 
- * options，indexArr，nodeType
- * nodeType获取的节点类型，current：当前节点，parent：父节点，sibling：兄弟节点
- */
-export function getDataByIndexArr(opts) {
-    let { options, indexArr, nodeType = 'current' } = opts
-    let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
-    let data = options.data
-
-    if((nodeType === 'parent' || nodeType === 'sibling') && indexArr.length === 1) return data
-    let len = nodeType === 'current' 
-        ? indexArr.length 
-        : (nodeType === 'parent' || nodeType === 'sibling') 
-            ? indexArr.length - 1
-            : 0
-    let d = data[indexArr[0]]
-    for(let i = 1;i<len;i++){
-        d=d[children][indexArr[i]]
-    }
-    return nodeType === 'sibling' ? d[children] : d
-}
 // 通过id查找数据和索引
-export function getNodeDataById(opts) {
-    let { options, id } = opts
+export function getNodeDataById(options, id) {
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
     let data = options.data
+    let resultData = null
     // 函数返回值为了跳出递归，即条件成立返回true，如果递归函数为true返回true，其他情况一律返回false
-    let fn = function(data, indexArr) {
-        indexArr.push(-1)
+    let fn = function(data) {
         for(let i=0,len=data.length;i<len;i++){
-            indexArr.splice(indexArr.length-1, 1, i)
             if(data[i][key] === id){
-                arr = [...indexArr]
                 resultData = data[i]
                 return true
             }else if(isArray(data[i][children]) && data[i][children].length > 0){
-                if(fn(data[i][children], indexArr)) return true
+                if(fn(data[i][children])) return true
             }
         }
-        indexArr.pop()
         return false
     }
-    let indexArr = []
-    let arr = []
-    let resultData = []
-    fn(data, indexArr)
-    return {
-        resultData,         // 获取某个节点数据
-        indexArr: arr,      // 获取某个节点在整个数据中的索引数组
-    }
+    fn(data)
+    return resultData
 }
 /**
  * 递归遍历树节点

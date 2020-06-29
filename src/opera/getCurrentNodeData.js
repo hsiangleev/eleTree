@@ -1,15 +1,13 @@
-import { getDataByIndexArr } from '~/opera/tools'
 import { symbolAttr } from '~/config'
 // 获取当前节点对应的原始数据
 // arr当前节点的索引数组
-export default function(options, v, arr) {
+export default function(options, v) {
     let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
-    let d = getDataByIndexArr({ options, indexArr: arr, nodeType: 'current' })
     let data = {}
     // 返回的数据不包括children
-    Object.keys(d).forEach(attr=>{
+    Object.keys(v).forEach(attr=>{
         if(attr !== children){
-            data[attr] = d[attr]
+            data[attr] = v[attr]
         }
     })
     if(options.showCheckbox) data[checked] = v[checked] === 2

@@ -59,4 +59,6 @@ export const symbolAttr = {
     isRenderChild: Symbol('isRenderChild'),     // 是否已经渲染子节点
     disabledParentStatus: Symbol('disabledParentStatus'),   // 禁用的父节点状态
     isLazyNode: Symbol('isLazyNode'),           // 节点是否已经懒加载了
+    parentNode: Symbol('parentNode'),           // 当前节点保存父节点信息
+    isHideNode: Symbol('isHideNode'),           // 节点是否隐藏
 }

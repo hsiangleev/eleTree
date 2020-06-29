@@ -6,7 +6,7 @@
 * 移除layui和jquery，完全基于snabbdom，渲染性能大大优化
 * es6加webpack打包，支持import导入，layui导入和CDN直接引入的方式
 
-## 开发
+## 本地开发测试
 
 ```bash
 git clone https://github.com/hsiangleev/eleTree.git

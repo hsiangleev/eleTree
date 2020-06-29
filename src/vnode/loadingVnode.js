@@ -11,5 +11,5 @@ export default function(options) {
         node = h(`span.eleTree-loading${options.icon.loading}`)
     }
 
-    return node
+    return h('div.eleTree-loading-content', [node])
 }
