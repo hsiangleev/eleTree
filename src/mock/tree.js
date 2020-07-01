@@ -93,7 +93,7 @@ const tree = {
                 },
                 {
                     "label": "徐州市",
-                    "id": "003004"
+                    "id": "003004",
                 }
             ],
             // "checked": true
@@ -245,7 +245,7 @@ module.exports = {
     'POST /api/tree': (req, res)=>{
         setTimeout(() => {
             res.json(tree)
-        }, 200);
+        }, 0);
     },
     'POST /api/maxdata': (req, res)=>{
         setTimeout(() => {

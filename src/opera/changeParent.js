@@ -25,7 +25,7 @@ export default function changeParent(options, cData, isRecall = false) {
     // 过滤不包括该状态的子节点（如果某个节点及其子节点都是禁用的，则该节点状态不影响父节点的状态）
     let filterData = pData[children].filter(v=>fn(v))
     let s = filterData.length === 0 
-        ? 0 
+        ? pData[checked]
         : filterData.every(v=>f(v) === 2) 
             ? 2 
             : filterData.some(v=>f(v) === 2 || f(v) === 1) 

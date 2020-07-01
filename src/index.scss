@@ -52,6 +52,13 @@ $disabledColor: #aaa;
                 color: $fontColor;
                 box-sizing: border-box;
             }
+            .eleTree-text_edit{
+                border: 1px solid #e6e6e6;
+                outline: 0;
+                padding: 3px 5px;
+                font-size: 12px;
+                max-width: 80px;
+            }
             .eleTree-checkbox{
                 border-radius: 2px;
                 cursor: pointer;
@@ -185,5 +192,33 @@ $disabledColor: #aaa;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+}
+
+.eleTree-menu{
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    background: #fefefe;
+    border: 1px solid #979797;
+    box-shadow: 2px 2px 2px #999;
+    z-index: 20181205;
+    font-size: 14px;
+    li{
+        cursor: pointer;
+        display: block;
+        padding: 0 1em;
+        text-decoration: none;
+        width: auto;
+        color: #000;
+        white-space: nowrap;
+        line-height: 2.4em;
+        text-shadow: 1px 1px 0 #fff;
+        border-radius: 1px;
+        min-width: 100px;
+        &:hover{
+            background-color: #e8eff7;
+            box-shadow: 0 0 2px #0a6aa1;
+        }
     }
 }

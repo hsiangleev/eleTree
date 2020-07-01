@@ -2,7 +2,7 @@ export const eleTreeConfig = {
     elem: "",                   // 1
     data: [],                   // 1
     emptText: "暂无数据",        // 内容为空的时候展示的文本    1
-    renderAfterExpand: true,    // 是否在第一次展开某个树节点后才渲染其子节点(尚未展开的节点先不渲染dom，大数据量时大大提高渲染速度)
+    // renderAfterExpand: true,    // 是否在第一次展开某个树节点后才渲染其子节点(尚未展开的节点先不渲染dom，大数据量时大大提高渲染速度)
     highlightCurrent: false,    // 是否高亮当前选中节点，默认值是 false。           1
     defaultExpandAll: false,    // 是否默认展开所有节点                             1
     expandOnClickNode: true,    // 是否在点击文本的时候展开或者收缩节点， 默认值为 true，如果为 false，则只有点箭头图标的时候才会展开或者收缩节点。 1
@@ -31,6 +31,8 @@ export const eleTreeConfig = {
         dropdownOn: "",
         loading: "",
     },
+    // rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after"],
+    rightMenuList: [],
 
     method: "get",      // 1
     url: "",            // 1
@@ -52,7 +54,7 @@ export const eleTreeConfig = {
         isLeaf: "isLeaf"
     },
 }
-
+// 内部变量名，防止被外部重名变量修改
 export const symbolAttr = {
     node: Symbol('node'),                       // 保存当前整个虚拟dom树（为了之后的替换）
     activeElm: Symbol('activeElm'),             // 保存上一次点击的dom节点（高亮显示）
@@ -61,4 +63,13 @@ export const symbolAttr = {
     isLazyNode: Symbol('isLazyNode'),           // 节点是否已经懒加载了
     parentNode: Symbol('parentNode'),           // 当前节点保存父节点信息
     isHideNode: Symbol('isHideNode'),           // 节点是否隐藏
+    isPasteNode: Symbol('isPasteNode'),           // 节点是否被剪贴（被剪贴的节点颜色变浅）
+    editNodeType: Symbol('editNodeType'),           // 节点正在编辑的类型（edit,add_child,add_before,add_after）
+    rightMenuCdata: Symbol('rightMenuCdata'),           // 当前右键时保存当前节点的数据
+    rightMenuCdom: Symbol('rightMenuCdom'),             // 当前右键时保存当前节点的dom
+    rightMenuPasteData: Symbol('rightMenuPasteData'),    // 右键复制之后剪贴板中保存的数据
+    rightMenuNode: Symbol('rightMenuNode'),    // 右键菜单的虚拟dom（为了之后的替换）
+    isShowRightMenu: Symbol('isShowRightMenu'),    // 是否显示右键菜单
+    customIndex: Symbol('customIndex'),           // 自定义索引，保证不重复
+    eventList: Symbol('eventList'),           // 事件列表
 }

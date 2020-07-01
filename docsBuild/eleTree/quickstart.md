@@ -98,6 +98,7 @@ eleTree.render({
         dropdownOn: ".eletree_icon-dropdown_bottom",
         loading: ".eleTree-animate-rotate.eletree_icon-loading1",
     },
+    rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after"]
 })
 </script>
 <style>

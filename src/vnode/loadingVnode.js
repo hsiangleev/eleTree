@@ -1,8 +1,13 @@
 
-import { h } from 'snabbdom'
-export default function(options) {
+import { h, init } from 'snabbdom'
+var patch = init([
+    require('snabbdom/modules/class').default,
+    require('snabbdom/modules/props').default,
+    require('snabbdom/modules/style').default,
+    require('snabbdom/modules/eventlisteners').default,
+]);
+export function showLoding(options) {
     let node = null
-
     if(!options.icon.loading){
         node = h('span.eleTree-loading.eleTree-animate-rotate.eleTree-loading-code')
     }else if(/\.(jpg|png|gif)$/.test(options.icon.loading)){
@@ -11,5 +16,11 @@ export default function(options) {
         node = h(`span.eleTree-loading${options.icon.loading}`)
     }
 
-    return h('div.eleTree-loading-content', [node])
+    let el = document.createElement('div')
+    document.querySelector(options.el).appendChild(el)
+    patch(el, h('div.eleTree-loading-content', [node]))
+}
+export function removeLoding(options) {
+    let loadingEl = document.querySelector(options.el + ">.eleTree-loading-content")
+    loadingEl && loadingEl.parentNode.removeChild(loadingEl)
 }

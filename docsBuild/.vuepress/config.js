@@ -41,10 +41,10 @@ module.exports = {
             },
         ],
         lastUpdated: 'Last Updated',
-        // algolia: {
-        //     apiKey: '<API_KEY>',
-        //     indexName: '<INDEX_NAME>'
-        // }
+        algolia: {
+            apiKey: '57dc14ca434885af02f22dad11e30550',
+            indexName: 'hsiangleev_eletree'
+        }
     },
     plugins: [
         require('./demo/index.js')
@@ -55,7 +55,7 @@ module.exports = {
     head: [
         ['link', { rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
         ['link', { rel: 'stylesheet', href: '/eleTree/css/icon.css' }],
-        ['script', { src: '//eletreejs.surge.sh/eleTree.js' }]
+        ['script', { src: '//eletreejs.surge.sh/eleTree.js?v=2.1.5.2' }]
     ],
     configureWebpack: {
         resolve: {

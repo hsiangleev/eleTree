@@ -9,9 +9,12 @@ import { h } from 'snabbdom'
 export default function(options, data, isOpen, isFirst) {
     options[symbolAttr.node] = h('div.eleTree-group',{style: {
         marginLeft: !isFirst ? (options.indent + 'px') : 'none'
-    }}, isFirst && data.length === 0 ? [emptyVnode(options)] : [
-        lineVertical(options, isFirst),
-        ...data.map(v=>eleVnode(options, v, isOpen, isFirst))
-    ])
+    }}, isFirst && data.length === 0 
+        ? [emptyVnode(options)] 
+        : [
+            lineVertical(options, isFirst),
+            ...data.map(v=>eleVnode(options, v, isOpen, isFirst))
+        ]
+    )
     return options[symbolAttr.node]
 }

@@ -36,8 +36,11 @@ export function changeData(options, data, pData, isFirstRender = false, isRecall
         v[isLeaf] = options.lazy ? (v[isLeaf] || false) : v[children].length === 0
 
         v[symbolAttr.isRenderChild] = v[isOpen] === 2 || v[symbolAttr.isRenderChild] || false      // 是否已经渲染子节点
+        // v[symbolAttr.isRenderChild] = true
         v[symbolAttr.parentNode] = pData     // 当前节点保存父节点信息
         v[symbolAttr.isHideNode] = false     // 节点是否隐藏
+        v[symbolAttr.isPasteNode] = false     // 节点是否被剪贴
+        v[symbolAttr.editNodeType] = null     // 节点是否正在编辑
         if(options.lazy){
             v[symbolAttr.isLazyNode] = v[symbolAttr.isLazyNode] || false        // 是否已经懒加载过子节点
         }
@@ -55,7 +58,7 @@ export function changeData(options, data, pData, isFirstRender = false, isRecall
             }
         }
         // 递归
-        if(v[options.request['children']]) {
+        if(v[options.request['children']] && v[options.request['children']].length > 0) {
             changeData(options, v[children], v, isFirstRender, isRecall)
         }
         // 需要修改父节点的条件（父子关联，子节点已经走到最后一个）

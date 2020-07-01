@@ -2,20 +2,12 @@
 import reloadVnode from '~/vnode/reloadVnode'
 import changeParent from '~/opera/changeParent'
 import changeChildren from '~/opera/changeChildren'
-import getCurrentNodeData from '~/opera/getCurrentNodeData'
-import { events, emit } from '~/event/customEvent'
+import { emit } from '~/event/customEvent'
 import { paramDetection } from '~/opera/tools'
 import { symbolAttr } from '~/config'
 
 import append from '~/methods/append'
 
-// 事件触发
-let emitEvent = function({options, v, type, event, otherOpt}) {
-    if(events[type+"-"+options.el]){
-        let data = getCurrentNodeData(options, v)
-        emit(type, options.el, event, Object.assign({}, otherOpt, {data, type}))
-    }
-}
 export default function(options, v, event) {
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
     let classList = event.target.classList
@@ -29,12 +21,12 @@ export default function(options, v, event) {
         // 判断是否父子不关联
         if(options.checkStrictly){
             reloadVnode(options)
-            emitEvent({options, v, type: 'checkbox', event})
+            emit({options, v, type: 'checkbox', event})
         }else{
             changeParent(options, v, true)
             changeChildren(options, v)
             reloadVnode(options)
-            emitEvent({options, v, type: 'checkbox', event})
+            emit({options, v, type: 'checkbox', event})
         }
     }else if(isTargetDropdown || options.expandOnClickNode && (isTargetText || isTargetIcon)){
         // 点击图标展开，点击文字判断是否展开
@@ -60,7 +52,7 @@ export default function(options, v, event) {
                 // 保存懒加载之前的打开状态
                 let oldIsOpen = v[isOpen]
                 v[isOpen] = 1
-                emitEvent({options, v, type: 'lazyload', event, otherOpt: {
+                emit({options, v, type: 'lazyload', event, otherOpt: {
                     load: function(childNodeData) {
                         if(paramDetection(childNodeData, 'Array', 'load懒加载方法参数必须为Array')) return null
                         if(childNodeData.length > 0){
@@ -82,10 +74,9 @@ export default function(options, v, event) {
             v[symbolAttr.isLazyNode] = true
         }
         reloadVnode(options)
-        emitEvent({options, v, type: 'dropdown', event})
-        emitEvent({options, v, type: 'click', event})
+        emit({options, v, type: 'click', event})
     }else{
-        emitEvent({options, v, type: 'click', event})
+        emit({options, v, type: 'click', event})
     }
     // 高亮显示
     if(options.highlightCurrent){

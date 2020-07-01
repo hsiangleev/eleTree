@@ -46,9 +46,9 @@ let ele = eleTree.render({
         dropdownOn: "dropdownOn.png",
         loading: "",
     },
-    // lazy: true
+    // lazy: true,
+    rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after"]
 })
-
 let index = 1
 btn.onclick = function() {
     // getChecked
@@ -176,11 +176,26 @@ ele.on('checkbox', function(data) {
     // console.log(this)
     // console.log(data)
 })
-// ele.on('dropdown', function(data) {
-//     console.log(this)
-//     console.log(data)
-// })
-// ele.on('click', function(data) {
-//     console.log(this)
-//     console.log(data)
-// })
+ele.on('click', function(data) {
+    // console.log(this)
+    console.log(data)
+})
+ele.on('edit', function(data) {
+    // console.log(this)
+    console.log(data)
+    setTimeout(() => {
+        data.load()
+        // data.stop()
+    }, 500);
+})
+ele.on('add_child', function(data) {
+    // console.log(this)
+    console.log(data)
+    setTimeout(() => {
+        data.load({
+            id: '999',
+            checked: true
+        })
+        // data.stop()
+    }, 500);
+})

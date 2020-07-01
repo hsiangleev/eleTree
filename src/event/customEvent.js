@@ -1,13 +1,14 @@
-
-export let events = {
-
-}
+import getCurrentNodeData from '~/opera/getCurrentNodeData'
+import { symbolAttr } from '~/config'
 // 事件保存
 export function on(options, type, callback) {
-    events[type+"-"+options.el] = callback
+    options[symbolAttr.eventList][type] = callback
     return this
 }
 // 事件触发
-export function emit(type, el, event, data) {
-    events[type+"-"+el] && events[type+"-"+el].call(event, data)
+export function emit({options, v, type, event, otherOpt}) {
+    if(options[symbolAttr.eventList][type]){
+        let data = getCurrentNodeData(options, v)
+        options[symbolAttr.eventList][type].call(event, Object.assign({}, otherOpt, {data, type}))
+    }
 }
