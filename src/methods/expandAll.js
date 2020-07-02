@@ -1,13 +1,13 @@
-import { recurseTree } from '~/opera/tools'
-import { renderData } from '~/opera/renderData'
+import { recurseTree, updateDate } from '~/opera/tools'
 import reloadVnode from '~/vnode/reloadVnode'
 import { symbolAttr } from '~/config'
 /**
  * 展开所有项（懒加载情况下只展开已经懒加载过的节点）
  */
-export default function(options) {
+export default function(methods) {
+    let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
-    recurseTree(options, (data)=>{
+    recurseTree.call(this, (data)=>{
         // 懒加载情况
         if(options.lazy){
             if(data[symbolAttr.isLazyNode] && data[isOpen] !== 2){
@@ -17,7 +17,7 @@ export default function(options) {
             data[isOpen] = 2
         }
     })
-    renderData(options)
-    reloadVnode(options)
-    return this
+    updateDate.call(this)
+    reloadVnode.call(this)
+    return methods
 }

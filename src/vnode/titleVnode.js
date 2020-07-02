@@ -6,18 +6,18 @@ import lineHorizontal from '~/vnode/lineHorizontal'
 import nodeClick from '~/event/nodeClick'
 import rightClick from '~/event/rightClick'
 import { h } from 'snabbdom'
-export default function(options, v, isFirst) {
+export default function(v, isFirst) {
     return h('div.eleTree-title',{
         on: {
-            click: [nodeClick, options, v],
-            contextmenu: [rightClick, options, v],
+            click: [nodeClick, this, v],
+            contextmenu: [rightClick, this, v],
         }
     },
     [
-        lineHorizontal(options, isFirst),
-        dropdownVnode(options, v), 
-        checkboxVnode(options, v),
-        iconVnode(options, v),
-        textVnode(options, v)
+        lineHorizontal.call(this, isFirst),
+        dropdownVnode.call(this, v), 
+        checkboxVnode.call(this, v),
+        iconVnode.call(this, v),
+        textVnode.call(this, v)
     ])
 }

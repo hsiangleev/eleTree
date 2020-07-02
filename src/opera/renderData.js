@@ -1,19 +1,19 @@
 import changeParent from '~/opera/changeParent'
 import { symbolAttr } from '~/config'
 // 根据所给数据重新整合一份dom节点符合的数据
-export function renderData(options, isFirstRender = false) {
+export function renderData(isFirstRender = false) {
     let pData = null
-    changeData(options, options.data, pData, isFirstRender, false)
+    changeData.call(this, this.config.data, pData, isFirstRender, false)
 }
 /**
  * 
- * @param {*} options 
  * @param {* 需要修改的原始数据数组} data
  * @param {* 父节点数据} pData
  * @param {* 是否是初始渲染} isFirstRender（初始渲染选中状态和下拉状态由多种条件组成，之后的状态只由当前节点状态决定）
  * @param {* 修改父节点是否继续向上层递归（默认只改一层）} isRecall
  */
-export function changeData(options, data, pData, isFirstRender = false, isRecall = false) {
+export function changeData(data, pData, isFirstRender = false, isRecall = false) {
+    let options = this.config
     let {isOpen, checked, children, disabled, isLeaf} = options.request
     data.forEach((v, i)=>{
         let f = (attr)=>{
@@ -59,11 +59,11 @@ export function changeData(options, data, pData, isFirstRender = false, isRecall
         }
         // 递归
         if(v[options.request['children']] && v[options.request['children']].length > 0) {
-            changeData(options, v[children], v, isFirstRender, isRecall)
+            changeData.call(this, v[children], v, isFirstRender, isRecall)
         }
         // 需要修改父节点的条件（父子关联，子节点已经走到最后一个）
         if(!options.checkStrictly && (i === data.length - 1)) {
-            changeParent(options, v, isRecall)
+            changeParent.call(this, v, isRecall)
         }
     })
 }

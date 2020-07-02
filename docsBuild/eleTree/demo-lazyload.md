@@ -1,12 +1,12 @@
 ### 懒加载
 
-::: tip 说明
-1. **添加属性lazy: true，则代表当前为懒加载**
-2. **只有当返回的数据明确为叶子节点，当前节点才会为叶子节点**
-3. **使用事件ele.on('lazyload',function(){})把数据传入**
-4. **事件回调函数返回的参数为type:当前事件名，data:当前节点的数据，load:为此load函数传入一个数组节点表示新获取到的数据**
-5. **可以更换loading的样式，支持字体与图片的方式**
-:::
+#### 说明
+
+1. 添加属性lazy: true，则代表当前为懒加载
+2. 只有当返回的数据明确为叶子节点，当前节点才会为叶子节点
+3. 使用事件ele.on('lazyload',function(){})把数据传入
+4. 事件回调函数返回的参数为type:当前事件名，data:当前节点的数据，load:为此load函数传入一个数组节点表示新获取到的数据
+5. 可以更换loading的样式，支持字体与图片的方式
 
 
 #### 示例
@@ -16,7 +16,7 @@
 <div class="eletree"></div>
 
 <script>
-var el = eleTree.render({
+var el = eleTree({
     el: '.eletree',
     showCheckbox: true,
     highlightCurrent: true,

@@ -1,5 +1,6 @@
 import { h } from 'snabbdom'
-export default function(options, v) {
+export default function(v) {
+    let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
     let node = null
     let disabledStr = v[disabled] ? '.eleTree-checkbox-code_disabled' : ''

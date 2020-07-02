@@ -1,5 +1,6 @@
 import { h } from 'snabbdom'
-export default function(options, isFirst) {
+export default function(isFirst) {
+    let options = this.config
     let l =  -1 * options.indent + 6
     return !isFirst && options.showLine ? h('i.eleTree-line-horizontal',{style: {
         position: 'absolute',

@@ -1,18 +1,17 @@
-import { recurseTree } from '~/opera/tools'
-import { renderData } from '~/opera/renderData'
+import { recurseTree, updateDate } from '~/opera/tools'
 import reloadVnode from '~/vnode/reloadVnode'
-import { symbolAttr } from '~/config'
 /**
  * 关闭所有展开项
  */
-export default function(options) {
+export default function(methods) {
+    let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
-    recurseTree(options, (data)=>{
+    recurseTree.call(this, (data)=>{
         if(data[isOpen] !== 0){
             data[isOpen] = 0
         }
     })
-    renderData(options)
-    reloadVnode(options)
-    return this
+    updateDate.call(this)
+    reloadVnode.call(this)
+    return methods
 }

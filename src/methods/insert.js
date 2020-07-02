@@ -1,5 +1,4 @@
-import { paramDetection, getNodeDataById } from '~/opera/tools'
-import { renderData, changeData } from '~/opera/renderData'
+import { paramDetection, getNodeDataById, updateDate } from '~/opera/tools'
 import reloadVnode from '~/vnode/reloadVnode'
 import { symbolAttr } from '~/config'
 /**
@@ -8,15 +7,16 @@ import { symbolAttr } from '~/config'
  * @param {*添加的子节点数据} data 
  * @param {*插入节点位置(before,after)} type 
  */
-export default function(options, id, data = [], type = 'before') {
+export default function(methods, id, data = [], type = 'before') {
+    let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
 
-    if(paramDetection(id, 'String|Number', 'insertAfter方法第一个参数必须为String|Number')) return this
-    if(paramDetection(data, 'Array', 'insertAfter方法第二个参数必须为Array')) return this
+    if(paramDetection(id, 'String|Number', 'insertAfter方法第一个参数必须为String|Number')) return methods
+    if(paramDetection(data, 'Array', 'insertAfter方法第二个参数必须为Array')) return methods
 
-    let cData = getNodeDataById(options, id)
+    let cData = getNodeDataById.call(this, id)
     // 没找到
-    if(!cData) return this
+    if(!cData) return methods
     let pData = cData[symbolAttr.parentNode]
     // 根节点判断
     if(!pData){
@@ -27,7 +27,7 @@ export default function(options, id, data = [], type = 'before') {
                 ? index + 1
                 : index
         options.data.splice(index, 0, ...data)
-        renderData(options)
+        updateDate.call(this)
     }else{
         let index = pData[children].findIndex(v=>v[key]===id)
         index = type === 'before' 
@@ -36,8 +36,8 @@ export default function(options, id, data = [], type = 'before') {
                 ? index + 1
                 : index
         pData[children].splice(index, 0, ...data)
-        changeData(options, pData[children], pData, false, true)
+        updateDate.call(this, cData)
     }
-    reloadVnode(options)
-    return this
+    reloadVnode.call(this)
+    return methods
 }

@@ -8,10 +8,10 @@ let patch = init([
     require('snabbdom/modules/eventlisteners').default,
 ]);
 
-export default function(options) {
+export default function() {
     // 保存旧版的vnode
-    let oldVnode = options[symbolAttr.node];
+    let oldVnode = this.node;
     // 重新获取vnode
-    options[symbolAttr.node] = groupVnode(options, options.data, true, true)
-    patch(oldVnode, options[symbolAttr.node])
+    this.node = groupVnode.call(this, this.config.data, true, true)
+    patch(oldVnode, this.node)
 }

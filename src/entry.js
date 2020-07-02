@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import eleTree from './index'
 
 if (window.layui && layui.define) {

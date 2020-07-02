@@ -8,7 +8,8 @@ import { symbolAttr } from '~/config'
 
 import append from '~/methods/append'
 
-export default function(options, v, event) {
+export default function(thisTree, v, event) {
+    let options = thisTree.config
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
     let classList = event.target.classList
     let isTargetCheckbox = classList.contains('eleTree-checkbox')
@@ -20,13 +21,13 @@ export default function(options, v, event) {
         v[checked] = v[checked] === 2 ? 0 : 2
         // 判断是否父子不关联
         if(options.checkStrictly){
-            reloadVnode(options)
-            emit({options, v, type: 'checkbox', event})
+            reloadVnode.call(thisTree)
+            emit.call(thisTree, {v, type: 'checkbox', event})
         }else{
-            changeParent(options, v, true)
-            changeChildren(options, v)
-            reloadVnode(options)
-            emit({options, v, type: 'checkbox', event})
+            changeParent.call(thisTree, v, true)
+            changeChildren.call(thisTree, v)
+            reloadVnode.call(thisTree)
+            emit.call(thisTree, {v, type: 'checkbox', event})
         }
     }else if(isTargetDropdown || options.expandOnClickNode && (isTargetText || isTargetIcon)){
         // 点击图标展开，点击文字判断是否展开
@@ -52,36 +53,36 @@ export default function(options, v, event) {
                 // 保存懒加载之前的打开状态
                 let oldIsOpen = v[isOpen]
                 v[isOpen] = 1
-                emit({options, v, type: 'lazyload', event, otherOpt: {
-                    load: function(childNodeData) {
+                emit.call(thisTree, {v, type: 'lazyload', event, otherOpt: {
+                    load: (childNodeData) => {
                         if(paramDetection(childNodeData, 'Array', 'load懒加载方法参数必须为Array')) return null
                         if(childNodeData.length > 0){
-                            append.call(null, options, v[key], childNodeData)
+                            append.call(thisTree, null, v[key], childNodeData)
                             return
                         }
                         // 初始有数据
                         if(v[children].length > 0){
                             v[isOpen] = oldIsOpen
-                            reloadVnode(options)
+                            reloadVnode.call(thisTree)
                             return
                         }
                         // 初始无数据，也没有传入数据（叶子节点）
                         v[isLeaf] = true
-                        reloadVnode(options)
+                        reloadVnode.call(thisTree)
                     }
                 }})
             }
             v[symbolAttr.isLazyNode] = true
         }
-        reloadVnode(options)
-        emit({options, v, type: 'click', event})
+        reloadVnode.call(thisTree)
+        emit.call(thisTree, {v, type: 'click', event})
     }else{
-        emit({options, v, type: 'click', event})
+        emit.call(thisTree, {v, type: 'click', event})
     }
     // 高亮显示
     if(options.highlightCurrent){
-        options[symbolAttr.activeElm] && options[symbolAttr.activeElm].classList.remove('eleTree-title-active')
+        thisTree.activeElm && thisTree.activeElm.classList.remove('eleTree-title-active')
         this.elm.classList.add('eleTree-title-active')
-        options[symbolAttr.activeElm] = this.elm
+        thisTree.activeElm = this.elm
     }
 }

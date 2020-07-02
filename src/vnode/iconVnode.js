@@ -1,6 +1,7 @@
 import { h } from 'snabbdom'
 import { isArray } from '~/opera/tools'
-export default function(options, v) {
+export default function(v) {
+    let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
     let isFold = v[children] && isArray(v[children]) && v[children].length > 0
     let node = null

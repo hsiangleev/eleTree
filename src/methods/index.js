@@ -10,25 +10,24 @@ import remove from '~/methods/remove'
 import insert from '~/methods/insert'
 import reload from '~/methods/reload'
 import search from '~/methods/search'
-export default function(inst) {
-    let { config: options } = inst
-    //函数内部的this为当前的methods方法，第一个参数为options对象，后续参数为传入的参数，函数内部返回this即可实现链式调用
+export default function() {
+    //函数内部第一个参数为当前methods方法，后续参数为传入的参数，函数内部返回methods方法即可实现链式调用
     let methods = {
-        on: (...args)=>on.call(methods, options, ...args),
-        getChecked: (...args)=>getChecked.call(methods, options, ...args),
-        setChecked: (...args)=>setChecked.call(methods, options, ...args),
-        unChecked: (...args)=>unChecked.call(methods, options, ...args),
+        on: (...args)=>on.call(this, methods, ...args),
+        getChecked: (...args)=>getChecked.call(this, methods, ...args),
+        setChecked: (...args)=>setChecked.call(this, methods, ...args),
+        unChecked: (...args)=>unChecked.call(this, methods, ...args),
 
-        expandAll: (...args)=>expandAll.call(methods, options, ...args),
-        unExpandAll: (...args)=>unExpandAll.call(methods, options, ...args),
+        expandAll: (...args)=>expandAll.call(this, methods, ...args),
+        unExpandAll: (...args)=>unExpandAll.call(this, methods, ...args),
 
-        append: (...args)=>append.call(methods, options, ...args),
-        updateKeySelf: (...args)=>updateKeySelf.call(methods, options, ...args),
-        remove: (...args)=>remove.call(methods, options, ...args),
-        insert: (...args)=>insert.call(methods, options, ...args),
-        reload: (...args)=>reload.call(methods, inst, ...args),
+        append: (...args)=>append.call(this, methods, ...args),
+        updateKeySelf: (...args)=>updateKeySelf.call(this, methods, ...args),
+        remove: (...args)=>remove.call(this, methods, ...args),
+        insert: (...args)=>insert.call(this, methods, ...args),
+        reload: (...args)=>reload.call(this, methods, ...args),
 
-        search: (...args)=>search.call(methods, options, ...args),
+        search: (...args)=>search.call(this, methods, ...args),
     }
     return methods
 }

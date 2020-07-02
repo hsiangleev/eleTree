@@ -2,7 +2,6 @@ const path = require('path')
 module.exports = {
     title: 'eleTree2.0',  // 设置网站标题
     dest: './docs',    // 设置输出目录
-    // base: '/mt-blog/', // 设置站点根路径
     repo: 'https://github.com/hsiangleev/eleTree/', // 添加 github 链接,
     port: 3001,
     themeConfig: {
@@ -36,7 +35,8 @@ module.exports = {
                 collapsable: false,
                 children: [
                     "/eleTree/demo-icon",
-                    "/eleTree/demo-lazyload",
+                    "/eleTree/demo-methods",
+                    "/eleTree/demo-lazyload"
                 ]
             },
         ],
@@ -55,7 +55,7 @@ module.exports = {
     head: [
         ['link', { rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
         ['link', { rel: 'stylesheet', href: '/eleTree/css/icon.css' }],
-        ['script', { src: '//eletreejs.surge.sh/eleTree.js?v=2.1.5.2' }]
+        ['script', { src: '//eletreejs.surge.sh/eleTree.js?v=2.1.8.1' }]
     ],
     configureWebpack: {
         resolve: {

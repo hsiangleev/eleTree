@@ -4,7 +4,7 @@ import ajax from '~/opera/ajax'
 
 let btn = document.querySelector('button')
 let search = document.querySelector('.search')
-let ele = eleTree.render({
+let ele = eleTree({
     el: '.eletree',
     // data: data,
     method: 'post',
@@ -47,7 +47,7 @@ let ele = eleTree.render({
         loading: "",
     },
     // lazy: true,
-    rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after"]
+    rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after", {name: '选中', value: 'checked'}]
 })
 let index = 1
 btn.onclick = function() {
@@ -181,7 +181,6 @@ ele.on('click', function(data) {
     console.log(data)
 })
 ele.on('edit', function(data) {
-    // console.log(this)
     console.log(data)
     setTimeout(() => {
         data.load()
@@ -196,6 +195,15 @@ ele.on('add_child', function(data) {
             id: '999',
             checked: true
         })
+        // data.stop()
+    }, 500);
+})
+ele.on('custom_checked', function(data) {
+    // console.log(this)
+    console.log(data)
+    setTimeout(() => {
+        ele.setChecked([data.data.id], false)
+        data.load()
         // data.stop()
     }, 500);
 })

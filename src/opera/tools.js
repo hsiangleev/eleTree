@@ -1,7 +1,9 @@
+
+import { renderData, changeData } from '~/opera/renderData'
+import { symbolAttr } from '~/config'
 // 通过id查找数据和索引
-export function getNodeDataById(options, id) {
-    let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
-    let data = options.data
+export function getNodeDataById(id) {
+    let {name, key, isOpen, checked, children, disabled, isLeaf } = this.config.request
     let resultData = null
     // 函数返回值为了跳出递归，即条件成立返回true，如果递归函数为true返回true，其他情况一律返回false
     let fn = function(data) {
@@ -15,7 +17,7 @@ export function getNodeDataById(options, id) {
         }
         return false
     }
-    fn(data)
+    fn(this.config.data)
     return resultData
 }
 /**
@@ -23,8 +25,8 @@ export function getNodeDataById(options, id) {
  * @param {*} options 
  * @param {*回调数据} callback 
  */
-export function recurseTree(options, callback) {
-    let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
+export function recurseTree(callback) {
+    let {name, key, isOpen, checked, children, disabled, isLeaf } = this.config.request
     let f = (data)=>{
         for(let i=0,len=data.length;i<len;i++){
             callback(data[i])
@@ -33,7 +35,21 @@ export function recurseTree(options, callback) {
             }
         }
     }
-    f(options.data)
+    f(this.config.data)
+}
+// 更新当前节点数据,不传cData则更新所有数据(把给的原始数据修改为符合节点的数据)
+export function updateDate(cData) {
+    if(!cData) {
+        renderData.call(this)
+        return
+    }
+    // 根节点判断，根节点则更新所有数据
+    let pData = cData[symbolAttr.parentNode]
+    if(!pData){
+        renderData.call(this)
+    }else{
+        changeData.call(this, pData[this.config.request.children], pData, false, true)
+    }
 }
 export function isFun(data) {
     return Object.prototype.toString.call(data) === '[object Function]'

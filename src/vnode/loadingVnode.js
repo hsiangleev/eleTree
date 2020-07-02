@@ -6,7 +6,8 @@ var patch = init([
     require('snabbdom/modules/style').default,
     require('snabbdom/modules/eventlisteners').default,
 ]);
-export function showLoding(options) {
+export function showLoding() {
+    let options = this.config
     let node = null
     if(!options.icon.loading){
         node = h('span.eleTree-loading.eleTree-animate-rotate.eleTree-loading-code')
@@ -20,7 +21,8 @@ export function showLoding(options) {
     document.querySelector(options.el).appendChild(el)
     patch(el, h('div.eleTree-loading-content', [node]))
 }
-export function removeLoding(options) {
+export function removeLoding() {
+    let options = this.config
     let loadingEl = document.querySelector(options.el + ">.eleTree-loading-content")
     loadingEl && loadingEl.parentNode.removeChild(loadingEl)
 }

@@ -10,13 +10,13 @@
 * leaf：          叶子节点
 * loading:        正在加载
 
-::: tip 说明
-1. **当属性值为空的时候为默认的方式，即通过dom节点生成的下拉和checkbox，且没有树形图标**
-2. **当属性值以(.png|.jpg|.gif)结尾，则表示为使用图片的方式，属性名为图片名**
-3. **属性值如果以 . 开头，则表示为字体的class，这种为字体的使用方式，属性值为字体的class，如果由多个class组合，class之间不加空格，如.fa.fa-address-book**
-4. **可以使用imgUrl参数修改图片图片默认的文件夹地址**
-5. **如果需要使用系统默认字体，则需要引入css文件夹下的icon.css**
-:::
+#### 说明
+
+1. 当属性值为空的时候为默认的方式，即通过dom节点生成的下拉和checkbox，且没有树形图标
+2. 当属性值以(.png|.jpg|.gif)结尾，则表示为使用图片的方式，属性名为图片名
+3. 属性值如果以 . 开头，则表示为字体的class，这种为字体的使用方式，属性值为字体的class，如果由多个class组合，class之间不加空格，如.fa.fa-address-book
+4. 可以使用imgUrl参数修改图片图片默认的文件夹地址
+5. 如果需要使用系统默认字体，则需要引入css文件夹下的icon.css
 
 
 #### 默认的方式
@@ -26,66 +26,11 @@
 <div class="eletree"></div>
 
 <script>
-eleTree.render({
+eleTree({
     el: '.eletree',
+    url: '/eleTree/json/1.json',
     showCheckbox: true,
     highlightCurrent: true,
-    data: [
-        {
-            "label": "安徽省",
-            "id": "001",
-            "isOpen": true,
-            "children": [
-                {
-                    "label": "淮北市",
-                    "id": "001001"
-                },
-                {
-                    "label": "马鞍山市",
-                    "id": "001002",
-                    "isOpen": true,
-                    "children": [
-                        {
-                            "label": "花山区",
-                            "id": "001002001",
-                            "disabled": true,
-                            "isOpen": true,
-                            "checked": true,
-                            "children": [
-                                {
-                                    "label": "霍里街道",
-                                    "id": "001002002001"
-                                },
-                                {
-                                    "label": "桃源路",
-                                    "checked": true,
-                                    "id": "001002002002",
-                                }
-                            ]
-                        },
-                    ]
-                }
-            ]
-        },
-        {
-            "label": "河南省",
-            "id": "002"
-        },
-        {
-            "label": "江苏省",
-            "id": "003",
-            "children": [
-                {
-                    "label": "苏州市",
-                    "id": "003001"
-                },
-                {
-                    "label": "南京市",
-                    "id": "003002"
-                }
-            ],
-        }
-    ],
 })
 </script>
 ```
@@ -98,8 +43,9 @@ eleTree.render({
 <div class="eletree2"></div>
 
 <script>
-eleTree.render({
+eleTree({
     el: '.eletree2',
+    url: '/eleTree/json/1.json',
     showCheckbox: true,
     highlightCurrent: true,
     icon: {
@@ -111,61 +57,6 @@ eleTree.render({
         fold: "fold.png",
         leaf: "leaf.png",
     },
-    data: [
-        {
-            "label": "安徽省",
-            "id": "001",
-            "isOpen": true,
-            "children": [
-                {
-                    "label": "淮北市",
-                    "id": "001001"
-                },
-                {
-                    "label": "马鞍山市",
-                    "id": "001002",
-                    "isOpen": true,
-                    "children": [
-                        {
-                            "label": "花山区",
-                            "id": "001002001",
-                            "disabled": true,
-                            "isOpen": true,
-                            "children": [
-                                {
-                                    "label": "霍里街道",
-                                    "id": "001002002001"
-                                },
-                                {
-                                    "label": "桃源路",
-                                    "checked": true,
-                                    "id": "001002002002",
-                                }
-                            ]
-                        },
-                    ]
-                }
-            ]
-        },
-        {
-            "label": "河南省",
-            "id": "002"
-        },
-        {
-            "label": "江苏省",
-            "id": "003",
-            "children": [
-                {
-                    "label": "苏州市",
-                    "id": "003001"
-                },
-                {
-                    "label": "南京市",
-                    "id": "003002"
-                }
-            ],
-        }
-    ],
 })
 </script>
 ```
@@ -178,8 +69,9 @@ eleTree.render({
 <div class="eletree3"></div>
 
 <script>
-eleTree.render({
+eleTree({
     el: '.eletree3',
+    url: '/eleTree/json/1.json',
     showCheckbox: true,
     highlightCurrent: true,
     icon: {
@@ -191,61 +83,6 @@ eleTree.render({
         dropdownOff: ".eletree_icon-dropdown_right",
         dropdownOn: ".eletree_icon-dropdown_bottom",
     },
-    data: [
-        {
-            "label": "安徽省",
-            "id": "001",
-            "isOpen": true,
-            "children": [
-                {
-                    "label": "淮北市",
-                    "id": "001001"
-                },
-                {
-                    "label": "马鞍山市",
-                    "id": "001002",
-                    "isOpen": true,
-                    "children": [
-                        {
-                            "label": "花山区",
-                            "id": "001002001",
-                            "disabled": true,
-                            "isOpen": true,
-                            "children": [
-                                {
-                                    "label": "霍里街道",
-                                    "id": "001002002001"
-                                },
-                                {
-                                    "label": "桃源路",
-                                    "checked": true,
-                                    "id": "001002002002",
-                                }
-                            ]
-                        },
-                    ]
-                }
-            ]
-        },
-        {
-            "label": "河南省",
-            "id": "002"
-        },
-        {
-            "label": "江苏省",
-            "id": "003",
-            "children": [
-                {
-                    "label": "苏州市",
-                    "id": "003001"
-                },
-                {
-                    "label": "南京市",
-                    "id": "003002"
-                }
-            ],
-        }
-    ],
 })
 </script>
 ```

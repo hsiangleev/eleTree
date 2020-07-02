@@ -26,7 +26,7 @@ layui.config({
     base: 'mymodules的路径'
 }).use(['eleTree'], function(){
     var eleTree = layui.eleTree;
-    eleTree.render({/*...*/})
+    eleTree({/*...*/})
 });
 ```
 

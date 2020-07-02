@@ -5,7 +5,8 @@ import { paramDetection } from '~/opera/tools'
  * @param {*是否只是叶子节点,默认值为 false} leafOnly 
  * @param {*是否包含半选节点,默认值为 false} includeHalfChecked 
  */
-export default function(options, leafOnly = false, includeHalfChecked = false) {
+export default function(methods, leafOnly = false, includeHalfChecked = false) {
+    let options = this.config
     let {key, isOpen, checked, children, disabled, isLeaf} = options.request
     let results = []
 
@@ -19,7 +20,7 @@ export default function(options, leafOnly = false, includeHalfChecked = false) {
             // 当状态为status，代表选中
             let fn = (status)=>{
                 if(data[i][checked] === status){
-                    results.push(getCurrentNodeData(options, data[i], arr))
+                    results.push(getCurrentNodeData.call(this, data[i], arr))
                 }
             }
             // 是否只是叶子节点

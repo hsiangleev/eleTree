@@ -1,7 +1,7 @@
-import { symbolAttr } from '~/config'
 // 获取当前节点对应的原始数据
 // arr当前节点的索引数组
-export default function(options, v) {
+export default function(v) {
+    let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
     let data = {}
     // 返回的数据不包括children

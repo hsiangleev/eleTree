@@ -8,7 +8,8 @@ var patch = init([
 import { symbolAttr } from '~/config'
 import rightClickEvent from '~/event/rightClickEvent'
 
-export default function(options, left, top) {
+export default function(left, top) {
+    let options = this.config
     let menu = options.rightMenuList
     const defaultList = [
         {name: '复制', value: 'copy'},
@@ -37,24 +38,24 @@ export default function(options, left, top) {
         }
         return obj
     })
-    let oldNode = options[symbolAttr.rightMenuNode]
+    let oldNode = this.rightMenuNode
     if(!oldNode){
         oldNode = document.createElement('div')
         document.querySelector(options.el).appendChild(oldNode)
     }
-    options[symbolAttr.rightMenuNode] = h('ul.eleTree-menu', {
+    this.rightMenuNode = h('ul.eleTree-menu', {
         style: {
-            display: options[symbolAttr.isShowRightMenu] ? 'block' : 'none',
+            display: this.isShowRightMenu ? 'block' : 'none',
             left: left + 'px',
             top: top + 'px',
         }
     }, menuList.map(v=>{
         return h('li', {
-            style: v.value === 'paste' && !options[symbolAttr.rightMenuPasteData] ? {color: '#ccc'} : {},
+            style: (v.value === 'paste' || v.value === 'paste_before' || v.value === 'paste_after') && !this.rightMenuPasteData ? {color: '#ccc'} : {},
             on: {
-                click: [rightClickEvent, options, v]
+                click: [rightClickEvent, this, v]
             }
         }, v.name)
     }))
-    patch(oldNode, options[symbolAttr.rightMenuNode])
+    patch(oldNode, this.rightMenuNode)
 }

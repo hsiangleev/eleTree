@@ -1,20 +1,21 @@
 
 import { emit } from '~/event/customEvent'
 import { symbolAttr } from '~/config'
-import { renderData } from '~/opera/renderData'
 import remove from '~/methods/remove'
 import append from '~/methods/append'
 import insert from '~/methods/insert'
 import reloadVnode from '~/vnode/reloadVnode'
 import { showLoding, removeLoding } from '~/vnode/loadingVnode'
+import { updateDate } from '~/opera/tools'
 
-export default function(options, v, event) {
+export default function(thisTree, v, event) {
+    let options = thisTree.config
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
-    let cData = options[symbolAttr.rightMenuCdata]
+    let cData = thisTree.rightMenuCdata
 
     // 粘贴初始化
     const pasteInit = ()=>{
-        let pasteData = options[symbolAttr.rightMenuPasteData]
+        let pasteData = thisTree.rightMenuPasteData
         if(!pasteData) return
         // 深层copy，并且修改id，防止与原始的节点冲突
         let f = (data)=>{
@@ -22,13 +23,13 @@ export default function(options, v, event) {
             Object.keys(data).forEach(v=>{
                 obj[v] = typeof data[v] === 'object' 
                     ? f(data[v]) 
-                    : v===key ? options[symbolAttr.customIndex]++ : data[v] 
+                    : v===key ? thisTree.customIndex++ : data[v] 
             })
             return obj
         }
         // 判断是否为剪贴的节点
         if(pasteData[symbolAttr.isPasteNode]){
-            remove(options, [pasteData[key]])
+            remove.call(thisTree, null, [pasteData[key]])
         }
         return f(pasteData)
     }
@@ -47,128 +48,134 @@ export default function(options, v, event) {
             index = type === 'before' ? index : index + 1
             options.data.splice(index, 0, newData)
         }
-        renderData(options)
-        reloadVnode(options)
+        updateDate.call(thisTree)
+        reloadVnode.call(thisTree)
     }
     // 节点增加与编辑
     const editNode = (el)=>{
-        reloadVnode(options)
-        if(!options[symbolAttr.rightMenuCdom]) return
+        reloadVnode.call(thisTree)
+        if(!thisTree.rightMenuCdom) return
         let text_edit = el.querySelector('.eleTree-text_edit')
         if(!text_edit) return
         text_edit.focus()
         text_edit.select()
     }
-    
+    const emitEvent = (eventName, successCallback)=>{
+        // 判断是否有edit回调函数
+        if(!thisTree.eventList[eventName]){
+            successCallback()
+            return
+        }
+        showLoding.call(thisTree)
+        emit.call(thisTree, {v: cData, type: eventName, event, otherOpt: {
+            load() {
+                removeLoding.call(thisTree)
+                successCallback()
+            },
+            stop() {
+                removeLoding.call(thisTree)
+            }
+        }})
+    }
+    // 默认的方法
     const defaultListEvent = {
         copy() {
-            // 先取消上次的节点剪贴
-            if(options[symbolAttr.rightMenuPasteData]) options[symbolAttr.rightMenuPasteData][symbolAttr.isPasteNode] = false
-            // 数据放入剪贴板
-            options[symbolAttr.rightMenuPasteData] = cData
+            emitEvent('copy', ()=>{
+                // 先取消上次的节点剪贴
+                if(thisTree.rightMenuPasteData) thisTree.rightMenuPasteData[symbolAttr.isPasteNode] = false
+                // 数据放入剪贴板
+                thisTree.rightMenuPasteData = cData
+            })
         },
         paste() {
-            let newData = pasteInit()
-            if(!newData) return
-            cData[children].push(newData)
-            renderData(options)
-            reloadVnode(options)
+            emitEvent('paste', ()=>{
+                let newData = pasteInit()
+                if(!newData) return
+                cData[children].push(newData)
+                updateDate.call(thisTree)
+                reloadVnode.call(thisTree)
+            })
         },
         paste_before() {
-            pasteType('before')
+            emitEvent('paste_before', ()=>{
+                pasteType('before')
+            })
         },
         paste_after() {
-            pasteType('after')
+            emitEvent('paste_after', ()=>{
+                pasteType('after')
+            })
         },
         cut_paste() {
-            if(options[symbolAttr.rightMenuPasteData]) options[symbolAttr.rightMenuPasteData][symbolAttr.isPasteNode] = false
-            cData[symbolAttr.isPasteNode] = true
-            // 数据放入剪贴板
-            options[symbolAttr.rightMenuPasteData] = cData
-            reloadVnode(options)
+            emitEvent('paste_after', ()=>{
+                if(thisTree.rightMenuPasteData) thisTree.rightMenuPasteData[symbolAttr.isPasteNode] = false
+                cData[symbolAttr.isPasteNode] = true
+                // 数据放入剪贴板
+                thisTree.rightMenuPasteData = cData
+                reloadVnode.call(thisTree)
+            })
         },
         edit() {
             cData[symbolAttr.editNodeType] = 'edit'
-            editNode(options[symbolAttr.rightMenuCdom])
+            editNode(thisTree.rightMenuCdom)
         },
         remove() {
-            // 判断是否有edit回调函数
-            if(!options[symbolAttr.eventList].remove){
-                remove(options, [cData[key]])
-                reloadVnode(options)
-                return
-            }
-            showLoding(options)
-            emit({options, v: cData, type: 'remove', event, otherOpt: {
-                load() {
-                    removeLoding(options)
-                    remove(options, [cData[key]])
-                    reloadVnode(options)
-                },
-                stop() {
-                    removeLoding(options)
-                }
-            }})
+            emitEvent('remove', ()=>{
+                remove.call(thisTree, null, [cData[key]])
+                reloadVnode.call(thisTree)
+            })
         },
         add_child() {
-            append(options, cData[key], [
+            append.call(thisTree, null, cData[key], [
                 {
                     [name]: '未命名',
-                    [key]: options[symbolAttr.customIndex]++
+                    [key]: thisTree.customIndex++
                 }
             ])
-            let index = cData[children].findIndex(item=>item[key] === options[symbolAttr.customIndex] - 1)
+            let index = cData[children].findIndex(item=>item[key] === thisTree.customIndex - 1)
             cData[children][index][symbolAttr.editNodeType] = 'add_child'
-            editNode(options[symbolAttr.rightMenuCdom].parentNode)
+            editNode(thisTree.rightMenuCdom.parentNode)
         },
         add_before() {
-            insert(options, cData[key], [
+            insert.call(thisTree, null, cData[key], [
                 {
                     [name]: '未命名',
-                    [key]: options[symbolAttr.customIndex]++
+                    [key]: thisTree.customIndex++
                 }
             ], 'before')
             if(cData[symbolAttr.parentNode]){
-                let index = cData[symbolAttr.parentNode][children].findIndex(item=>item[key] === options[symbolAttr.customIndex] - 1)
+                let index = cData[symbolAttr.parentNode][children].findIndex(item=>item[key] === thisTree.customIndex - 1)
                 cData[symbolAttr.parentNode][children][index][symbolAttr.editNodeType] = 'add_before'
             }else{
-                let index = options.data.findIndex(item=>item[key] === options[symbolAttr.customIndex] - 1)
+                let index = options.data.findIndex(item=>item[key] === thisTree.customIndex - 1)
                 options.data[index][symbolAttr.editNodeType] = 'add_before'
             }
-            editNode(options[symbolAttr.rightMenuCdom].parentNode.previousElementSibling)
+            editNode(thisTree.rightMenuCdom.parentNode.previousElementSibling)
         },
         add_after() {
-            insert(options, cData[key], [
+            insert.call(thisTree, null, cData[key], [
                 {
                     [name]: '未命名',
-                    [key]: options[symbolAttr.customIndex]++
+                    [key]: thisTree.customIndex++
                 }
             ], 'after')
             if(cData[symbolAttr.parentNode]){
-                let index = cData[symbolAttr.parentNode][children].findIndex(item=>item[key] === options[symbolAttr.customIndex] - 1)
+                let index = cData[symbolAttr.parentNode][children].findIndex(item=>item[key] === thisTree.customIndex - 1)
                 cData[symbolAttr.parentNode][children][index][symbolAttr.editNodeType] = 'add_after'
             }else{
-                let index = options.data.findIndex(item=>item[key] === options[symbolAttr.customIndex] - 1)
+                let index = options.data.findIndex(item=>item[key] === thisTree.customIndex - 1)
                 options.data[index][symbolAttr.editNodeType] = 'add_after'
             }
-            editNode(options[symbolAttr.rightMenuCdom].parentNode.nextElementSibling)
+            editNode(thisTree.rightMenuCdom.parentNode.nextElementSibling)
         },
     }
+    // 自定义方法对应的事件监听名为：custom_
     const customEvent = ()=>{
-        if(!options[symbolAttr.eventList][v.value]){
-            reloadVnode(options)
-            return
-        }
-        showLoding(options)
-        emit({options, v: cData, type: v.value, event, otherOpt: {
-            load() {
-                removeLoding(options)
-                reloadVnode(options)
-            },
-            stop() {
-                removeLoding(options)
-            }
-        }})
+        let eventName = `custom_${v.value}`
+        emitEvent(eventName, ()=>{
+            updateDate.call(thisTree, cData)
+            reloadVnode.call(thisTree)
+        })
     }
 
     defaultListEvent[v.value] ? defaultListEvent[v.value]() : customEvent()

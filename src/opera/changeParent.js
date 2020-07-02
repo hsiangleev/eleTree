@@ -6,7 +6,8 @@ import { symbolAttr } from '~/config'
  * @param {*} options 
  * @param {*} isRecall 是否向祖父级节点递归（默认只修改一层）
  */
-export default function changeParent(options, cData, isRecall = false) {
+export default function changeParent(cData, isRecall = false) {
+    let options = this.config
     let {key, isOpen, checked, children, disabled, isLeaf} = options.request
     let pData = cData[symbolAttr.parentNode]
     // 递归结束条件
@@ -36,5 +37,5 @@ export default function changeParent(options, cData, isRecall = false) {
     }else{
         pData[checked] = s
     }
-    isRecall && changeParent(options, pData, isRecall)
+    isRecall && changeParent.call(this, pData, isRecall)
 }

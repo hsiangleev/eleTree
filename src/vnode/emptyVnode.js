@@ -1,4 +1,4 @@
 import { h } from 'snabbdom'
-export default function(options) {
-    return h('div.eleTree-empty-text', options.emptText)
+export default function() {
+    return h('div.eleTree-empty-text', this.config.emptText)
 }

@@ -5,10 +5,11 @@ import { symbolAttr } from '~/config'
  * 插入节点
  * @param {*传入搜索的文本值，不传或传空则显示所有节点} value 
  */
-export default function(options, value) {
+export default function(methods, value) {
+    let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
     if(value === null || value === undefined) value = ''
-    if(paramDetection(value, 'String|Number', 'search方法第一个参数必须为String|Number')) return this
+    if(paramDetection(value, 'String|Number', 'search方法第一个参数必须为String|Number')) return methods
 
     let f = (data)=>{
         for(let i=0,len=data.length;i<len;i++){
@@ -37,6 +38,6 @@ export default function(options, value) {
 
     f(options.data)
 
-    reloadVnode(options)
-    return this
+    reloadVnode.call(this)
+    return methods
 }

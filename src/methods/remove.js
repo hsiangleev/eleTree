@@ -1,15 +1,15 @@
-import { paramDetection } from '~/opera/tools'
-import { renderData } from '~/opera/renderData'
+import { paramDetection, updateDate } from '~/opera/tools'
 import reloadVnode from '~/vnode/reloadVnode'
 import { symbolAttr } from '~/config'
 /**
  * 删除节点
  * @param {*需要删除的节点id数组} removeArr 
  */
-export default function(options, removeArr = []) {
+export default function(methods, removeArr = []) {
+    let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
 
-    if(paramDetection(removeArr, 'Array', 'remove方法第一个参数必须为Array')) return this
+    if(paramDetection(removeArr, 'Array', 'remove方法第一个参数必须为Array')) return methods
 
     let f = (data)=>{
         for(let i=0;i<data.length;i++){
@@ -27,7 +27,7 @@ export default function(options, removeArr = []) {
     }
     f(options.data)
 
-    renderData(options)
-    reloadVnode(options)
-    return this
+    updateDate.call(this)
+    reloadVnode.call(this)
+    return methods
 }

@@ -1,6 +1,6 @@
 // 根据父节点选中情况修改字节点状态
-export default function(options, v) {
-    let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
+export default function(v) {
+    let {name, key, isOpen, checked, children, disabled, isLeaf} = this.config.request
     let fn = function(data) {
         data.forEach((item, index)=>{
             if(!item[disabled]){

@@ -5,7 +5,7 @@
 | on | 事件回调 | (type, callback)1.事件名，2.触发事件时的回调函数；[查看更多](/eleTree/usedocs-event) |
 | getChecked | 获取选中的节点信息 | (leafOnly, includeHalfChecked)1.是否只选中叶子节点，默认false，2.是否包括半选节点，默认false |
 | setChecked | 设置选中的节点 | (checkArr, isUnCheckAll)1.设置选中项数组，2.是否先清空原有的选中项，默认true |
-| unChecked | 取消选中的节点 | (unCheckArr, isUnCheckAll)1.取消选中的节点数组，2.是否清空所有选中项，默认true；不传参数则默认清空所有选中项 |
+| unChecked | 取消选中的节点 | (unCheckArr)1.取消选中的节点数组；不传参数则默认清空所有选中项 |
 | expandAll | 展开所有节点 | — |
 | unExpandAll | 合并所有节点 | — |
 | append | 添加子节点 | (id, array)1.查找需要添加的节点id，2.添加的子节点数据数组；id传null或空字符串则会添加到根节点 |
