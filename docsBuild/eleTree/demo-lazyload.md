@@ -25,20 +25,9 @@ var el = eleTree({
         loading: ".eleTree-animate-rotate.eletree_icon-loading1",
     },
     data: [
-        {
-            "label": "安徽省",
-            "id": "01",
-        },
-        {
-            "label": "河南省",
-            "id": "02",
-            "isLeaf": true
-        },
-        {
-            "label": "江苏省",
-            "id": "03",
-            "isLeaf": true
-        }
+        {"label": "安徽省","id": "01",},
+        {"label": "河南省","id": "02","isLeaf": true},
+        {"label": "江苏省","id": "03","isLeaf": true}
     ],
 })
 el.on('lazyload', function(d) {
@@ -48,31 +37,16 @@ el.on('lazyload', function(d) {
     switch (data.id) {
         case "01":
             loadData = [
-                {
-                    "label": "合肥市",
-                    "id": "0101",
-                    "isLeaf": true
-                },
-                {
-                    "label": "马鞍山市",
-                    "id": "0102",
-                },
+                {"label": "合肥市","id": "0101","isLeaf": true},
+                {"label": "马鞍山市","id": "0102",},
             ]
             break;
         case "0102":
             loadData = [
-                {
-                    "label": "花山区",
-                    "id": "010201",
-                    "isLeaf": true
-                },
-                {
-                    "label": "雨山区",
-                    "id": "010202",
-                },
+                {"label": "花山区","id": "010201","isLeaf": true},
+                {"label": "雨山区","id": "010202",},
             ]
             break;
-
         default:
             break;
     }

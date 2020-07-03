@@ -35,8 +35,9 @@ module.exports = {
                 collapsable: false,
                 children: [
                     "/eleTree/demo-icon",
-                    "/eleTree/demo-methods",
-                    "/eleTree/demo-lazyload"
+                    "/eleTree/demo-rightmenu",
+                    "/eleTree/demo-lazyload",
+                    "/eleTree/demo-search"
                 ]
             },
         ],
@@ -55,7 +56,7 @@ module.exports = {
     head: [
         ['link', { rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
         ['link', { rel: 'stylesheet', href: '/eleTree/css/icon.css' }],
-        ['script', { src: '//eletreejs.surge.sh/eleTree.js?v=2.1.8.1' }]
+        ['script', { src: '//eletreejs.surge.sh/eleTree.js?v=2.1.10.1' }]
     ],
     configureWebpack: {
         resolve: {

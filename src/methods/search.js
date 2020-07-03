@@ -2,19 +2,21 @@ import reloadVnode from '~/vnode/reloadVnode'
 import { paramDetection } from '~/opera/tools'
 import { symbolAttr } from '~/config'
 /**
- * 插入节点
- * @param {*传入搜索的文本值，不传或传空则显示所有节点} value 
+ * 搜索节点
+ * @param {*传入搜索的文本值，传空则显示所有节点} value 
+ * @param {*搜索条件，返回值为true则显示该节点} callback 
  */
-export default function(methods, value) {
+export default function(methods, value, callback) {
     let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
     if(value === null || value === undefined) value = ''
     if(paramDetection(value, 'String|Number', 'search方法第一个参数必须为String|Number')) return methods
+    if(paramDetection(callback, 'Function', 'search方法第二个参数必须为Function')) return methods
 
     let f = (data)=>{
         for(let i=0,len=data.length;i<len;i++){
             // 节点不包含搜索信息
-            if(!String(data[i][name]).includes(String(value))){
+            if(!callback(value, data[i])){
                 data[i][symbolAttr.isHideNode] = true
             }else if(value === ''){
                 // 搜索条件为空显示所有，但不向父层递归（因为所有节点都满足条件）

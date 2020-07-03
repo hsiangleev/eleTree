@@ -150,7 +150,11 @@ btn.onclick = function() {
     // search
     {
         // console.group('search: ')
-        // let res = ele.search(search.value)
+        // let res = ele.search(search.value, function(value, data) {
+        //     // data为每个节点数据，函数返回true则显示该节点
+        //     if (!value) return true;
+        //     return data.label.indexOf(value) !== -1;
+        // })
         // console.log(res)
         // console.groupEnd()
     }

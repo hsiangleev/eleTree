@@ -12,5 +12,5 @@
 | updateKeySelf | 更新当前节点数据 | (id, object)1.查找需要修改的节点id，2.需要修改的数据 |
 | remove | 删除节点数据 | (removeArr)1.需要删除的节点id数组(可以移除多个节点) |
 | insert | 在某个节点前后插入数据 | (id, array, type)1.查找需要添加的节点id，2.需要添加节点数据数组，3.类型，在当前节点前插入还是节点后插入，可选参数('before','after')，默认节点前 |
-| reload | 重新渲染树节点 | (options)1.传入object，参数与render参数一致 |
-| search | 搜索树节点 | (value)1.需要搜索的文本信息 |
+| reload | 重新渲染树节点 | (options)1.传入object，参数初始参数一致 |
+| search | 搜索树节点 | (value, callback)1.需要搜索的文本信息，2. 传入的搜索条件，函数返回值为true则显示该节点；[查看更多](/eleTree/demo-search) |

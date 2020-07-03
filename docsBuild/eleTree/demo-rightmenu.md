@@ -20,6 +20,7 @@
 4. 默认的可选项对应的事件名为该字符串，自定义的项事件名为“custom_”加上“value值”，例如“custom_test”
 5. 事件的回调函数返回值包括data：当前节点数据，type：当前触发事件的事件名，load：执行此项操作，stop：取消此项操作
 6. 如果不写事件回调，则默认自动执行此操作，否则需要在事件回调手动调用load函数才会执行此项操作
+7. edit/add_child/add_before/add_after的load函数可以传入节点的属性来自定义修改节点，如checked/disabled等
 
 #### 默认可选项示例
 
@@ -60,7 +61,11 @@ el1.on("copy", function(data) {
 }).on("cut_paste", function(data) {
     setTimeout(data.load, 100)
 }).on("edit", function(data) {
-    setTimeout(data.load, 100)
+    setTimeout(function() {
+        data.load({
+            checked: true
+        })
+    }, 100)
 }).on("remove", function(data) {
     setTimeout(data.load, 100)
 }).on("add_child", function(data) {
@@ -102,6 +107,7 @@ var el2 = eleTree({
     rightMenuList: [
         {name: "选中此项", value: "checked"},
         {name: "取消此项选中", value: "unchecked"},
+        {name: "重载树", value: "reload"},
     ],
 })
 // 如果不写下面的事件，则默认自动执行此操作
@@ -113,6 +119,14 @@ el2.on("custom_checked", function(data) {
 }).on("custom_unchecked", function(data) {
     setTimeout(()=>{
         el2.unChecked([data.data.id])
+        data.load()
+    }, 100)
+}).on("custom_reload", function(data) {
+    setTimeout(()=>{
+        el2.reload({
+            defaultExpandAll: true,
+            defaultCheckedKeys: ['003001']
+        })
         data.load()
     }, 100)
 })
