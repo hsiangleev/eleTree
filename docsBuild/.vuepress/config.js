@@ -58,7 +58,8 @@ module.exports = {
     head: [
         ['link', { rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
         ['link', { rel: 'stylesheet', href: '/eleTree/css/icon.css' }],
-        ['script', { src: '//eletreejs.surge.sh/eleTree.js?v=2.1.10.2' }]
+        ['script', { src: '//eletreejs.surge.sh/eleTree.js?v=2.1.10.2' }],
+        ['script', { src: '/eleTree/js/baidu_count.js' }]
     ],
     configureWebpack: {
         resolve: {

@@ -47,7 +47,7 @@ let ele = eleTree({
         loading: "",
     },
     // lazy: true,
-    rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after", {name: '选中', value: 'checked'}]
+    // rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after", {name: '选中', value: 'checked'}]
 })
 let index = 1
 btn.onclick = function() {
