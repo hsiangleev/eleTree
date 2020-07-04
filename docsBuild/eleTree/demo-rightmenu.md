@@ -91,8 +91,6 @@ var el2 = eleTree({
     url: '/eleTree/json/1.json',
     highlightCurrent: true,
     showCheckbox: true,
-    expandOnClickNode: true,
-    checkOnClickNode: false,
     imgUrl: "/eleTree/images/",
     icon: {
         fold: "fold.png",

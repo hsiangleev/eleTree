@@ -34,10 +34,12 @@ module.exports = {
                 title: '示例',
                 collapsable: false,
                 children: [
+                    "/eleTree/demo-methods",
                     "/eleTree/demo-icon",
                     "/eleTree/demo-rightmenu",
                     "/eleTree/demo-lazyload",
-                    "/eleTree/demo-search"
+                    "/eleTree/demo-search",
+                    "/eleTree/demo-manydata",
                 ]
             },
         ],
@@ -56,7 +58,7 @@ module.exports = {
     head: [
         ['link', { rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
         ['link', { rel: 'stylesheet', href: '/eleTree/css/icon.css' }],
-        ['script', { src: '//eletreejs.surge.sh/eleTree.js?v=2.1.10.1' }]
+        ['script', { src: '//eletreejs.surge.sh/eleTree.js?v=2.1.10.2' }]
     ],
     configureWebpack: {
         resolve: {
