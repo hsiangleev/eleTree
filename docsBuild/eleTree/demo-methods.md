@@ -3,7 +3,7 @@
 #### 说明
 
 1. 使用初始化之后的返回值来调用方法，即`var el=eleTree({...});el.getChecked(...);`
-2. 除了以get开头的方法，如getChecked，其它所有方法均可链式调用，即el.on(...).getChecked(...).setChecked(...)等
+2. 除了以get开头的方法，如getChecked/getRadioChecked，其它所有方法均可链式调用，即el.on(...).setChecked(...).setRadioChecked(...)等
 
 #### 示例
 
@@ -11,11 +11,16 @@
 ```html
 <select class="sel">
 	<option value="" selected>请选择</option>
-	<option value="getChecked">获取所有选中项</option>
-	<option value="setChecked">选中桃源路</option>
-	<option value="setChecked_2">先清空其他选中项，再选中桃源路</option>
-	<option value="unChecked">只取消湖东路的选中</option>
-	<option value="unChecked_2">取消所有节点选中</option>
+	<option value="getChecked">checkbox获取所有选中项</option>
+	<option value="setChecked">checkbox选中桃源路</option>
+	<option value="setChecked_2">checkbox先清空其他选中项，再选中桃源路</option>
+	<option value="unChecked">checkbox只取消湖东路的选中</option>
+	<option value="unChecked_2">checkbox取消所有节点选中</option>
+	<option value="getRadioChecked">radio获取所有选中项</option>
+	<option value="setRadioChecked">radio选中桃源路</option>
+	<option value="setRadioChecked_2">radio先清空其他选中项，再选中桃源路</option>
+	<option value="unRadioChecked">radio只取消湖东路的选中</option>
+	<option value="unRadioChecked_2">radio取消所有节点选中</option>
 	<option value="expandAll">展开所有项</option>
 	<option value="unExpandAll">合并所有项</option>
 	<option value="append">安徽省添加子节点</option>
@@ -33,10 +38,10 @@
 var index = 0;
 var el = eleTree({
     el: '.eletree',
-    url: '/eleTree/json/1.json',
+    url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
     showCheckbox: true,
-    defaultExpandedKeys: ["001002001"],
+    showRadio: true,
     imgUrl: "/eleTree/images/",
     icon: {
         fold: "fold.png",
@@ -64,6 +69,21 @@ var methods = {
     },
     unChecked_2: function() {
         el.unChecked()
+    },
+    getRadioChecked: function() {
+        alert(JSON.stringify(el.getRadioChecked()))
+    },
+    setRadioChecked: function() {
+        el.setRadioChecked(["001002002002"], false)
+    },
+    setRadioChecked_2: function() {
+        el.setRadioChecked(["001002002002"])
+    },
+    unRadioChecked: function() {
+        el.unRadioChecked(["001002002003"])
+    },
+    unRadioChecked_2: function() {
+        el.unRadioChecked()
     },
     expandAll: function() {
         el.expandAll()

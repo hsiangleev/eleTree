@@ -2,6 +2,7 @@
 import reloadVnode from '~/vnode/reloadVnode'
 import changeParent from '~/opera/changeParent'
 import changeChildren from '~/opera/changeChildren'
+import radioChange from '~/opera/radioChange'
 import { emit } from '~/event/customEvent'
 import { paramDetection } from '~/opera/tools'
 import { symbolAttr } from '~/config'
@@ -10,9 +11,10 @@ import append from '~/methods/append'
 
 export default function(thisTree, v, event) {
     let options = thisTree.config
-    let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
+    let {name, key, isOpen, checked, children, disabled, isLeaf, radioChecked, radioDisabled } = options.request
     let classList = event.target.classList
     let isTargetCheckbox = classList.contains('eleTree-checkbox')
+    let isTargetRadio = classList.contains('eleTree-radio')
     let isTargetDropdown = classList.contains('eleTree-dropdown')
     let isTargetIcon = classList.contains('eleTree-icon')
     let isTargetText = classList.contains('eleTree-text')
@@ -29,6 +31,10 @@ export default function(thisTree, v, event) {
             reloadVnode.call(thisTree)
             emit.call(thisTree, {v, type: 'checkbox', event})
         }
+    }else if(!v[radioDisabled] && (isTargetRadio || isTargetText && options.checkOnClickNode)) {
+        radioChange.call(thisTree, v)
+        reloadVnode.call(thisTree)
+        emit.call(thisTree, {v, type: 'radio', event})
     }else if(isTargetDropdown || options.expandOnClickNode && (isTargetText || isTargetIcon)){
         // 点击图标展开，点击文字判断是否展开
         if(v[isOpen] === 2){

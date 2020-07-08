@@ -29,9 +29,14 @@ export const eleTreeConfig = {
         dropdownOff: "",
         dropdownOn: "",
         loading: "",
+        radioCheck: "",
+        radioCheckNone: "",
     },
     rightMenuList: [],          // 右键菜单("copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after")
     done: null,         // 树渲染完成之后的回调
+    showRadio: false,               // 是否显示radio
+    radioType: "level", // all      // 单选范围（是同一级还是整体只能选择一个）
+    defaultRadioCheckedKeys: [],    // radio默认选中项
 
     method: "get",      // 接口http请求类型
     url: "",            // 异步接口地址
@@ -49,7 +54,9 @@ export const eleTreeConfig = {
         disabled: "disabled",       // 被禁用的节点不会影响父子节点的选中状态
         checked: "checked",
         isOpen: "isOpen",
-        isLeaf: "isLeaf"
+        isLeaf: "isLeaf",
+        radioChecked: "radioChecked",
+        radioDisabled: "radioDisabled"
     },
 }
 // 节点内部变量名，防止被外部重名变量修改

@@ -140,6 +140,51 @@ $disabledColor: #aaa;
                 margin-right: 5px;
                 box-sizing: border-box;
             }
+            .eleTree-radio{
+                border-radius: 50%;
+                cursor: pointer;
+                text-align: center;
+                width: 16px;
+                height: 16px;
+                margin-right: 5px;
+                display: inline-block;
+                position: relative;
+                top: 3px;
+                box-sizing: border-box;
+                &.eleTree-radio-code{
+                    font-size: 12px;
+                    border: 1px solid #d2d2d2;
+                    background-color: #fff;
+                    color: #fff;
+                    &.eleTree-radio-code_checked{
+                        border: 1px solid $checkboxColor;
+                        &::after{
+                            content: "";
+                            width: 7px;
+                            height: 7px;
+                            position: absolute;
+                            border-radius: 50%;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            border-color: $checkboxColor;
+                            background-color: $checkboxColor;
+                        }
+                        &.eleTree-radio-code_disabled{
+                            border: 1px solid $disabledColor;
+                            &::after{
+                                background-color: $disabledColor;
+                            }
+                        }
+                    }
+                }
+                &.eleTree-radio-code_disabled{
+                    border: 1px solid #ccc;
+                    cursor: not-allowed;
+                    background-color: #eee;
+                    color: $disabledColor;
+                }
+            }
         }
     }
 }

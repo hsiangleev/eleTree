@@ -7,7 +7,7 @@ import '~/index.scss'
 import { eleTreeConfig } from '~/config'
 import { init } from 'snabbdom'
 import ajax from '~/opera/ajax'
-import { isFun, isArray } from '~/opera/tools'
+import { isFun, isArray, isObject } from '~/opera/tools'
 var patch = init([
     require('snabbdom/modules/class').default,
     require('snabbdom/modules/props').default,
@@ -32,6 +32,14 @@ class thisTree {
     }
     init(opts, type) {
         this.config = Object.assign({}, this.config, opts)
+        if(this.config.showRadio && this.config.radioType === 'all'){
+            this.isAlreadyRadioChecked = false      // 单选，如果范围为整体，记录是否有已经被选中的节点（防止给的数据有多条选中，则只选中第一条）
+            this.currentRadioCheckedData = null      // 单选，如果范围为整体，记录当前被选中的数据
+        }
+        // copy子对象
+        Object.keys(this.config).forEach(v=>{
+            if(isObject(v)) this.config[v] = Object.assign({}, this.config[v], opts[v])
+        })
         let rootEl = document.querySelector(this.config.el)
         if(window.getComputedStyle && window.getComputedStyle(rootEl).position === 'static'){
             rootEl.style.position = 'relative'

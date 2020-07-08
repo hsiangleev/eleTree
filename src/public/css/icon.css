@@ -65,3 +65,9 @@
 .eletree_icon-search:before {
   content: "\e907";
 }
+.eletree_icon-radio_checked:before {
+  content: "\ea54";
+}
+.eletree_icon-radio_checked_none:before {
+  content: "\ea56";
+}

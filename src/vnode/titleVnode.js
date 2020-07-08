@@ -1,6 +1,7 @@
 import iconVnode from '~/vnode/iconVnode'
 import dropdownVnode from '~/vnode/dropdownVnode'
 import checkboxVnode from '~/vnode/checkboxVnode'
+import radioVnode from '~/vnode/radioVnode'
 import textVnode from '~/vnode/textVnode'
 import lineHorizontal from '~/vnode/lineHorizontal'
 import nodeClick from '~/event/nodeClick'
@@ -17,6 +18,7 @@ export default function(v, isFirst) {
         lineHorizontal.call(this, isFirst),
         dropdownVnode.call(this, v), 
         checkboxVnode.call(this, v),
+        radioVnode.call(this, v),
         iconVnode.call(this, v),
         textVnode.call(this, v)
     ])

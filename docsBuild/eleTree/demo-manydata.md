@@ -29,7 +29,8 @@ var f=function(maxFloor, everyFloorMuch, d, obj) {
             "label": "节点"+obj.index,
             "id": obj.index,
             "children": [],
-            "checked": true
+            "checked": true,
+            "radioChecked": true
         }
         d[i] ? d[i].children.push(o) : d.push(o)
         if(obj.floor<maxFloor){
@@ -43,6 +44,7 @@ var el = eleTree({
     el: '.eletree',
     showCheckbox: true,
     highlightCurrent: true,
+    showRadio: true,
     data: f(4, 20)
 })
 </script>

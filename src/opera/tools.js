@@ -39,15 +39,42 @@ export function recurseTree(callback) {
 }
 // 更新当前节点数据,不传cData则更新所有数据(把给的原始数据修改为符合节点的数据)
 export function updateDate(cData) {
+    let {name, key, isOpen, checked, children, disabled, isLeaf } = this.config.request
+    let fn = (type)=>{
+        // 更新radio数据需要判断是否需要清除数据
+        if(!this.config.showRadio || this.config.radioType !== 'all') return
+        if(type !== 'current'){
+            this.isAlreadyRadioChecked = false
+            this.currentRadioCheckedData = null
+            return
+        }
+        // 数据部分更新时，判断被选中的节点是否在所更新的节点之内
+        let f = (data) => {
+            for(let i=0,len=data.length;i<len;i++){
+                if(data[i][key] === this.currentRadioCheckedData[key]){
+                    this.isAlreadyRadioChecked = false
+                    this.currentRadioCheckedData = null
+                    return true
+                }else if(isArray(data[i][children]) && data[i][children].length > 0){
+                    if(f(data[i][children])) return true
+                }
+            }
+            return false
+        }
+        f(cData[symbolAttr.parentNode][children])
+    }
     if(!cData) {
+        fn()
         renderData.call(this)
         return
     }
     // 根节点判断，根节点则更新所有数据
     let pData = cData[symbolAttr.parentNode]
     if(!pData){
+        fn()
         renderData.call(this)
     }else{
+        fn('current')
         changeData.call(this, pData[this.config.request.children], pData, false, true)
     }
 }

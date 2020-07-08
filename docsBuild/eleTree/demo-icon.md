@@ -3,12 +3,14 @@
 **icon默认有7个属性，即**
 * dropdownOff：   下拉合并
 * dropdownOn：    下拉展开
-* checkFull：     全选
-* checkHalf：     半选
-* checkNone：     未选中
+* checkFull：     checkbox全选
+* checkHalf：     checkbox半选
+* checkNone：     checkbox未选中
 * fold：          折叠
 * leaf：          叶子节点
 * loading:        正在加载
+* radioCheck：    radio选中
+* radioCheckNone：radio未选中
 
 #### 说明
 
@@ -28,9 +30,10 @@
 <script>
 eleTree({
     el: '.eletree',
-    url: '/eleTree/json/1.json',
-    showCheckbox: true,
+    url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
+    showCheckbox: true,
+    showRadio: true,
 })
 </script>
 ```
@@ -45,9 +48,10 @@ eleTree({
 <script>
 eleTree({
     el: '.eletree2',
-    url: '/eleTree/json/1.json',
-    showCheckbox: true,
+    url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
+    showCheckbox: true,
+    showRadio: true,
     icon: {
         dropdownOff: "dropdownOff.png",
         dropdownOn: "dropdownOn.png",
@@ -56,6 +60,8 @@ eleTree({
         checkNone: "checkNone.png",
         fold: "fold.png",
         leaf: "leaf.png",
+        radioCheck: "radioCheck.png",
+        radioCheckNone: "radioCheckNone.png",
     },
 })
 </script>
@@ -71,9 +77,10 @@ eleTree({
 <script>
 eleTree({
     el: '.eletree3',
-    url: '/eleTree/json/1.json',
-    showCheckbox: true,
+    url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
+    showCheckbox: true,
+    showRadio: true,
     icon: {
         fold: ".eletree_icon-file_fold",
         leaf: ".eletree_icon-file_leaf",
@@ -82,6 +89,9 @@ eleTree({
         checkNone: ".eletree_icon-check_none",
         dropdownOff: ".eletree_icon-dropdown_right",
         dropdownOn: ".eletree_icon-dropdown_bottom",
+        loading: ".eleTree-animate-rotate.eletree_icon-loading1",
+        radioCheck: ".eletree_icon-radio_checked",
+        radioCheckNone: ".eletree_icon-radio_checked_none",
     },
 })
 </script>

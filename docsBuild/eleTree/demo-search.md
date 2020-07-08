@@ -17,9 +17,10 @@
 <script>
 var el1 = eleTree({
     el: '.eletree',
-    url: '/eleTree/json/1.json',
+    url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
     showCheckbox: true,
+    showRadio: true,
     imgUrl: "/eleTree/images/",
     icon: {
         fold: "fold.png",

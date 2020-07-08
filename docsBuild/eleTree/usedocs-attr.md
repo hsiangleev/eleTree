@@ -20,11 +20,13 @@
 | indent | 相邻级节点间的水平缩进，单位为像素 | number | — | 16 |
 | showLine | 是否显示虚线 | boolean | — | true |
 | imgUrl | 图片所在的文件夹路径 | string | — | ./images/ |
-| icon | 使用自定义图标或图片 | object | fold，leaf，checkFull，checkHalf，checkNone，dropdownOff，dropdownOn，loading | 每个属性默认值均为空字符串 |
+| icon | 使用自定义图标或图片 | object | fold，leaf，checkFull，checkHalf，checkNone，dropdownOff，dropdownOn，loading，radioCheck，radioCheckNone | 每个属性默认值均为空字符串 |
 | done | 树渲染完成之后的回调，参数为data数据 | function | — | — |
 | lazy | 开启懒加载 | boolean | — | false |
 | rightMenuList | 开启右键菜单 | array | "copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after" | [] |
-
+| showRadio | 是否显示radio | boolean | — | false |
+| radioType | 单选范围（是同一级还是整体只能选择一个） | string | level/all | level |
+| defaultRadioCheckedKeys | radio默认选中项 | array | — | — |
 
 #### 异步属性
 
@@ -71,27 +73,34 @@
         dropdownOff: "",
         dropdownOn: "",
         loading: "",
+        radioCheck: "",
+        radioCheckNone: "",
     },
     rightMenuList: [],          // 右键菜单("copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after")
-    done: null,         // 树渲染完成之后的回调
+    done: null,                 // 树渲染完成之后的回调
+    showRadio: false,           // 是否显示radio
+    radioType: "level",         // 单选范围（是同一级level还是整体all只能选择一个）
+    defaultRadioCheckedKeys: [],// radio默认选中项
 
-    method: "get",      // 接口http请求类型
-    url: "",            // 异步接口地址
-    where: {},          // 接口的其它参数
-    headers: {},        // 接口的请求头
-    response: {         // 对后台返回的数据格式重新定义
+    method: "get",              // 接口http请求类型
+    url: "",                    // 异步接口地址
+    where: {},                  // 接口的其它参数
+    headers: {},                // 接口的请求头
+    response: {                 // 对后台返回的数据格式重新定义
         statusName: "code",
         statusCode: 0,
         dataName: "data"
     },
-    request: {          // 对于后台数据重新定义名字
+    request: {                  // 对于后台数据重新定义名字
         name: "label",
         key: "id",
         children: "children",
-        disabled: "disabled",       // 被禁用的节点不会影响父子节点的选中状态
+        disabled: "disabled",   // 被禁用的节点不会影响父子节点的选中状态
         checked: "checked",
         isOpen: "isOpen",
-        isLeaf: "isLeaf"
+        isLeaf: "isLeaf",
+        radioChecked: "radioChecked",
+        radioDisabled: "radioDisabled"
     },
 }
 ```

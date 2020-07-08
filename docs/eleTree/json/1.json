@@ -19,12 +19,14 @@
                         {
                             "label": "花山区",
                             "id": "001002001",
+                            "isOpen": true,
                             "children": [
                                 {
                                     "label": "霍里街道",
                                     "disabled": true,
                                     "checked": true,
-                                    "id": "001002002001"
+                                    "id": "001002002001",
+                                    "radioDisabled": true
                                 },
                                 {
                                     "label": "桃源路",
@@ -33,13 +35,15 @@
                                 {
                                     "label": "湖东路",
                                     "checked": true,
+                                    "radioChecked": true,
                                     "id": "001002002003"
                                 }
                             ]
                         },
                         {
                             "label": "雨山区",
-                            "id": "001002002"
+                            "id": "001002002",
+                            "radioChecked": true
                         },
                         {
                             "label": "和县",
@@ -77,7 +81,8 @@
                 },
                 {
                     "label": "南京市",
-                    "id": "003002"
+                    "id": "003002",
+                    "radioChecked": true
                 },
                 {
                     "label": "无锡市",
@@ -87,7 +92,8 @@
                     "label": "徐州市",
                     "id": "003004"
                 }
-            ]
+            ],
+            "radioChecked": true
         }
     ]
 }

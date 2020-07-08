@@ -34,7 +34,9 @@ let ele = eleTree({
         disabled: "disabled",
         checked: "checked",
         isOpen: "isOpen",
-        isLeaf: "isLeaf"
+        isLeaf: "isLeaf",
+        radioChecked: "radioChecked",
+        radioDisabled: "radioDisabled"
     },
     icon: {
         fold: "fold.png",
@@ -45,9 +47,14 @@ let ele = eleTree({
         dropdownOff: "dropdownOff.png",
         dropdownOn: "dropdownOn.png",
         loading: "",
+        // radioCheck: "radioCheck.png",
+        // radioCheckNone: "radioCheckNone.png",
     },
     // lazy: true,
-    // rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after", {name: '选中', value: 'checked'}]
+    rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after", {name: '选中', value: 'checked'}],
+    // showRadio: true,
+    // radioType: "level", // all
+    // defaultRadioCheckedKeys: ['002', '001002002002']
 })
 let index = 1
 btn.onclick = function() {
@@ -155,6 +162,27 @@ btn.onclick = function() {
         //     if (!value) return true;
         //     return data.label.indexOf(value) !== -1;
         // })
+        // console.log(res)
+        // console.groupEnd()
+    }
+    // getRadioChecked
+    {
+        console.group('getRadioChecked: ')
+        let res = ele.getRadioChecked()
+        console.log(res)
+        console.groupEnd()
+    }
+    // setRadioChecked
+    {
+        // console.group('setRadioChecked: ')
+        // let res = ele.setRadioChecked(['001002002003','003'])
+        // console.log(res)
+        // console.groupEnd()
+    }
+    // unRadioChecked
+    {
+        // console.group('unRadioChecked: ')
+        // let res = ele.unRadioChecked(['001002002001'])
         // console.log(res)
         // console.groupEnd()
     }

@@ -31,27 +31,33 @@ const tree = {
                                     "label": "霍里街道",
                                     "disabled": true,
                                     "checked": true,
-                                    "id": "001002002001"
+                                    "id": "001002002001",
+                                    // "radioChecked": true
                                 },
                                 {
                                     "label": "桃源路",
                                     "id": "001002002002",
+                                    "radioDisabled": true,
+                                    // "radioChecked": true
                                 },
                                 {
                                     "label": "湖东路",
                                     "checked": true,
                                     "id": "001002002003",
+                                    // "radioChecked": true
                                 }
                             ]
                         },
                         {
                             "label": "雨山区",
-                            "id": "001002002"
+                            "id": "001002002",
+                            // "radioChecked": true
                         },
                         {
                             "label": "和县",
                             // "checked": true,
-                            "id": "001002003"
+                            "id": "001002003",
+                            // "radioChecked": true
                         }
                     ]
                 },

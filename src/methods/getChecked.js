@@ -13,14 +13,12 @@ export default function(methods, leafOnly = false, includeHalfChecked = false) {
     if(paramDetection(leafOnly, 'Boolean', 'getChecked方法第一个参数必须为Boolean')) return results
     if(paramDetection(includeHalfChecked, 'Boolean', 'getChecked方法第二个参数必须为Boolean')) return results
 
-    let arr = []
     let f=data=>{
         for(let i=0;i<data.length;i++){
-            arr.push(i)
             // 当状态为status，代表选中
             let fn = (status)=>{
                 if(data[i][checked] === status){
-                    results.push(getCurrentNodeData.call(this, data[i], arr))
+                    results.push(getCurrentNodeData.call(this, data[i]))
                 }
             }
             // 是否只是叶子节点
@@ -32,7 +30,6 @@ export default function(methods, leafOnly = false, includeHalfChecked = false) {
                 if(includeHalfChecked) fn(1)
             }
             if(data[i][children].length>0) f(data[i][children])
-            arr.pop()
         }
     }
     f(options.data)
