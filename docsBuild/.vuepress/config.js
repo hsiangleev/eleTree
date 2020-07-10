@@ -40,6 +40,7 @@ module.exports = {
                     "/eleTree/demo-lazyload",
                     "/eleTree/demo-search",
                     "/eleTree/demo-manydata",
+                    // "/eleTree/auto-theme",
                     "/eleTree/explain"
                 ]
             },
