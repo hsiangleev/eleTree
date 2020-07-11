@@ -18,23 +18,28 @@ export default function(thisTree, v, event) {
     let isTargetDropdown = classList.contains('eleTree-dropdown')
     let isTargetIcon = classList.contains('eleTree-icon')
     let isTargetText = classList.contains('eleTree-text')
-    if(!v[disabled] && (isTargetCheckbox || isTargetText && options.checkOnClickNode)) {
-        // 点击checkbox选择，点击文字判断是否选择
-        v[checked] = v[checked] === 2 ? 0 : 2
-        // 判断是否父子不关联
-        if(options.checkStrictly){
-            reloadVnode.call(thisTree)
-            emit.call(thisTree, {v, type: 'checkbox', event})
-        }else{
-            changeParent.call(thisTree, v, true)
-            changeChildren.call(thisTree, v)
-            reloadVnode.call(thisTree)
-            emit.call(thisTree, {v, type: 'checkbox', event})
+    let isClickCheckbox = !v[disabled] && (isTargetCheckbox || isTargetText && options.checkOnClickNode)
+    let isClickRadio = !v[radioDisabled] && (isTargetRadio || isTargetText && options.radioOnClickNode)
+    if(isClickCheckbox || isClickRadio){
+        if(isClickCheckbox) {
+            // 点击checkbox选择，点击文字判断是否选择
+            v[checked] = v[checked] === 2 ? 0 : 2
+            // 判断是否父子不关联
+            if(options.checkStrictly){
+                reloadVnode.call(thisTree)
+                emit.call(thisTree, {v, type: 'checkbox', event})
+            }else{
+                changeParent.call(thisTree, v, true)
+                changeChildren.call(thisTree, v)
+                reloadVnode.call(thisTree)
+                emit.call(thisTree, {v, type: 'checkbox', event})
+            }
         }
-    }else if(!v[radioDisabled] && (isTargetRadio || isTargetText && options.checkOnClickNode)) {
-        radioChange.call(thisTree, v)
-        reloadVnode.call(thisTree)
-        emit.call(thisTree, {v, type: 'radio', event})
+        if(isClickRadio) {
+            radioChange.call(thisTree, v)
+            reloadVnode.call(thisTree)
+            emit.call(thisTree, {v, type: 'radio', event})
+        }
     }else if(isTargetDropdown || options.expandOnClickNode && (isTargetText || isTargetIcon)){
         // 点击图标展开，点击文字判断是否展开
         if(v[isOpen] === 2){

@@ -62,7 +62,7 @@ module.exports = {
         ['meta', { name: 'description', content: 'eleTree2.0在线文档' }],
         ['meta', { name: 'keywords', content: 'eleTree2.0在线文档' }],
         ['link', { rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
-        ['link', { rel: 'stylesheet', href: '/eleTree/css/icon.css?v=2.0.12' }],
+        ['link', { rel: 'stylesheet', href: '/eleTree/css/icon.css?v=2.0.13' }],
         ['script', { src: '//eletreejs.surge.sh/eleTree.js?v=2.1.12.2' }],
         ['script', { }, 'var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?7fcfe1e92263ed7399914905523c0c95";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();']
     ],

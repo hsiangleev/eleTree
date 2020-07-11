@@ -13,6 +13,7 @@ import search from '~/methods/search'
 import getRadioChecked from '~/methods/getRadioChecked'
 import setRadioChecked from '~/methods/setRadioChecked'
 import unRadioChecked from '~/methods/unRadioChecked'
+import getAllNodeData from '~/methods/getAllNodeData'
 export default function() {
     //函数内部第一个参数为当前methods方法，后续参数为传入的参数，函数内部返回methods方法即可实现链式调用
     let methods = {
@@ -34,6 +35,7 @@ export default function() {
         getRadioChecked: (...args)=>getRadioChecked.call(this, methods, ...args),
         setRadioChecked: (...args)=>setRadioChecked.call(this, methods, ...args),
         unRadioChecked: (...args)=>unRadioChecked.call(this, methods, ...args),
+        getAllNodeData: (...args)=>getAllNodeData.call(this, methods, ...args),
     }
     return methods
 }

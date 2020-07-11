@@ -5,7 +5,8 @@ export const eleTreeConfig = {
     highlightCurrent: false,    // 是否高亮当前选中节点，默认值是 false。       
     defaultExpandAll: false,    // 是否默认展开所有节点                         
     expandOnClickNode: true,    // 是否在点击文本的时候展开或者收缩节点， 默认值为 true，如果为 false，则只有点箭头图标的时候才会展开或者收缩节点。
-    checkOnClickNode: false,    // 是否在点击文本的时候选中节点，默认值为 false，即只有在点击复选框时才会选中节点。
+    checkOnClickNode: false,    // 复选框是否在点击文本的时候选中节点，默认值为 false，即只有在点击复选框时才会选中节点。
+    radioOnClickNode: false,    // 单选框是否在点击文本的时候选中节点，默认值为 false，即只有在点击单选框时才会选中节点。
     defaultExpandedKeys: [],    // 默认展开的节点的 key 的数组 
     autoExpandParent: false,     // 展开子节点的时候是否自动展开父节点 
     showCheckbox: false,        // 节点是否可被选择 

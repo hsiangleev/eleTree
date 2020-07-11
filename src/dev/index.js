@@ -16,8 +16,9 @@ let ele = eleTree({
     // showLine: true,
     highlightCurrent: true,
     // defaultExpandAll: true,
-    // expandOnClickNode: true,
-    // checkOnClickNode: false,
+    // expandOnClickNode: false,
+    // checkOnClickNode: true,
+    // radioOnClickNode: true,
     defaultExpandedKeys: ['001','001002001'],
     // autoExpandParent: true,
     // checkStrictly: true,
@@ -52,7 +53,7 @@ let ele = eleTree({
     },
     // lazy: true,
     rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after", {name: '选中', value: 'checked'}],
-    // showRadio: true,
+    showRadio: true,
     // radioType: "level", // all
     // defaultRadioCheckedKeys: ['002', '001002002002']
 })
@@ -167,10 +168,10 @@ btn.onclick = function() {
     }
     // getRadioChecked
     {
-        console.group('getRadioChecked: ')
-        let res = ele.getRadioChecked()
-        console.log(res)
-        console.groupEnd()
+        // console.group('getRadioChecked: ')
+        // let res = ele.getRadioChecked()
+        // console.log(res)
+        // console.groupEnd()
     }
     // setRadioChecked
     {
@@ -183,6 +184,13 @@ btn.onclick = function() {
     {
         // console.group('unRadioChecked: ')
         // let res = ele.unRadioChecked(['001002002001'])
+        // console.log(res)
+        // console.groupEnd()
+    }
+    // getAllNodeData
+    {
+        // console.group('getAllNodeData: ')
+        // let res = ele.getAllNodeData()
         // console.log(res)
         // console.groupEnd()
     }

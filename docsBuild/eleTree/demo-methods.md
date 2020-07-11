@@ -3,7 +3,7 @@
 #### 说明
 
 1. 使用初始化之后的返回值来调用方法，即`var el=eleTree({...});el.getChecked(...);`
-2. 除了以get开头的方法，如getChecked/getRadioChecked，其它所有方法均可链式调用，即el.on(...).setChecked(...).setRadioChecked(...)等
+2. 除了以get开头的方法，如getChecked/getRadioChecked/getAllNodeData，其它所有方法均可链式调用，即el.on(...).setChecked(...).setRadioChecked(...)等
 
 #### 示例
 
@@ -31,6 +31,7 @@
 	<option value="insert_2">在合肥市后面添加节点</option>
 	<option value="reload">重新渲染树节点</option>
 	<option value="search">搜索带有“路”字的节点</option>
+	<option value="getAllNodeData">获取所有节点数据</option>
 </select>
 <div class="eletree"></div>
 
@@ -149,6 +150,9 @@ var methods = {
             if (!value) return true;
             return data.label.indexOf(value) !== -1;
         })
+    },
+    getAllNodeData: function() {
+        alert(JSON.stringify(el.getAllNodeData()))
     },
 }
 document.querySelector(".sel").onchange = function() {
