@@ -1,7 +1,7 @@
 /*!
  * 
  * @name: eletree
- * @version: 2.1.13
+ * @version: 2.1.14
  * @description: Tree component based on virtual dom
  * @author: hsianglee
  * @license: MIT
