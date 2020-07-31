@@ -78,6 +78,44 @@ export function updateDate(cData) {
         changeData.call(this, pData[this.config.request.children], pData, false, true)
     }
 }
+// pid转换
+export function dataToPid(data) {
+    let {name, key, isOpen, checked, children, disabled, isLeaf, pid } = this.config.request
+    if(isArray(data) && (pid in data[0]) && !(children in data[0])){
+        return data.filter((val) => {
+            var d = data.filter((v) => val[key] === v[pid]);
+            if (d.length > 0) {
+                val[children] = d;
+            }
+            return val[pid] === this.config.defaultPid;
+        })
+    }
+    return data
+}
+// json对象深copy
+export function deepCopy(data) {
+    let target = isArray(data) ? [] : {}
+    for(let key in data){
+        if(typeof data[key] === 'object'){
+            target[key] = deepCopy(data[key])
+        }else{
+            target[key] = data[key]
+        }
+    }
+    return target
+}
+// 深层对象继承
+export function dataExtend(oldData, newData) {
+    let target = {}
+    for(let key in oldData){
+        if(isObject(oldData[key])){
+            target[key] = dataExtend(oldData[key], newData[key] || {})
+        }else{
+            target[key] = newData[key] || oldData[key]
+        }
+    }
+    return target
+}
 export function isFun(data) {
     return Object.prototype.toString.call(data) === '[object Function]'
 }

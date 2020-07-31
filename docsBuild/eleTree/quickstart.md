@@ -21,6 +21,8 @@ eleTree({
         dropdownOff: ".eletree_icon-dropdown_right",
         dropdownOn: ".eletree_icon-dropdown_bottom",
         loading: ".eleTree-animate-rotate.eletree_icon-loading1",
+        radioCheck: "radioCheck.png",
+        radioCheckNone: "radioCheckNone.png",
     },
     rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after"],
 })

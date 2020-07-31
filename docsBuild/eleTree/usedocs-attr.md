@@ -4,7 +4,7 @@
 
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  |
 |---------- |-------------- |---------- |--------------------------------  |-------- |
-| elem | dom选择器 | string | — | — |
+| el | dom选择器 | string | — | — |
 | data | 静态数据 | array | — | — |
 | emptText | 当数据为空时显示的内容 | string | — | 暂无数据 |
 | highlightCurrent | 是否高亮当前选中节点 | boolean | — | false |
@@ -28,6 +28,7 @@
 | showRadio | 是否显示radio | boolean | — | false |
 | radioType | 单选范围（是同一级还是整体只能选择一个） | string | level/all | level |
 | defaultRadioCheckedKeys | radio默认选中项 | array | — | — |
+| defaultPid | 当使用pid格式的数据时，第一层数据的默认值 | string/number | — | '' |
 
 #### 异步属性
 
@@ -44,7 +45,7 @@
 
 ```javascript
 {
-    elem: "",                   // dom选择器
+    el: "",                   // dom选择器
     data: [],                   // 静态数据
     emptText: "暂无数据",        // 内容为空的时候展示的文本
     highlightCurrent: false,    // 是否高亮当前选中节点，默认值是 false。       
@@ -78,29 +79,31 @@
         radioCheck: "",
         radioCheckNone: "",
     },
-    rightMenuList: [],          // 右键菜单("copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after")
-    done: null,                 // 树渲染完成之后的回调
-    showRadio: false,           // 是否显示radio
-    radioType: "level",         // 单选范围（是同一级level还是整体all只能选择一个）
-    defaultRadioCheckedKeys: [],// radio默认选中项
+    rightMenuList: [],              // 右键菜单("copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after")
+    done: null,                     // 树渲染完成之后的回调
+    showRadio: false,               // 是否显示radio
+    radioType: "level", // all      // 单选范围（是同一级还是整体只能选择一个）
+    defaultRadioCheckedKeys: [],    // radio默认选中项
 
-    method: "get",              // 接口http请求类型
-    url: "",                    // 异步接口地址
-    where: {},                  // 接口的其它参数
-    headers: {},                // 接口的请求头
-    response: {                 // 对后台返回的数据格式重新定义
+    method: "get",                  // 接口http请求类型
+    url: "",                        // 异步接口地址
+    where: {},                      // 接口的其它参数
+    headers: {},                    // 接口的请求头
+    response: {                     // 对后台返回的数据格式重新定义
         statusName: "code",
         statusCode: 0,
         dataName: "data"
     },
-    request: {                  // 对于后台数据重新定义名字
+    defaultPid: "",                 // 第一层pid的初始值
+    request: {                      // 对于后台数据重新定义名字
         name: "label",
         key: "id",
         children: "children",
-        disabled: "disabled",   // 被禁用的节点不会影响父子节点的选中状态
+        disabled: "disabled",       // 被禁用的节点不会影响父子节点的选中状态
         checked: "checked",
         isOpen: "isOpen",
         isLeaf: "isLeaf",
+        pid: "pid",
         radioChecked: "radioChecked",
         radioDisabled: "radioDisabled"
     },

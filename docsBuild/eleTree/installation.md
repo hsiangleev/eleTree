@@ -14,7 +14,12 @@ npm install eletree -D
 目前可以通过 [该地址](https://github.com/hsiangleev/eleTree/tree/master/dist/eleTree.js) 获取到最新版本的资源，下载到本地之后，在页面上引入 js 文件即可开始使用。
 
 ```html
+<!-- js文件 -->
 <script src="//eletreejs.surge.sh/eleTree.js"></script>
+<!-- 加载字体文件样式 -->
+<link rel="stylesheet" href="//eletreejs.surge.sh/css/icon.css"></script>
+<!-- 使用图片地址 -->
+<!-- imgUrl: "//eletreejs.surge.sh/images/" -->
 ```
 
 #### layui

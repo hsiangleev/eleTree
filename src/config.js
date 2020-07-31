@@ -1,5 +1,5 @@
 export const eleTreeConfig = {
-    elem: "",                   // dom选择器
+    el: "",                   // dom选择器
     data: [],                   // 静态数据
     emptText: "暂无数据",        // 内容为空的时候展示的文本
     highlightCurrent: false,    // 是否高亮当前选中节点，默认值是 false。       
@@ -48,6 +48,7 @@ export const eleTreeConfig = {
         statusCode: 0,
         dataName: "data"
     },
+    defaultPid: "",     // 第一层pid的初始值
     request: {          // 对于后台数据重新定义名字
         name: "label",
         key: "id",
@@ -56,6 +57,7 @@ export const eleTreeConfig = {
         checked: "checked",
         isOpen: "isOpen",
         isLeaf: "isLeaf",
+        pid: "pid",
         radioChecked: "radioChecked",
         radioDisabled: "radioDisabled"
     },

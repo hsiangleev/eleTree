@@ -1,11 +1,11 @@
 
 @font-face {
   font-family: 'eletree_icon';
-  src:  url('../fonts/eletree_icon.eot?uccppv&v=2.1.12');
-  src:  url('../fonts/eletree_icon.eot?uccppv#iefix&v=2.1.12') format('embedded-opentype'),
-    url('../fonts/eletree_icon.ttf?uccppv&v=2.1.12') format('truetype'),
-    url('../fonts/eletree_icon.woff?uccppv&v=2.1.12') format('woff'),
-    url('../fonts/eletree_icon.svg?uccppv#eletree_icon&v=2.1.12') format('svg');
+  src:  url('../fonts/eletree_icon.eot?uccppv');
+  src:  url('../fonts/eletree_icon.eot?uccppv#iefix') format('embedded-opentype'),
+    url('../fonts/eletree_icon.ttf?uccppv') format('truetype'),
+    url('../fonts/eletree_icon.woff?uccppv') format('woff'),
+    url('../fonts/eletree_icon.svg?uccppv#eletree_icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;

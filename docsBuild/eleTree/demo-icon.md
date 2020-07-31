@@ -1,6 +1,6 @@
 ### 自定义图标或图片
 
-**icon默认有7个属性，即**
+**icon默认有10个属性，即**
 * dropdownOff：   下拉合并
 * dropdownOn：    下拉展开
 * checkFull：     checkbox全选
@@ -48,6 +48,7 @@ eleTree({
 <script>
 eleTree({
     el: '.eletree2',
+    imgUrl: "/eleTree/images/",
     url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
     showCheckbox: true,

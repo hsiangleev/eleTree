@@ -31,13 +31,6 @@ let ele = eleTree({
     request: {
         name: "label",
         key: "id",
-        children: "children",
-        disabled: "disabled",
-        checked: "checked",
-        isOpen: "isOpen",
-        isLeaf: "isLeaf",
-        radioChecked: "radioChecked",
-        radioDisabled: "radioDisabled"
     },
     icon: {
         fold: "fold.png",
@@ -53,7 +46,7 @@ let ele = eleTree({
     },
     // lazy: true,
     rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after", {name: '选中', value: 'checked'}],
-    showRadio: true,
+    // showRadio: true,
     // radioType: "level", // all
     // defaultRadioCheckedKeys: ['002', '001002002002']
 })
@@ -90,6 +83,12 @@ btn.onclick = function() {
         //         ]
         //     }
         // ])
+        // let res = ele.append([
+        //     {label: `添加子节1`, id: `a`, pid: "001002002002"},
+        //     {label: `添加子节点2`, id: `b`, pid: "001002002003"},
+        //     {label: `添加子节点3`, id: `ab`, pid: "a"},
+        //     {label: `添加子节点4`, id: `ac`, pid: "a", checked: true},
+        // ])
         // console.log(res)
         // console.groupEnd()
     }
@@ -102,6 +101,10 @@ btn.onclick = function() {
         //     // disabled: true,
         //     checked: true
         // })
+        // let res = ele.updateKeySelf([
+        //     {label: `桃源路11`, id: `001002002002`, pid: "001002001"},
+        //     {label: `湖东路11`, id: `001002002003`, pid: "001002001"},
+        // ])
         // console.log(res)
         // console.groupEnd()
     }
@@ -188,12 +191,12 @@ btn.onclick = function() {
         // console.groupEnd()
     }
     // getAllNodeData
-    {
-        // console.group('getAllNodeData: ')
-        // let res = ele.getAllNodeData()
-        // console.log(res)
-        // console.groupEnd()
-    }
+    // {
+    //     console.group('getAllNodeData: ')
+    //     let res = ele.getAllNodeData()
+    //     console.log(res)
+    //     console.groupEnd()
+    // }
 }
 
 ele.on('lazyload', function(d) {
