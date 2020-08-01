@@ -1,16 +1,16 @@
 {
   "name": "eletree",
-  "version": "2.1.15",
+  "version": "2.1.16",
   "description": "Tree component based on virtual dom",
   "main": "dist/eleTree.js",
   "scripts": {
     "start": "webpack-dev-server --config ./build/webpack.dev.js",
-    "build": "webpack --config ./build/webpack.prod.js",
+    "build": "webpack --config ./build/webpack.prod.js && node ./build/copyToDocs.js",
     "docs:start": "vuepress dev ./docsBuild",
     "docs:build": "vuepress build ./docsBuild",
     "CDN": "surge --domain eletreejs.surge.sh ./dist",
     "docs:push": "surge --domain eletree2.hsianglee.cn ./docs",
-    "build:all": "npm run build && npm run CDN"
+    "build:all": "npm run build && npm run docs:build && npm run CDN && npm run docs:push"
   },
   "author": "hsianglee",
   "license": "MIT",

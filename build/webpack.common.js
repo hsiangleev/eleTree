@@ -54,7 +54,7 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 { from: path.resolve(__dirname, '../src/public'), to: '../dist/' },
-                { from: path.resolve(__dirname, '../dist/'), to: '../docsBuild/.vuepress/public/eleTree/' },
+                { from: path.resolve(__dirname, '../src/public'), to: '../docsBuild/.vuepress/public/eleTree/' },
             ],
         }),
     ],

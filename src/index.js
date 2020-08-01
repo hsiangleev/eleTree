@@ -7,7 +7,7 @@ import '~/index.scss'
 import { eleTreeConfig } from '~/config'
 import { init } from 'snabbdom'
 import ajax from '~/opera/ajax'
-import { isFun, isArray, isObject, dataToPid, deepCopy, dataExtend } from '~/opera/tools'
+import { isFun, isArray, isObject, dataToPid, deepCopy, dataExtend, changeParentCheckedStatus } from '~/opera/tools'
 var patch = init([
     require('snabbdom/modules/class').default,
     require('snabbdom/modules/props').default,
@@ -53,6 +53,7 @@ class thisTree {
     }
     render(type) {
         this.config.data = dataToPid.call(this, this.config.data)
+        changeParentCheckedStatus.call(this, this.config.data)
         renderData.call(this, true)
         // 判断重载
         if(type === 'reload'){

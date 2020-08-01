@@ -15,6 +15,7 @@ let ele = eleTree({
     showCheckbox: true,
     // showLine: true,
     highlightCurrent: true,
+    isDefaultChangePstatus: true,
     // defaultExpandAll: true,
     // expandOnClickNode: false,
     // checkOnClickNode: true,
@@ -111,7 +112,7 @@ btn.onclick = function() {
     // unChecked
     {
         // console.group('unChecked: ')
-        // let res = ele.unChecked()
+        // let res = ele.unChecked('001002002002')
         // console.log(res)
         // console.groupEnd()
     }

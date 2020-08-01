@@ -42,7 +42,7 @@ const tree = {
                     "id": "001002",
                     // "disabled": true,
                     "isOpen": true,
-                    // "checked": true,
+                    "checked": true,
                     "children": [
                         {
                             "label": "花山区",
@@ -50,7 +50,7 @@ const tree = {
                             // "disabled": true,
                             // "checked": true,
                             // "isOpen": true,
-                            // "checked": true,
+                            "checked": true,
                             "children": [
                                 {
                                     "label": "霍里街道",
@@ -63,11 +63,12 @@ const tree = {
                                     "label": "桃源路",
                                     "id": "001002002002",
                                     "radioDisabled": true,
+                                    "checked": true,
                                     // "radioChecked": true
                                 },
                                 {
                                     "label": "湖东路",
-                                    "checked": true,
+                                    // "checked": true,
                                     "id": "001002002003",
                                     // "radioChecked": true
                                 }

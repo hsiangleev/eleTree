@@ -11,6 +11,7 @@ export const eleTreeConfig = {
     autoExpandParent: false,     // 展开子节点的时候是否自动展开父节点 
     showCheckbox: false,        // 节点是否可被选择 
     checkStrictly: false,       // 在显示复选框的情况下，是否严格的遵循父子不互相关联的做法，默认为 false  
+    isDefaultChangePstatus: false,      // 在父子关联的情况下，初始数据是否只是子节点影响父节点，即父节点选中，子节点全部没有选中或部分选中，则让父节点也没有选中或者半选，默认false，即父子结点互相影响
     defaultCheckedKeys: [],     // 默认勾选的节点的 key 的数组  
     accordion: false,           // 是否每次只打开一个同级树节点展开（手风琴效果）  
     indent: 16,                 // 相邻级节点间的水平缩进，单位为像素           

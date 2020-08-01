@@ -1,4 +1,4 @@
-import { paramDetection, updateDate } from '~/opera/tools'
+import { paramDetection, updateDate, isArray } from '~/opera/tools'
 import reloadVnode from '~/vnode/reloadVnode'
 import { symbolAttr } from '~/config'
 /**
@@ -9,7 +9,8 @@ export default function(methods, removeArr = []) {
     let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
 
-    if(paramDetection(removeArr, 'Array', 'remove方法第一个参数必须为Array')) return methods
+    if(paramDetection(removeArr, 'String|Number|Array', 'remove方法第一个参数必须为String|Number|Array')) return methods
+    removeArr = !isArray(removeArr) ? [removeArr] : removeArr
 
     let f = (data)=>{
         for(let i=0;i<data.length;i++){

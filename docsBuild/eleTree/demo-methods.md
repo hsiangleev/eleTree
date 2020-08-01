@@ -66,7 +66,7 @@ var methods = {
         el.setChecked(["001002002002"])
     },
     unChecked: function() {
-        el.unChecked(["001002001", "001002002003"])
+        el.unChecked(["001002002003"])
     },
     unChecked_2: function() {
         el.unChecked()

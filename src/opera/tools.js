@@ -116,6 +116,21 @@ export function dataExtend(oldData, newData) {
     }
     return target
 }
+// 修改父节点的选中状态，即如果父节点是选中的，子节点没有全部选中，则让父节点半选
+export function changeParentCheckedStatus(data, pData) {
+    let {name, key, isOpen, checked, children, disabled, isLeaf, pid } = this.config.request
+    if(this.config.showCheckbox && !this.config.checkStrictly && this.config.isDefaultChangePstatus){
+        data.forEach(val => {
+            if (val[children] && val[children].length > 0) {
+                changeParentCheckedStatus.call(this, val[children], val)
+            }
+        })
+        // 父节点选中，子节点除了disabled的节点外全部没选中，则父节点变成选中状态
+        if(pData){
+            pData[checked] = pData[children].filter(v=>!v[disabled]).every(v=>v[checked])
+        }
+    }
+}
 export function isFun(data) {
     return Object.prototype.toString.call(data) === '[object Function]'
 }

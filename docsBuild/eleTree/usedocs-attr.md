@@ -16,6 +16,7 @@
 | defaultExpandedKeys | 默认展开的节点的 key 的数组 | array | — | — |
 | showCheckbox | 是否显示checkbox | boolean | — | false |
 | checkStrictly | 在显示复选框的情况下，是否严格的遵循父子不互相关联的做法 | boolean | — | false |
+| isDefaultChangePstatus | 在显示复选框并且父子关联的情况下，初始数据是否只是子节点影响父节点，默认false，即父子关联 | boolean | — | false |
 | defaultCheckedKeys | 默认勾选的节点的 key 的数组 | array | — | — |
 | accordion | 是否每次只打开一个同级树节点展开（手风琴效果） | boolean | — | false |
 | indent | 相邻级节点间的水平缩进，单位为像素 | number | — | 16 |
@@ -57,6 +58,7 @@
     autoExpandParent: false,     // 展开子节点的时候是否自动展开父节点 
     showCheckbox: false,        // 节点是否可被选择 
     checkStrictly: false,       // 在显示复选框的情况下，是否严格的遵循父子不互相关联的做法，默认为 false  
+    isDefaultChangePstatus: false,      // 在父子关联的情况下，初始数据是否只是子节点影响父节点，即父节点选中，子节点全部没有选中或部分选中，则让父节点也没有选中或者半选，默认false，即父子结点互相影响
     defaultCheckedKeys: [],     // 默认勾选的节点的 key 的数组  
     accordion: false,           // 是否每次只打开一个同级树节点展开（手风琴效果）  
     indent: 16,                 // 相邻级节点间的水平缩进，单位为像素           
@@ -79,23 +81,23 @@
         radioCheck: "",
         radioCheckNone: "",
     },
-    rightMenuList: [],              // 右键菜单("copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after")
-    done: null,                     // 树渲染完成之后的回调
+    rightMenuList: [],          // 右键菜单("copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after")
+    done: null,         // 树渲染完成之后的回调
     showRadio: false,               // 是否显示radio
     radioType: "level", // all      // 单选范围（是同一级还是整体只能选择一个）
     defaultRadioCheckedKeys: [],    // radio默认选中项
 
-    method: "get",                  // 接口http请求类型
-    url: "",                        // 异步接口地址
-    where: {},                      // 接口的其它参数
-    headers: {},                    // 接口的请求头
-    response: {                     // 对后台返回的数据格式重新定义
+    method: "get",      // 接口http请求类型
+    url: "",            // 异步接口地址
+    where: {},          // 接口的其它参数
+    headers: {},        // 接口的请求头
+    response: {         // 对后台返回的数据格式重新定义
         statusName: "code",
         statusCode: 0,
         dataName: "data"
     },
-    defaultPid: "",                 // 第一层pid的初始值
-    request: {                      // 对于后台数据重新定义名字
+    defaultPid: "",     // 第一层pid的初始值
+    request: {          // 对于后台数据重新定义名字
         name: "label",
         key: "id",
         children: "children",
