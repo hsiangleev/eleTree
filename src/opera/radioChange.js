@@ -16,10 +16,18 @@ export default function(v) {
         }
     }else if(options.radioType === 'all'){
         v[radioChecked] = v[radioChecked] === 2 ? 0 : 2
-        // 上一次和这一次选的不一样
-        if(this.currentRadioCheckedData && this.currentRadioCheckedData[key] !== v[key]){
-            this.currentRadioCheckedData[radioChecked] = 0
+        // 如果有选中项
+        if(this.currentRadioCheckedData){
+            // 上一次和这一次选的是否一样
+            if(this.currentRadioCheckedData[key] !== v[key]){
+                this.currentRadioCheckedData[radioChecked] = 0
+                this.currentRadioCheckedData = v
+            }else{
+                // 两次选的一样
+                this.currentRadioCheckedData = null
+            }
+        }else{
+            this.currentRadioCheckedData = v
         }
-        this.currentRadioCheckedData = v
     }
 }
