@@ -6,9 +6,9 @@ let btn = document.querySelector('button')
 let search = document.querySelector('.search')
 let ele = eleTree({
     el: '.eletree',
-    // data: data,
-    method: 'post',
-    url: '/api/tree',
+    data: [],
+    // method: 'post',
+    // url: '/api/tree',
     where: {
         a: 'aaa'
     },

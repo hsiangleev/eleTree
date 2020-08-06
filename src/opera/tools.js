@@ -81,7 +81,7 @@ export function updateDate(cData) {
 // pid转换
 export function dataToPid(data) {
     let {name, key, isOpen, checked, children, disabled, isLeaf, pid } = this.config.request
-    if(isArray(data) && (pid in data[0]) && !(children in data[0])){
+    if(isArray(data) && data.length > 0 && (pid in data[0]) && !(children in data[0])){
         return data.filter((val) => {
             var d = data.filter((v) => val[key] === v[pid]);
             if (d.length > 0) {
