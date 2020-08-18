@@ -6,9 +6,9 @@ let btn = document.querySelector('button')
 let search = document.querySelector('.search')
 let ele = eleTree({
     el: '.eletree',
-    data: [],
-    // method: 'post',
-    // url: '/api/tree',
+    // data: [],
+    method: 'post',
+    url: '/api/tree',
     where: {
         a: 'aaa'
     },
@@ -49,7 +49,8 @@ let ele = eleTree({
     rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after", {name: '选中', value: 'checked'}],
     // showRadio: true,
     // radioType: "level", // all
-    // defaultRadioCheckedKeys: ['002', '001002002002']
+    // defaultRadioCheckedKeys: ['002', '001002002002'],
+    draggable: true
 })
 let index = 1
 btn.onclick = function() {
@@ -198,6 +199,34 @@ btn.onclick = function() {
     //     console.log(res)
     //     console.groupEnd()
     // }
+    // copy
+    // {
+    //     console.group('copy: ')
+    //     let res = ele.copy('001002002001')
+    //     console.log(res)
+    //     console.groupEnd()
+    // }
+    // cutPaste
+    // {
+        // console.group('cutPaste: ')
+        // let res = ele.cutPaste('001002002001')
+        // console.log(res)
+        // console.groupEnd()
+    // }
+    // paste
+    // {
+        // console.group('paste: ')
+        // let res = ele.paste('001002002003', 'after')
+        // console.log(res)
+        // console.groupEnd()
+    // }
+    // getClipboardData
+    // {
+        // console.group('getClipboardData: ')
+        // let res = ele.getClipboardData()
+        // console.log(res)
+        // console.groupEnd()
+    // }
 }
 
 ele.on('lazyload', function(d) {
@@ -224,7 +253,8 @@ ele.on('click', function(data) {
     // console.log(this)
     console.log(data)
 })
-ele.on('edit', function(data) {
+ele.on('drag', function(data) {
+    console.log(this)
     console.log(data)
     setTimeout(() => {
         data.load()
@@ -251,3 +281,15 @@ ele.on('custom_checked', function(data) {
         // data.stop()
     }, 500);
 })
+
+
+// let ele2 = eleTree({
+//     el: '.eletree2',
+//     method: 'post',
+//     url: '/api/tree',
+//     where: {
+//         a: 'aaa'
+//     },
+//     showCheckbox: true,
+//     highlightCurrent: true,
+// })

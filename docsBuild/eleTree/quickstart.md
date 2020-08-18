@@ -24,12 +24,13 @@ eleTree({
         radioCheck: "radioCheck.png",
         radioCheckNone: "radioCheckNone.png",
     },
+    draggable: true,
     rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after"],
 })
 </script>
 <style>
 .eletree { 
-    
+    padding: 15px 0;
 }
 </style>
 ```

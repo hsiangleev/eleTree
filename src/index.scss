@@ -267,3 +267,13 @@ $disabledColor: #aaa;
         }
     }
 }
+
+.eleTree-cloneElm{
+    position: absolute;
+    left: 0px;
+    background: rgba(255, 255, 255, 0.3);
+    opacity: 0.5;
+    border: 1px solid #aaa;
+    font-size: 14px;
+    padding: 0 5px;
+}

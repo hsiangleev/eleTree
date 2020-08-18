@@ -24,7 +24,7 @@ export function changeData(data, pData, isFirstRender = false, isRecall = false)
         }
         // 判断是否初次渲染
         let vOpen = isFirstRender 
-            ? (f(v[isOpen]) || options.defaultExpandAll || options.defaultExpandedKeys.includes(v.id) || (options.autoExpandParent && f(pData[isOpen])))
+            ? (f(v[isOpen]) || options.defaultExpandAll || options.defaultExpandedKeys.includes(v[key]) || (options.autoExpandParent && f(pData[isOpen])))
             : f(v[isOpen])
         v[isOpen] = vOpen ? 2 : 0
         v[children] = v[children] || []
@@ -42,7 +42,7 @@ export function changeData(data, pData, isFirstRender = false, isRecall = false)
         // checkbox
         if(options.showCheckbox){
             let vCheck = isFirstRender
-                ? (options.defaultCheckedKeys.includes(v.id) || f(v[checked]))
+                ? (options.defaultCheckedKeys.includes(v[key]) || f(v[checked]))
                 : f(v[checked])
             v[checked] = vCheck ? 2 : 0
             v[disabled] = v[disabled] || false
@@ -79,7 +79,7 @@ export function changeData(data, pData, isFirstRender = false, isRecall = false)
         // radio
         if(options.showRadio){
             let vRadio = isFirstRender 
-                ? (options.defaultRadioCheckedKeys.includes(v.id) || f(v[radioChecked]))
+                ? (options.defaultRadioCheckedKeys.includes(v[key]) || f(v[radioChecked]))
                 : f(v[radioChecked])
             v[radioChecked] = vRadio ? 2 : 0
             v[radioDisabled] = v[radioDisabled] || false

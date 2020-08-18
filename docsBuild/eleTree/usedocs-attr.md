@@ -30,6 +30,7 @@
 | radioType | 单选范围（是同一级还是整体只能选择一个） | string | level/all | level |
 | defaultRadioCheckedKeys | radio默认选中项 | array | — | — |
 | defaultPid | 当使用pid格式的数据时，第一层数据的默认值 | string/number | — | '' |
+| draggable | 是否开启拖拽节点功能 | boolean | — | false |
 
 #### 异步属性
 

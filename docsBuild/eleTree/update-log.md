@@ -4,6 +4,20 @@
 
 <li>
 
+#### 2.2.1
+
+**2020-08-18**
+
+##### 新特性
+
+- 新增拖拽功能: draggable
+- 新增方法: copy/cutPaste/paste/getClipboardData
+- 新增事件: drag
+
+</li>
+
+<li>
+
 #### 2.1.17
 
 **2020-08-05**

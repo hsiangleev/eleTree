@@ -18,3 +18,7 @@
 | reload | 重新渲染树节点 | (options)1.传入object，参数初始参数一致 |
 | search | 搜索树节点 | (value, callback)1.需要搜索的文本信息，2. 传入的搜索条件，函数返回值为true则显示该节点；[查看更多](/eleTree/demo-search) |
 | getAllNodeData | 获取所有节点数据 | ('c'/'p') 传入字符串'c'则返回的数据结构为父子结构，传入字符串'p'则返回pid格式的数据，默认为'c' |
+| copy | 复制节点 | (id) 1.需要复制的节点id |
+| cutPaste | 剪贴节点 | (id) 1.需要剪贴的节点id |
+| paste | 粘贴节点 | (id, nodeType) 1.需要粘贴到的节点id，2.粘贴到该节点的位置，可选参数('before','after','children')，默认children |
+| getClipboardData | 获取剪贴板数据 | 移动或复制或剪贴节点都会把该节点复制到剪贴板，如果剪贴板没有数据，则返回null |
