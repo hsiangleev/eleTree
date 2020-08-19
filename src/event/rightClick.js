@@ -15,9 +15,21 @@ export default function(thisTree, v, event) {
 
     thisTree.isShowRightMenu = true
     thisTree.rightMenuCdata = v
-    thisTree.rightMenuCdom = event.target.parentNode
-    let x  = event.clientX + window.pageXOffset - rootEl.offsetLeft
-    let y = event.clientY + window.pageYOffset - rootEl.offsetTop
+    thisTree.rightMenuCdom = this.elm
+    let x = 0
+    let y = 0
     
+    rightMenu.call(thisTree, x, y)
+    let menuEl = rootEl.querySelector('.eleTree-menu')
+    let w = window.getComputedStyle(menuEl, null).getPropertyValue('width')
+    let h = window.getComputedStyle(menuEl, null).getPropertyValue('height')
+    w = parseInt(w) + 6
+    h = parseInt(h) + 6
+
+    x  = event.clientX + window.pageXOffset - rootEl.offsetLeft
+    y = event.clientY + window.pageYOffset - rootEl.offsetTop
+    // 超出边界判断
+    if((event.clientX + window.pageXOffset + w) > document.documentElement.scrollWidth) x -=  w
+    if((event.clientY + window.pageYOffset + h) > document.documentElement.scrollHeight) y -= h
     rightMenu.call(thisTree, x, y)
 }
