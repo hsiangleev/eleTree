@@ -283,14 +283,14 @@ ele.on('custom_checked', function(data) {
 })
 
 
-let ele2 = eleTree({
-    el: '.eletree2',
-    method: 'post',
-    url: '/api/tree',
-    where: {
-        a: 'aaa'
-    },
-    showCheckbox: true,
-    highlightCurrent: true,
-    rightMenuList: ["copy", 'paste']
-})
+// let ele2 = eleTree({
+//     el: '.eletree2',
+//     method: 'post',
+//     url: '/api/tree',
+//     where: {
+//         a: 'aaa'
+//     },
+//     showCheckbox: true,
+//     highlightCurrent: true,
+//     rightMenuList: ["copy", 'paste']
+// })

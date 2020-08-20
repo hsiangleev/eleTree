@@ -29,6 +29,7 @@ const pasteInit = function(pasteType) {
     let {key, isOpen, checked, children, disabled, isLeaf, pid} = options.request
     let pasteData = this.rightMenuPasteData
     if(!pasteData) return
+    if(pasteData[symbolAttr.isPasteNode]) pasteType = 'move'        // 剪贴的节点不修改id
     // 深层copy，并且修改id，防止与原始的节点冲突
     let f = (data)=>{
         let obj = Array.isArray(data) ? [] : {}

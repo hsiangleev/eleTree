@@ -25,7 +25,7 @@ class thisTree {
         this.rightMenuPasteData = null      // 右键复制之后剪贴板中保存的数据
         this.rightMenuNode = null      // 右键菜单的虚拟dom（为了之后的替换）
         this.isShowRightMenu = false      // 是否显示右键菜单
-        this.customIndex = 2020      // 自定义索引，保证不重复
+        this.customIndex = Date.now()      // 自定义索引，保证不重复
         this.eventList = []        // 事件列表
         this.config = deepCopy(eleTreeConfig)
         this.init(opts)
