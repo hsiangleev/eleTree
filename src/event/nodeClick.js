@@ -54,7 +54,7 @@ export default function(thisTree, v, event) {
         if(options.accordion){
             // 修改数据
             let arr = v[symbolAttr.parentNode]
-            arr = !arr[children] ? options.data : arr.children
+            arr = !arr ? options.data : arr[children]
             arr.forEach(item=>{if(item[isOpen] === 2 && item[key]!==v[key]) item[isOpen] = 0})
         }
         // 懒加载事件

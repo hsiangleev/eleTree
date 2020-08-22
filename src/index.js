@@ -7,6 +7,7 @@ import '~/index.scss'
 import { eleTreeConfig } from '~/config'
 import { init } from 'snabbdom'
 import ajax from '~/opera/ajax'
+import getAllNodeData from '~/methods/getAllNodeData'
 import { isFun, isArray, isObject, dataToPid, deepCopy, dataExtend, changeParentCheckedStatus } from '~/opera/tools'
 var patch = init([
     require('snabbdom/modules/class').default,
@@ -25,6 +26,7 @@ class thisTree {
         this.rightMenuPasteData = null      // 右键复制之后剪贴板中保存的数据
         this.rightMenuNode = null      // 右键菜单的虚拟dom（为了之后的替换）
         this.isShowRightMenu = false      // 是否显示右键菜单
+        this.resData = null             // 获取后台数据
         this.customIndex = Date.now()      // 自定义索引，保证不重复
         this.eventList = []        // 事件列表
         this.config = deepCopy(eleTreeConfig)
@@ -64,7 +66,15 @@ class thisTree {
             document.querySelector(this.config.el).appendChild(el)
             patch(el, groupVnode.call(this, this.config.data, true, true))
         }
-        isFun(this.config.done) && this.config.done(this.config.data)
+        if(isFun(this.config.done)){
+            let d = this.resData
+            if(d){
+                d[this.config.response['dataName']] = getAllNodeData.call(this)
+            }else{
+                d = {data: getAllNodeData.call(this)}
+            }
+            this.config.done(d)
+        }
     }
     async asyncData() {
         showLoding.call(this)
@@ -74,6 +84,7 @@ class thisTree {
             data: this.config.where || {},
             headers: this.config.headers
         })
+        this.resData = data
         removeLoding.call(this)
         let response = this.config.response
         if(data[response['statusName']] !== response['statusCode']) throw data.msg

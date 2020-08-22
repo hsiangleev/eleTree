@@ -96,7 +96,7 @@ export function dataToPid(data) {
 export function deepCopy(data) {
     let target = isArray(data) ? [] : {}
     for(let key in data){
-        if(typeof data[key] === 'object'){
+        if(isObject(data[key]) || isArray(data[key])){
             target[key] = deepCopy(data[key])
         }else{
             target[key] = data[key]
@@ -111,7 +111,8 @@ export function dataExtend(oldData, newData) {
         if(isObject(oldData[key])){
             target[key] = dataExtend(oldData[key], newData[key] || {})
         }else{
-            target[key] = newData[key] || oldData[key]
+            // 如果没有传入新数据，则使用旧数据
+            target[key] = isUndefined(newData[key]) ? oldData[key] : newData[key]
         }
     }
     return target

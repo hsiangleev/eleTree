@@ -23,7 +23,7 @@
 | showLine | 是否显示虚线 | boolean | — | true |
 | imgUrl | 图片所在的文件夹路径 | string | — | ./images/ |
 | icon | 使用自定义图标或图片 | object | fold，leaf，checkFull，checkHalf，checkNone，dropdownOff，dropdownOn，loading，radioCheck，radioCheckNone | 每个属性默认值均为空字符串 |
-| done | 树渲染完成之后的回调，参数为data数据 | function | — | — |
+| done | 树渲染完成之后的回调，参数当异步时为后台返回数据，静态数据为{data: ...} | function | — | — |
 | lazy | 开启懒加载 | boolean | — | false |
 | rightMenuList | 开启右键菜单 | array | "copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after" | [] |
 | showRadio | 是否显示radio | boolean | — | false |

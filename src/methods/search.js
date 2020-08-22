@@ -1,5 +1,5 @@
 import reloadVnode from '~/vnode/reloadVnode'
-import { paramDetection } from '~/opera/tools'
+import { paramDetection, updateDate } from '~/opera/tools'
 import { symbolAttr } from '~/config'
 /**
  * 搜索节点
@@ -35,11 +35,13 @@ export default function(methods, value, callback) {
     let changePData = (pData)=>{
         if(!pData) return
         pData[symbolAttr.isHideNode] = false
+        pData[isOpen] = 2
         changePData(pData[symbolAttr.parentNode])
     }
 
     f(options.data)
 
+    updateDate.call(this)
     reloadVnode.call(this)
     return methods
 }

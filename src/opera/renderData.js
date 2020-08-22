@@ -1,5 +1,6 @@
 import changeParent from '~/opera/changeParent'
 import { symbolAttr } from '~/config'
+import { isUndefined } from '~/opera/tools'
 // 根据所给数据重新整合一份dom节点符合的数据
 export function renderData(isFirstRender = false) {
     let pData = null
@@ -33,7 +34,7 @@ export function changeData(data, pData, isFirstRender = false, isRecall = false)
         v[symbolAttr.isRenderChild] = v[isOpen] === 2 || v[symbolAttr.isRenderChild] || false      // 是否已经渲染子节点
         // v[symbolAttr.isRenderChild] = true
         v[symbolAttr.parentNode] = pData     // 当前节点保存父节点信息
-        v[symbolAttr.isHideNode] = false     // 节点是否隐藏
+        v[symbolAttr.isHideNode] = isUndefined(v[symbolAttr.isHideNode]) ? false : v[symbolAttr.isHideNode]     // 节点是否隐藏
         v[symbolAttr.isPasteNode] = false     // 节点是否被剪贴
         v[symbolAttr.editNodeType] = null     // 节点是否正在编辑
         if(options.lazy){
