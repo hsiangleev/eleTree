@@ -26,11 +26,11 @@
 
 ::: demo
 ```html
-<div class="eletree"></div>
+<div class="eletree7"></div>
 
 <script>
 var el1 = eleTree({
-    el: '.eletree',
+    el: '.eletree7',
     url: '/eleTree/json/1.json',
     highlightCurrent: true,
     showCheckbox: true,
@@ -83,11 +83,11 @@ el1.on("copy", function(data) {
 
 ::: demo
 ```html
-<div class="eletree2"></div>
+<div class="eletree8"></div>
 
 <script>
 var el2 = eleTree({
-    el: '.eletree2',
+    el: '.eletree8',
     url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
     showCheckbox: true,

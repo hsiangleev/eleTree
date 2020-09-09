@@ -13,11 +13,11 @@
 
 ::: demo
 ```html
-<div class="eletree"></div>
+<div class="eletree10"></div>
 
 <script>
 var el = eleTree({
-    el: '.eletree',
+    el: '.eletree10',
     showCheckbox: true,
     highlightCurrent: true,
     lazy: true,

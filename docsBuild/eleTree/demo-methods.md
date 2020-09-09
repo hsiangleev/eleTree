@@ -38,12 +38,12 @@
 	<option value="cutPaste">剪贴和县，并粘贴到江苏省</option>
 	<option value="getClipboardData">获取剪贴板数据</option>
 </select>
-<div class="eletree"></div>
+<div class="eletree2"></div>
 
 <script>
 var index = 0;
 var el = eleTree({
-    el: '.eletree',
+    el: '.eletree2',
     url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
     showCheckbox: true,

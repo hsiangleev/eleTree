@@ -11,7 +11,7 @@
 
 ::: demo
 ```html
-<div class="eletree"></div>
+<div class="eletree12"></div>
 
 <script>
 /**
@@ -41,7 +41,7 @@ var f=function(maxFloor, everyFloorMuch, d, obj) {
     return d
 }
 var el = eleTree({
-    el: '.eletree',
+    el: '.eletree12',
     showCheckbox: true,
     highlightCurrent: true,
     showRadio: true,

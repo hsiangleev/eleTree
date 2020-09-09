@@ -21,11 +21,11 @@
 	<option value="getAllNodeData_1">获取pid格式的数据</option>
 	<option value="getAllNodeData_2">获取children格式的数据</option>
 </select>
-<div class="eletree"></div>
+<div class="eletree6"></div>
 
 <script>
 var el = eleTree({
-    el: '.eletree',
+    el: '.eletree6',
     url: '/eleTree/json/pid.json?v=2.1.15',
     highlightCurrent: true,
     showCheckbox: true,

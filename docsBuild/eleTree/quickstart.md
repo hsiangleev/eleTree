@@ -2,11 +2,11 @@
 
 ::: demo
 ```html
-<div class="eletree"></div>
+<div class="eletree1"></div>
 
 <script>
 eleTree({
-    el: '.eletree',
+    el: '.eletree1',
     url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
     showCheckbox: true,

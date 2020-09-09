@@ -12,11 +12,11 @@
 ```html
 <input type="text" class="search">
 <button class="btn">搜索</button>
-<div class="eletree"></div>
+<div class="eletree11"></div>
 
 <script>
 var el1 = eleTree({
-    el: '.eletree',
+    el: '.eletree11',
     url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
     showCheckbox: true,

@@ -25,11 +25,11 @@
 
 ::: demo
 ```html
-<div class="eletree"></div>
+<div class="eletree3"></div>
 
 <script>
 eleTree({
-    el: '.eletree',
+    el: '.eletree3',
     url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
     showCheckbox: true,
@@ -43,11 +43,11 @@ eleTree({
 
 ::: demo
 ```html
-<div class="eletree2"></div>
+<div class="eletree4"></div>
 
 <script>
 eleTree({
-    el: '.eletree2',
+    el: '.eletree4',
     imgUrl: "/eleTree/images/",
     url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
@@ -73,11 +73,11 @@ eleTree({
 
 ::: demo
 ```html
-<div class="eletree3"></div>
+<div class="eletree5"></div>
 
 <script>
 eleTree({
-    el: '.eletree3',
+    el: '.eletree5',
     url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
     showCheckbox: true,

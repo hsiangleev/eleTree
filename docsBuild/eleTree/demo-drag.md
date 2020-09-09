@@ -18,11 +18,11 @@
 
 ::: demo
 ```html
-<div class="eletree"></div>
+<div class="eletree9"></div>
 
 <script>
 var el = eleTree({
-    el: '.eletree',
+    el: '.eletree9',
     url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
     showCheckbox: true,
