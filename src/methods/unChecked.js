@@ -29,10 +29,11 @@ export default function(methods, unCheckArr = []) {
                 data[checked] = 0
                 // 如果父子关联
                 if(!options.checkStrictly){
-                    // 且父节点选中，则取消父节点选中
+                    // 如果上级节点是选中的，则取消上级节点选中
                     let pData = data[symbolAttr.parentNode]
-                    if(pData && pData[checked] === 2){
+                    while(pData && pData[checked] === 2){
                         pData[checked] = 0
+                        pData = pData[symbolAttr.parentNode]
                     }
                     // 取消父节点的选中时，会同时取消所有子孙节点的选中
                     if(data[children] && data[children].length > 0){

@@ -106,6 +106,8 @@ var el2 = eleTree({
     rightMenuList: [
         {name: "选中此项", value: "checked"},
         {name: "取消此项选中", value: "unchecked"},
+        {name: "全选", value: "allchecked"},
+        {name: "反选", value: "reversechecked"},
         {name: "重载树", value: "reload"},
     ],
 })
@@ -118,6 +120,16 @@ el2.on("custom_checked", function(data) {
 }).on("custom_unchecked", function(data) {
     setTimeout(()=>{
         el2.unChecked([data.data.id])
+        data.load()
+    }, 100)
+}).on("custom_allchecked", function(data) {
+    setTimeout(()=>{
+        el2.setAllChecked()
+        data.load()
+    }, 100)
+}).on("custom_reversechecked", function(data) {
+    setTimeout(()=>{
+        el2.reverseChecked()
         data.load()
     }, 100)
 }).on("custom_reload", function(data) {

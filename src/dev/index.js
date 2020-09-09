@@ -227,6 +227,20 @@ btn.onclick = function() {
         // console.log(res)
         // console.groupEnd()
     // }
+    // setAllChecked
+    {
+        // console.group('setAllChecked: ')
+        // let res = ele.setAllChecked()
+        // console.log(res)
+        // console.groupEnd()
+    }
+    // reverseChecked
+    {
+        console.group('reverseChecked: ')
+        let res = ele.reverseChecked()
+        console.log(res)
+        console.groupEnd()
+    }
 }
 
 ele.on('lazyload', function(d) {

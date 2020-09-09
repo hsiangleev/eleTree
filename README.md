@@ -104,6 +104,8 @@ el.on("checkbox", function(data) {
 | getChecked | 获取复选框选中的节点信息 | (leafOnly, includeHalfChecked)1.是否只选中叶子节点，默认false，2.是否包括半选节点，默认false |
 | setChecked | 设置复选框选中的节点 | (checkArr, isUnCheckAll)1.设置选中项数组，2.是否先清空原有的选中项，默认true |
 | unChecked | 取消复选框选中的节点 | (unCheckArr)1.取消选中的节点数组；不传参数则默认清空所有选中项； |
+| setAllChecked | checkbox选中所有节点，除了禁用的节点 | — |
+| reverseChecked | checkbox反选所有节点，除了禁用的节点 | — |
 | getRadioChecked | 获取单选框选中的节点信息 | — |
 | setRadioChecked | 设置单选框选中的节点 | (checkArr, isUnCheckAll)1.设置选中项数组，2.是否先清空原有的选中项，默认true |
 | unRadioChecked | 取消单选框选中的节点 | (unCheckArr)1.取消选中的节点数组；不传参数则默认清空所有选中项 |

@@ -16,6 +16,8 @@
 	<option value="setChecked_2">checkbox先清空其他选中项，再选中桃源路</option>
 	<option value="unChecked">checkbox只取消湖东路的选中</option>
 	<option value="unChecked_2">checkbox取消所有节点选中</option>
+	<option value="setAllChecked">checkbox选中所有节点</option>
+	<option value="reverseChecked">checkbox反选所有节点</option>
 	<option value="getRadioChecked">radio获取所有选中项</option>
 	<option value="setRadioChecked">radio选中桃源路</option>
 	<option value="setRadioChecked_2">radio先清空其他选中项，再选中桃源路</option>
@@ -73,6 +75,12 @@ var methods = {
     },
     unChecked_2: function() {
         el.unChecked()
+    },
+    setAllChecked: function() {
+        el.setAllChecked()
+    },
+    reverseChecked: function() {
+        el.reverseChecked()
     },
     getRadioChecked: function() {
         alert(JSON.stringify(el.getRadioChecked()))
