@@ -1,6 +1,7 @@
 import { copy, paste, emitEvent } from '~/methods/copy'
 import remove from '~/methods/remove'
 import getCurrentNodeData from '~/opera/getCurrentNodeData'
+import { symbolAttr } from '~/config'
 
 let count = 0
 let thisTree = null
@@ -54,6 +55,21 @@ export function mousemove() {
     }
 }
 
+// 判断是否是父级节点放到子级节点
+function isPNode(item, v, key){
+    let pItem = item[symbolAttr.parentNode]
+    let isPitem = false
+    while(pItem){
+        if(pItem[key] === v[key]){
+            isPitem = true
+            pItem = null
+        }else{
+            pItem = pItem[symbolAttr.parentNode]
+        }
+    }
+    return isPitem
+}
+
 export function mouseup(tree, item) {
     let options = thisTree.config
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
@@ -63,7 +79,7 @@ export function mouseup(tree, item) {
         cloneEl && cloneEl.remove()
         if(this.elm && options.el === thisTree.config.el){
             // 开始移动和停止移动不是同一个
-            if(tree.rightMenuPasteData && v[key] !== item[key]){
+            if(tree.rightMenuPasteData && v[key] !== item[key] && !isPNode(item, v, key)){
                 emitEvent.call(tree, v, 'drag', ()=>{
                     remove.call(tree, null, [tree.rightMenuPasteData[key]])
                     paste.call(tree, null, '', 'children', item, 'move')
