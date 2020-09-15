@@ -22,10 +22,12 @@ export function mousedown(tree, item) {
     count = 0
     isOnce = false
     isDrag = false
-    document.body.style['-webkit-user-select'] = 'none'
-    document.body.style['-moz-user-select'] = 'none'
-    document.body.style['-ms-user-select'] = 'none'
-    document.body.style['user-select'] = 'none'
+    let options = thisTree.config
+    let rootEl = document.querySelector(options.el)
+    rootEl.style['-webkit-user-select'] = 'none'
+    rootEl.style['-moz-user-select'] = 'none'
+    rootEl.style['-ms-user-select'] = 'none'
+    rootEl.style['user-select'] = 'none'
     document.addEventListener('mousemove', mousemove)
     document.addEventListener('mouseup', mouseup)
 }
@@ -75,13 +77,14 @@ function isPNode(item, v, key){
 }
 
 export function mouseup(tree, item, event) {
+    if(!thisTree) return
     let options = thisTree.config
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
     let rootEl = document.querySelector(options.el)
+    let cloneEl = document.querySelector('.eleTree-cloneElm')
+    cloneEl && cloneEl.parentNode.removeChild(cloneEl)
     if(isDrag){
         if(!item && !event) event = tree
-        let cloneEl = document.querySelector('.eleTree-cloneElm')
-        cloneEl && cloneEl.parentNode.removeChild(cloneEl)
         if(this.elm && options.el === thisTree.config.el){
             // 开始移动和停止移动不是同一个
             if(tree.rightMenuPasteData && v[key] !== item[key] && !isPNode(item, v, key)){
@@ -104,10 +107,10 @@ export function mouseup(tree, item, event) {
                 range: 'outer'
             })
         }
-        document.body.style['-webkit-user-select'] = 'auto'
-        document.body.style['-moz-user-select'] = 'auto'
-        document.body.style['-ms-user-select'] = 'auto'
-        document.body.style['user-select'] = 'auto'
+        rootEl.style['-webkit-user-select'] = 'auto'
+        rootEl.style['-moz-user-select'] = 'auto'
+        rootEl.style['-ms-user-select'] = 'auto'
+        rootEl.style['user-select'] = 'auto'
     }
 
     document.removeEventListener('mousemove', mousemove)
