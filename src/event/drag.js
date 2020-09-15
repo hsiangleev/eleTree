@@ -22,20 +22,24 @@ export function mousedown(tree, item) {
     count = 0
     isOnce = false
     isDrag = false
+    document.body.style['-webkit-user-select'] = 'none'
+    document.body.style['-moz-user-select'] = 'none'
+    document.body.style['-ms-user-select'] = 'none'
+    document.body.style['user-select'] = 'none'
     document.addEventListener('mousemove', mousemove)
     document.addEventListener('mouseup', mouseup)
 }
 
-export function mousemove() {
+export function mousemove(event) {
     let options = thisTree.config
+    let textEl = that.elm.querySelector('.eleTree-text')
     count++
-    if(count < 3) return
+    if(count < 3 || !textEl) return
     isDrag = true
     let rootEl = document.querySelector(options.el)
     let x  = event.clientX + window.pageXOffset - rootEl.offsetLeft
     let y = event.clientY + window.pageYOffset - rootEl.offsetTop
     once(()=>{
-        document.body.style['user-select'] = 'none'
         let text = that.elm.querySelector('.eleTree-text').innerText
         let cloneEl = document.createElement('span')
         cloneEl.innerText = text
@@ -70,13 +74,14 @@ function isPNode(item, v, key){
     return isPitem
 }
 
-export function mouseup(tree, item) {
+export function mouseup(tree, item, event) {
     let options = thisTree.config
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
     let rootEl = document.querySelector(options.el)
     if(isDrag){
+        if(!item && !event) event = tree
         let cloneEl = document.querySelector('.eleTree-cloneElm')
-        cloneEl && cloneEl.remove()
+        cloneEl && cloneEl.parentNode.removeChild(cloneEl)
         if(this.elm && options.el === thisTree.config.el){
             // 开始移动和停止移动不是同一个
             if(tree.rightMenuPasteData && v[key] !== item[key] && !isPNode(item, v, key)){
@@ -99,6 +104,9 @@ export function mouseup(tree, item) {
                 range: 'outer'
             })
         }
+        document.body.style['-webkit-user-select'] = 'auto'
+        document.body.style['-moz-user-select'] = 'auto'
+        document.body.style['-ms-user-select'] = 'auto'
         document.body.style['user-select'] = 'auto'
     }
 

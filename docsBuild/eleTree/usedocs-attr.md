@@ -31,6 +31,7 @@
 | defaultRadioCheckedKeys | radio默认选中项 | array | — | — |
 | defaultPid | 当使用pid格式的数据时，第一层数据的默认值 | string/number | — | '' |
 | draggable | 是否开启拖拽节点功能 | boolean | — | false |
+| customText | 节点文本自定义函数；[查看更多](/eleTree/demo-customText) | function | — | — |
 
 #### 异步属性
 
@@ -87,6 +88,7 @@
     showRadio: false,               // 是否显示radio
     radioType: "level", // all      // 单选范围（是同一级还是整体只能选择一个）
     defaultRadioCheckedKeys: [],    // radio默认选中项
+    customText: null,               // 节点文本自定义函数
 
     method: "get",      // 接口http请求类型
     url: "",            // 异步接口地址

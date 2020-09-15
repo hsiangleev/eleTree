@@ -39,6 +39,7 @@ export const eleTreeConfig = {
     showRadio: false,               // 是否显示radio
     radioType: "level", // all      // 单选范围（是同一级还是整体只能选择一个）
     defaultRadioCheckedKeys: [],    // radio默认选中项
+    customText: null,               // 节点文本自定义函数
 
     method: "get",      // 接口http请求类型
     url: "",            // 异步接口地址

@@ -50,7 +50,16 @@ let ele = eleTree({
     // showRadio: true,
     // radioType: "level", // all
     // defaultRadioCheckedKeys: ['002', '001002002002'],
-    draggable: true
+    draggable: true,
+    customText: function(data) {
+        let s = `${data.label}`
+        if(data.id.toString().indexOf("2")!==-1){
+            s+=`<i class="eletree_icon-add addchild_test"></i>
+            <i class="eletree_icon-edit edit_test"></i>
+            <i class="eletree_icon-delete delete_test"></i>`
+        }
+        return s
+    }
 })
 let index = 1
 btn.onclick = function() {
@@ -236,8 +245,15 @@ btn.onclick = function() {
     }
     // reverseChecked
     {
-        console.group('reverseChecked: ')
-        let res = ele.reverseChecked()
+        // console.group('reverseChecked: ')
+        // let res = ele.reverseChecked()
+        // console.log(res)
+        // console.groupEnd()
+    }
+    // edit
+    {
+        console.group('edit: ')
+        let res = ele.edit("001002002001")
         console.log(res)
         console.groupEnd()
     }
@@ -264,10 +280,28 @@ ele.on('checkbox', function(data) {
     // console.log(data)
 })
 ele.on('click', function(data) {
-    // console.log(this)
-    console.log(data)
+    if(this.target.classList.contains('addchild_test')){
+        ele.append(data.data.id, {
+            label: 'aaa',
+            id: ++index
+        })
+        ele.edit(index, 'add_child')
+    }else if(this.target.classList.contains('edit_test')){
+        ele.edit(data.data.id)
+    }else if(this.target.classList.contains('delete_test')){
+        ele.remove(data.data.id)
+    }
+    // console.log(data)
 })
 ele.on('drag', function(data) {
+    console.log(this)
+    console.log(data)
+    setTimeout(() => {
+        data.load()
+        // data.stop()
+    }, 500);
+})
+ele.on('edit', function(data) {
     console.log(this)
     console.log(data)
     setTimeout(() => {

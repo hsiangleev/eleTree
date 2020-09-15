@@ -2,6 +2,7 @@ import { symbolAttr } from '~/config'
 import remove from '~/methods/remove'
 import append from '~/methods/append'
 import insert from '~/methods/insert'
+import edit from '~/methods/edit'
 import reloadVnode from '~/vnode/reloadVnode'
 import { updateDate } from '~/opera/tools'
 import { copy, cutPaste, paste, emitEvent } from '~/methods/copy'
@@ -27,10 +28,7 @@ export default function(thisTree, v, event) {
         paste_before: () => paste.call(thisTree, null, '', 'before', cData),
         paste_after: () => paste.call(thisTree, null, '', 'after', cData),
         cut_paste: () => cutPaste.call(thisTree, null, '', cData),
-        edit() {
-            cData[symbolAttr.editNodeType] = 'edit'
-            editNode(thisTree.rightMenuCdom)
-        },
+        edit: () => edit.call(thisTree, null, cData, 'edit'),
         remove() {
             emitEvent.call(thisTree, cData, 'remove', ()=>{
                 remove.call(thisTree, null, [cData[key]])
@@ -41,44 +39,28 @@ export default function(thisTree, v, event) {
             append.call(thisTree, null, cData[key], [
                 {
                     [name]: '未命名',
-                    [key]: thisTree.customIndex++
+                    [key]: ++thisTree.customIndex
                 }
             ])
-            let index = cData[children].findIndex(item=>item[key] === thisTree.customIndex - 1)
-            cData[children][index][symbolAttr.editNodeType] = 'add_child'
-            editNode(thisTree.rightMenuCdom.parentNode)
+            edit.call(thisTree, null, thisTree.customIndex, 'add_child')
         },
         add_before() {
             insert.call(thisTree, null, cData[key], [
                 {
                     [name]: '未命名',
-                    [key]: thisTree.customIndex++
+                    [key]: ++thisTree.customIndex
                 }
             ], 'before')
-            if(cData[symbolAttr.parentNode]){
-                let index = cData[symbolAttr.parentNode][children].findIndex(item=>item[key] === thisTree.customIndex - 1)
-                cData[symbolAttr.parentNode][children][index][symbolAttr.editNodeType] = 'add_before'
-            }else{
-                let index = options.data.findIndex(item=>item[key] === thisTree.customIndex - 1)
-                options.data[index][symbolAttr.editNodeType] = 'add_before'
-            }
-            editNode(thisTree.rightMenuCdom.parentNode.previousElementSibling)
+            edit.call(thisTree, null, thisTree.customIndex, 'add_before')
         },
         add_after() {
             insert.call(thisTree, null, cData[key], [
                 {
                     [name]: '未命名',
-                    [key]: thisTree.customIndex++
+                    [key]: ++thisTree.customIndex
                 }
             ], 'after')
-            if(cData[symbolAttr.parentNode]){
-                let index = cData[symbolAttr.parentNode][children].findIndex(item=>item[key] === thisTree.customIndex - 1)
-                cData[symbolAttr.parentNode][children][index][symbolAttr.editNodeType] = 'add_after'
-            }else{
-                let index = options.data.findIndex(item=>item[key] === thisTree.customIndex - 1)
-                options.data[index][symbolAttr.editNodeType] = 'add_after'
-            }
-            editNode(thisTree.rightMenuCdom.parentNode.nextElementSibling)
+            edit.call(thisTree, null, thisTree.customIndex, 'add_after')
         },
     }
     // 自定义方法对应的事件监听名为：custom_

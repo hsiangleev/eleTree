@@ -18,6 +18,7 @@ import getClipboardData from '~/methods/getClipboardData'
 import { copy, cutPaste, paste } from '~/methods/copy'
 import setAllChecked from '~/methods/setAllChecked'
 import reverseChecked from '~/methods/reverseChecked'
+import edit from '~/methods/edit'
 export default function() {
     //函数内部第一个参数为当前methods方法，后续参数为传入的参数，函数内部返回methods方法即可实现链式调用
     let methods = {
@@ -47,6 +48,7 @@ export default function() {
         cutPaste: (...args)=>cutPaste.call(this, methods, ...args),
         paste: (...args)=>paste.call(this, methods, ...args),
         getClipboardData: (...args)=>getClipboardData.call(this, methods, ...args),
+        edit: (...args)=>edit.call(this, methods, ...args),
     }
     return methods
 }

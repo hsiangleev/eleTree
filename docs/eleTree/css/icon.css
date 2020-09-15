@@ -35,6 +35,9 @@
 .eletree_icon-check_full:before {
   content: "\e906";
 }
+.eletree_icon-search:before {
+  content: "\e907";
+}
 .eletree_icon-dropdown_bottom:before {
   content: "\e903";
 }
@@ -46,6 +49,9 @@
 }
 .eletree_icon-tree_leaf:before {
   content: "\e901";
+}
+.eletree_icon-edit:before {
+  content: "\e908";
 }
 .eletree_icon-file_leaf:before {
   content: "\e924";
@@ -62,8 +68,11 @@
 .eletree_icon-loading3:before {
   content: "\e983";
 }
-.eletree_icon-search:before {
-  content: "\e907";
+.eletree_icon-delete:before {
+  content: "\e9ac";
+}
+.eletree_icon-add:before {
+  content: "\ea0a";
 }
 .eletree_icon-radio_checked:before {
   content: "\ea54";

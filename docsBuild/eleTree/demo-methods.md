@@ -31,6 +31,7 @@
 	<option value="remove">删除湖东路</option>
 	<option value="insert">在合肥市前面添加节点</option>
 	<option value="insert_2">在合肥市后面添加节点</option>
+	<option value="edit">编辑湖东路</option>
 	<option value="reload">重新渲染树节点</option>
 	<option value="search">搜索带有“路”字的节点</option>
 	<option value="getAllNodeData">获取所有节点数据</option>
@@ -152,6 +153,9 @@ var methods = {
         el.insert("001003", [
             {label: "阜阳市" + index++, id: "阜阳市"}
         ], "after")
+    },
+    edit: function() {
+        el.edit("001002002003")
     },
     reload: function() {
         el.reload()

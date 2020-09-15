@@ -84,6 +84,7 @@ el.on("checkbox", function(data) {
 | defaultRadioCheckedKeys | radio默认选中项 | array | — | — |
 | defaultPid | 当使用pid格式的数据时，第一层数据的默认值 | string/number | — | '' |
 | draggable | 是否开启拖拽节点功能 | boolean | — | false |
+| customText | 节点文本自定义函数；| function | — | — |
 
 #### 异步属性
 
@@ -114,6 +115,7 @@ el.on("checkbox", function(data) {
 | append | 添加子节点(<span style="color: #ff4200">有两种格式</span>) | A. (id, array/object)1.查找需要添加的节点id，2.添加的子节点数据数组；id传null或空字符串则会添加到根节点</br>B. (array/object)只传一个array/object参数则代表传入的为pid格式的数据，即在节点pid下添加子节点 |
 | updateKeySelf | 更新当前节点数据或移动某些节点(<span style="color: #ff4200">有两种格式</span>) | A. (id, object)1.查找需要修改的节点id，2.需要修改的数据</br>B. (array/object)只传一个array/object参数则代表传入的为pid格式的数据，即修改id的数据，如果pid改变，则代表移动节点 |
 | remove | 删除节点数据 | (removeArr)1.需要删除的节点id数组(可以移除多个节点) |
+| edit | 编辑节点 | (id, nodeType)1.需要编辑的节点id, 2. 当前编辑的节点类型，对应触发的回调事件名称，可选值(edit/add_child/add_before/add_after) |
 | insert | 在某个节点前后插入数据 | (id, array/object, type)1.查找需要添加的节点id，2.需要添加节点数据数组，3.类型，在当前节点前插入还是节点后插入，可选参数('before','after')，默认节点前 |
 | reload | 重新渲染树节点 | (options)1.传入object，参数初始参数一致 |
 | search | 搜索树节点 | (value, callback)1.需要搜索的文本信息，2. 传入的搜索条件，函数返回值为true则显示该节点； |
