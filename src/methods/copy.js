@@ -4,7 +4,7 @@ import { symbolAttr } from '~/config'
 import { emit } from '~/event/customEvent'
 import { showLoding, removeLoding } from '~/vnode/loadingVnode'
 import remove from '~/methods/remove'
-
+import getCurrentNodeData from '~/opera/getCurrentNodeData'
 
 export function emitEvent(cData, eventName, successCallback, otherOpt) {
     // 判断是否有edit回调函数
@@ -13,7 +13,7 @@ export function emitEvent(cData, eventName, successCallback, otherOpt) {
         return
     }
     showLoding.call(this)
-    emit.call(this, {v: cData, type: eventName, event, otherOpt: Object.assign({}, otherOpt, {
+    let another = {
         load: () => {
             removeLoding.call(this)
             successCallback()
@@ -21,7 +21,10 @@ export function emitEvent(cData, eventName, successCallback, otherOpt) {
         stop: () => {
             removeLoding.call(this)
         }
-    })})
+    }
+    // 如果节点右键则返回当前右键节点的数据
+    this.rightMenuCdata && (another.rightClickData = getCurrentNodeData.call(this, this.rightMenuCdata))
+    emit.call(this, {v: cData, type: eventName, event, otherOpt: Object.assign({}, otherOpt, another)})
 }
 // 粘贴初始化
 const pasteInit = function(pasteType) {

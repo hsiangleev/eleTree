@@ -5,7 +5,7 @@
 | checkbox | checkbox选择 | (type, data)1.事件名，2.当前节点数据 |
 | radio | radio选择 | (type, data)1.事件名，2.当前节点数据 |
 | click | 节点点击 | (type, data)1.事件名，2.当前节点数据 |
-| copy | 节点复制 | (type, data, load, stop)1.事件名，2.当前节点数据, 3. 执行该操作, 4. 取消执行该操作 |
+| copy | 节点复制 | (type, data, load, stop, rightClickData)1.事件名，2.当前节点数据, 3. 执行该操作, 4. 取消执行该操作, 5. 上次右键菜单时，对应的节点数据 |
 | paste | 粘贴到子节点 | 与copy一致 |
 | paste_before | 粘贴到节点之前 | 与copy一致 |
 | paste_after |  粘贴到节点之后 | 与copy一致 |

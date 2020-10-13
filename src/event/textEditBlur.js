@@ -5,6 +5,7 @@ import { emit } from '~/event/customEvent'
 import { paramDetection } from '~/opera/tools'
 import updateKeySelf from '~/methods/updateKeySelf'
 import { showLoding, removeLoding } from '~/vnode/loadingVnode'
+import getCurrentNodeData from '~/opera/getCurrentNodeData'
 
 export default function(thisTree, v, event) {
     let options = thisTree.config
@@ -20,7 +21,7 @@ export default function(thisTree, v, event) {
         return
     }
     showLoding.call(thisTree)
-    emit.call(thisTree, {v, type: editNodeType, event, otherOpt: {
+    let otherOpt = {
         load(data) {
             removeLoding.call(thisTree)
             v[name] = event.target.value
@@ -33,5 +34,8 @@ export default function(thisTree, v, event) {
             removeLoding.call(thisTree)
             reloadVnode.call(thisTree)
         }
-    }})
+    }
+    // 如果节点右键则返回当前右键节点的数据
+    thisTree.rightMenuCdata && (otherOpt.rightClickData = getCurrentNodeData.call(thisTree, thisTree.rightMenuCdata))
+    emit.call(thisTree, {v, type: editNodeType, event, otherOpt})
 }
