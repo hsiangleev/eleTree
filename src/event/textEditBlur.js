@@ -6,6 +6,7 @@ import { paramDetection } from '~/opera/tools'
 import updateKeySelf from '~/methods/updateKeySelf'
 import { showLoding, removeLoding } from '~/vnode/loadingVnode'
 import getCurrentNodeData from '~/opera/getCurrentNodeData'
+import remove from '~/methods/remove'
 
 export default function(thisTree, v, event) {
     let options = thisTree.config
@@ -31,11 +32,16 @@ export default function(thisTree, v, event) {
             reloadVnode.call(thisTree)
         },
         stop() {
+            // 如果是新增，则删除新增加的节点
+            if(editNodeType !== 'edit'){
+                remove.call(thisTree, null, [v[key]])
+            }
             removeLoding.call(thisTree)
             reloadVnode.call(thisTree)
         }
     }
     // 如果节点右键则返回当前右键节点的数据
     thisTree.rightMenuCdata && (otherOpt.rightClickData = getCurrentNodeData.call(thisTree, thisTree.rightMenuCdata))
-    emit.call(thisTree, {v, type: editNodeType, event, otherOpt})
+    // 返回的name为新输入的值
+    emit.call(thisTree, {v: Object.assign({}, v, {[name]: event.target.value}), type: editNodeType, event, otherOpt})
 }
