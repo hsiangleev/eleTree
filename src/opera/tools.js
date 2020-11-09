@@ -104,10 +104,11 @@ export function deepCopy(data) {
     }
     return target
 }
-// 深层对象继承
+// 深层对象继承(针对old含默认值，new含新属性)
 export function dataExtend(oldData, newData) {
     let target = {}
-    for(let key in oldData){
+    let data = Object.assign({}, oldData, newData)
+    for(let key in data){
         if(isObject(oldData[key])){
             target[key] = dataExtend(oldData[key], newData[key] || {})
         }else{
