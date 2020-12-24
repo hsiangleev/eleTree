@@ -32,6 +32,17 @@ npm run docs:start
 npm install eletree -D
 ```
 
+### CDN引入
+
+```html
+<!-- js文件 -->
+<script src="//unpkg.com/eletree/dist/eleTree.js"></script>
+<!-- 加载字体文件样式 -->
+<link rel="stylesheet" href="//unpkg.com/eletree/dist/css/icon.css"></script>
+<!-- 使用图片地址 -->
+<!-- imgUrl: "//unpkg.com/eletree/dist/images/" -->
+```
+
 ### 快速开始
 
 `<div class="eletree"></div>`

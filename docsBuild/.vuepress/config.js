@@ -9,7 +9,8 @@ module.exports = {
         nav: [
             { text: 'eleTree2.0', link: '/eleTree/installation' },
             { text: '1.0版本', link: 'https://layuiextend.hsianglee.cn/eletree/' },
-            { text: 'github', link: 'https://github.com/hsiangleev/eleTree' }
+            { text: 'github', link: 'https://github.com/hsiangleev/eleTree' },
+            { text: '个人博客', link: 'https://hsianglee.cn' },
         ],
         // 为以下路由添加侧边栏
         sidebar: [
