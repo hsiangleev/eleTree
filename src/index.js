@@ -60,6 +60,10 @@ class thisTree {
         // 判断重载
         if(type === 'reload'){
             let oldVnode = this.node
+            if(this.activeElm){
+                this.activeElm.classList.remove('eleTree-title-active')
+                thisTree.activeElm = null
+            }
             patch(oldVnode, groupVnode.call(this, this.config.data, true, true))
         }else{
             let el = document.createElement('div')

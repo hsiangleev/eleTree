@@ -131,6 +131,9 @@ $disabledColor: #aaa;
             &.eleTree-title-active{
                 background-color: #f0f7ff;
             }
+            &:hover{
+                background-color: #f0f7ff;
+            }
             .eleTree-icon{
                 display: inline-block;
                 position: relative;
