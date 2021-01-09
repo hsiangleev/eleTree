@@ -8,7 +8,7 @@ module.exports = {
         // 添加导航栏
         nav: [
             { text: 'eleTree2.0', link: '/eleTree/installation' },
-            { text: '1.0版本', link: 'https://layuiextend.hsianglee.cn/eletree/' },
+            { text: '1.0版本', link: 'https://layuiextend.hsianglee.cn/eleTree/' },
             { text: 'github', link: 'https://github.com/hsiangleev/eleTree' },
             { text: '个人博客', link: 'https://hsianglee.cn' },
         ],
