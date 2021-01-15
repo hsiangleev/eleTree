@@ -162,10 +162,42 @@ const pidData = {
     ]
 }
 
+const lazy = {
+    "code": 0,
+    "msg": "",
+    "data": [
+        {
+            "label": "安徽省",
+            "id": "001",
+            "checked": true
+        },
+        {
+            "label": "河南省",
+            "id": "002",
+            "isLeaf": true
+        },
+        {
+            "label": "江苏省",
+            "id": "003",
+            "isLeaf": true
+        }
+    ]
+}
+
 module.exports = {
     'POST /api/tree': (req, res)=>{
         setTimeout(() => {
             res.json(tree)
+        }, 0);
+    },
+    'POST /api/manyData': (req, res)=>{
+        setTimeout(() => {
+            res.json(manyData)
+        }, 0);
+    },
+    'POST /api/lazy': (req, res)=>{
+        setTimeout(() => {
+            res.json(lazy)
         }, 0);
     },
     'POST /api/lazyData': (req, res)=>{
@@ -175,6 +207,7 @@ module.exports = {
                 {
                     "label": "懒加载节点1",
                     "id": "lazy001" + id,
+                    "checked": true
                 },
                 {
                     "label": "懒加载节点2",

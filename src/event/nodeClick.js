@@ -68,6 +68,10 @@ export default function(thisTree, v, event) {
                     load: (childNodeData) => {
                         if(paramDetection(childNodeData, 'Array', 'load懒加载方法参数必须为Array')) return null
                         if(childNodeData.length > 0){
+                            // 修改父节点的选中状态，即如果父节点是选中的，子节点没有全部选中，则让父节点半选
+                            if(options.showCheckbox && !options.checkStrictly && options.isDefaultChangePstatus){
+                                v[checked] = childNodeData.filter(v=>!v[disabled]).every(v=>v[checked])
+                            }
                             append.call(thisTree, null, v[key], childNodeData)
                             return
                         }
