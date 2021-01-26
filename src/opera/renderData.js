@@ -69,7 +69,7 @@ export function changeData(data, pData, isFirstRender = false, isRecall = false)
                         let pSiblingsData = pData[symbolAttr.parentNode][children]
                         isPdataLast = pSiblingsData.findIndex(item=>pData[key] === item[key]) === pSiblingsData.length - 1
                     }
-                    if(isPdataLast && pData[checked] === 0 && pData[children].some(item=>item[checked] === 2)){
+                    if(isPdataLast && pData[checked] === 0 && pData[children].some(item=>item[checked] === 2) || (options.isDefaultChangePstatus)){
                         changeParent.call(this, v, true)
                     }else{
                         changeParent.call(this, v, isRecall)

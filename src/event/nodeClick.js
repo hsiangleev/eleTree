@@ -70,7 +70,11 @@ export default function(thisTree, v, event) {
                         if(childNodeData.length > 0){
                             // 修改父节点的选中状态，即如果父节点是选中的，子节点没有全部选中，则让父节点半选
                             if(options.showCheckbox && !options.checkStrictly && options.isDefaultChangePstatus){
-                                v[checked] = childNodeData.filter(v=>!v[disabled]).every(v=>v[checked])
+                                let parent = v
+                                while(parent){
+                                    parent[checked] = (parent[children].length > 0 ? parent[children] : childNodeData).filter(v=>!v[disabled]).every(v=>v[checked])
+                                    parent = parent[symbolAttr.parentNode]
+                                }
                             }
                             append.call(thisTree, null, v[key], childNodeData)
                             return

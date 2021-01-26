@@ -203,7 +203,7 @@ module.exports = {
     'POST /api/lazyData': (req, res)=>{
         const { id } = req.body;
         setTimeout(() => {
-            res.json([
+            let d=[
                 {
                     "label": "懒加载节点1",
                     "id": "lazy001" + id,
@@ -214,7 +214,15 @@ module.exports = {
                     "id": "lazy002" + id,
                     "isLeaf": true
                 },
-            ])
+            ]
+            if(index==3 || index==4){
+                d=[{
+                    "label": "懒加载节点1",
+                    "id": "lazy001" + id,
+                    "checked": true
+                },]
+            }
+            res.json(d)
         }, 200);
     },
 }

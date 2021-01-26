@@ -123,13 +123,16 @@ export function changeParentCheckedStatus(data, pData) {
     let {name, key, isOpen, checked, children, disabled, isLeaf, pid } = this.config.request
     if(this.config.showCheckbox && !this.config.checkStrictly && this.config.isDefaultChangePstatus){
         data.forEach(val => {
+            val[symbolAttr.parentNode] = pData
             if (val[children] && val[children].length > 0) {
                 changeParentCheckedStatus.call(this, val[children], val)
             }
         })
         // 父节点选中，子节点除了disabled的节点外全部没选中，则父节点变成选中状态
-        if(pData){
-            pData[checked] = pData[children].filter(v=>!v[disabled]).every(v=>v[checked])
+        let parent = pData
+        while(parent){
+            parent[checked] = parent[children].filter(v=>!v[disabled]).every(v=>v[checked])
+            parent = parent[symbolAttr.parentNode]
         }
     }
 }
