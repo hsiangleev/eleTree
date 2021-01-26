@@ -1,0 +1,21 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint-config-standard"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**"
+    ]
+  },
+  "rules": {
+    "trailing-comma": false,
+    "quotemark": false,
+    "semicolon": false,
+    "indent": [true, "spaces", 2],
+    "space-before-function-paren":false,
+    "no-unnecessary-type-assertion": false,
+    "no-empty": false,
+    "variable-name": false
+  }
+}

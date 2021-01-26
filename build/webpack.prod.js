@@ -15,7 +15,7 @@ const banner = `
 
 module.exports = merge(common, {
     entry: {
-        main: './src/entry.js'
+        main: './src/entry.ts'
     },
     mode: 'production',
     plugins: [
