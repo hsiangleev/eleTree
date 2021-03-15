@@ -51,7 +51,7 @@ export function updateDate(cData) {
         // 数据部分更新时，判断被选中的节点是否在所更新的节点之内
         let f = (data) => {
             for(let i=0,len=data.length;i<len;i++){
-                if(data[i][key] === this.currentRadioCheckedData[key]){
+                if(this.currentRadioCheckedData && data[i][key] === this.currentRadioCheckedData[key]){
                     this.isAlreadyRadioChecked = false
                     this.currentRadioCheckedData = null
                     return true
