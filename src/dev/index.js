@@ -48,6 +48,7 @@ let ele = eleTree({
     // lazy: true,
     rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after", {name: '选中', value: 'checked'}],
     // showRadio: true,
+    // isOnlyShowLeafRadio: true,
     // radioType: "level", // all
     // defaultRadioCheckedKeys: ['002', '001002002002'],
     draggable: true,

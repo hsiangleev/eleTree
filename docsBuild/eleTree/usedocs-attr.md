@@ -87,6 +87,7 @@
     done: null,         // 树渲染完成之后的回调
     showRadio: false,               // 是否显示radio
     radioType: "level", // all      // 单选范围（是同一级还是整体只能选择一个）
+    isOnlyShowLeafRadio: false,     // 是否只显示叶子节点的radio
     defaultRadioCheckedKeys: [],    // radio默认选中项
     customText: null,               // 节点文本自定义函数
 
