@@ -31,7 +31,7 @@
 | defaultRadioCheckedKeys | radio默认选中项 | array | — | — |
 | defaultPid | 当使用pid格式的数据时，第一层数据的默认值 | string/number | — | '' |
 | draggable | 是否开启拖拽节点功能 | boolean | — | false |
-| customText | 节点文本自定义函数；[查看更多](/eleTree/demo-customText) | function | — | — |
+| customText | 节点文本自定义函数；[查看更多](/eleTree/demo-customText.html) | function | — | — |
 
 #### 异步属性
 
