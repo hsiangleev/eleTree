@@ -1,6 +1,6 @@
 {
   "name": "eletree",
-  "version": "2.2.16",
+  "version": "2.2.17",
   "description": "Tree component based on virtual dom",
   "main": "dist/eleTree.js",
   "scripts": {

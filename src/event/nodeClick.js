@@ -19,7 +19,7 @@ export default function(thisTree, v, event) {
     let isTargetIcon = classList.contains('eleTree-icon')
     let isTargetText = classList.contains('eleTree-text')
     let isClickCheckbox = !v[disabled] && (isTargetCheckbox || isTargetText && options.checkOnClickNode)
-    let isClickRadio = !v[radioDisabled] && (isTargetRadio || isTargetText && options.radioOnClickNode)
+    let isClickRadio = !v[radioDisabled] && (isTargetRadio || isTargetText && options.radioOnClickNode && (v[isLeaf] || !v[isLeaf] && !options.isOnlyShowLeafRadio))
     if(isClickCheckbox || isClickRadio){
         if(isClickCheckbox) {
             // 点击checkbox选择，点击文字判断是否选择

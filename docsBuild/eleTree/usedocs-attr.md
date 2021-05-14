@@ -29,6 +29,7 @@
 | showRadio | 是否显示radio | boolean | — | false |
 | radioType | 单选范围（是同一级还是整体只能选择一个） | string | level/all | level |
 | defaultRadioCheckedKeys | radio默认选中项 | array | — | — |
+| isOnlyShowLeafRadio | 当显示radio的时候是否只显示叶子节点 | boolean | — | false |
 | defaultPid | 当使用pid格式的数据时，第一层数据的默认值 | string/number | — | '' |
 | draggable | 是否开启拖拽节点功能 | boolean | — | false |
 | customText | 节点文本自定义函数；[查看更多](/eleTree/demo-customText.html) | function | — | — |

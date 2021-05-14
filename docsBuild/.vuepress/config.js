@@ -67,7 +67,7 @@ module.exports = {
         ['meta', { name: 'keywords', content: 'eleTree2.0在线文档' }],
         ['link', { rel: 'icon', type: 'image/png', href: '/favicon.ico' }],
         ['link', { rel: 'stylesheet', href: '/eleTree/css/icon.css?v=2.2.12.1' }],
-        ['script', { src: '/eleTree/eleTree.js?v=2.2.16.1' }],
+        ['script', { src: '/eleTree/eleTree.js?v=2.2.17.1' }],
         ['script', { }, 'var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?7fcfe1e92263ed7399914905523c0c95";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();']
     ],
     configureWebpack: {
