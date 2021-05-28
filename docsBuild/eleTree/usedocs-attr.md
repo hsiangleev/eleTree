@@ -33,6 +33,8 @@
 | defaultPid | 当使用pid格式的数据时，第一层数据的默认值 | string/number | — | '' |
 | draggable | 是否开启拖拽节点功能 | boolean | — | false |
 | customText | 节点文本自定义函数；[查看更多](/eleTree/demo-customText.html) | function | — | — |
+| sort | 是否开启排序；[查看更多](/eleTree/demo-sort.html) | boolean | — | false |
+| initSort | 节点排序传入的控制参数 | object | id:对某一个节点排序, 不传则对最外层节点;field:按某个字段排序;type:升序asc降序desc;depth:深度,不传则为所有子节点 | — |
 
 #### 异步属性
 
@@ -114,5 +116,12 @@
         radioChecked: "radioChecked",
         radioDisabled: "radioDisabled"
     },
+    sort: false,            // 是否开启排序，开启则使用initSort参数（对于懒加载，如果开启排序，并且不传深度，则执行排序，如果传深度，需要手动执行sort方法）
+    initSort: {
+        id: null,           // 对某一个节点排序, 不传则对最外层节点
+        field: "label",     // 按某个字段排序
+        type: "asc",        // asc:升序, desc:降序 
+        depth: null,        // 深度，不传则为最深层，支持数字，1/2/3
+    }
 }
 ```

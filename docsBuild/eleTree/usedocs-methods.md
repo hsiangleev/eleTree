@@ -25,3 +25,4 @@
 | cutPaste | 剪贴节点 | (id) 1.需要剪贴的节点id |
 | paste | 粘贴节点 | (id, nodeType) 1.需要粘贴到的节点id，2.粘贴到该节点的位置，可选参数('before','after','children')，默认children |
 | getClipboardData | 获取剪贴板数据 | 移动或复制或剪贴节点都会把该节点复制到剪贴板，如果剪贴板没有数据，则返回null |
+| sort | 对某个节点的子节点排序 | (opts) 1.id:对某一个节点排序, 不传则对最外层节点;field:按某个字段排序;type:升序asc降序desc;depth:深度,不传则为所有子节点；[查看更多](/eleTree/demo-sort.html) |
