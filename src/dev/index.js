@@ -20,7 +20,7 @@ let ele = eleTree({
     // expandOnClickNode: false,
     // checkOnClickNode: true,
     // radioOnClickNode: true,
-    defaultExpandedKeys: ['001','001002001'],
+    // defaultExpandedKeys: ['001','001002001'],
     // autoExpandParent: true,
     // checkStrictly: true,
     // defaultCheckedKeys: ['001002002002','001002002003'],
@@ -60,6 +60,13 @@ let ele = eleTree({
             <i class="eletree_icon-delete delete_test"></i>`
         }
         return s
+    },
+    // sort: true,
+    initSort: {
+        // id: null,
+        field: "label",
+        type: "asc",
+        // depth: null,
     }
 })
 let index = 1
@@ -253,8 +260,20 @@ btn.onclick = function() {
     }
     // edit
     {
-        console.group('edit: ')
-        let res = ele.edit("001002002001")
+        // console.group('edit: ')
+        // let res = ele.edit("001002002001")
+        // console.log(res)
+        // console.groupEnd()
+    }
+    // edit
+    {
+        console.group('sort: ')
+        let res = ele.sort({
+            // id: "001002",
+            field: "label", 
+            type: "asc", 
+            // depth: 2
+        })
         console.log(res)
         console.groupEnd()
     }
@@ -269,6 +288,11 @@ ele.on('lazyload', function(d) {
             data: {id: data.id}
         }).then(d=>{
             load(d)
+            // ele.sort({
+            //     id: d.id,
+            //     field: "id",
+            //     type: "desc",
+            // })
         })
     }else{
         load([])

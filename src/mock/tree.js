@@ -94,20 +94,6 @@ const tree = {
             ]
         },
         {
-            "label": "河南省",
-            "id": "002",
-            "children": [
-                {
-                    "label": "郑州市",
-                    "id": "002001"
-                },
-                {
-                    "label": "开封市",
-                    "id": "002002"
-                }
-            ],
-        },
-        {
             "label": "江苏省",
             "id": "003",
             "children": [
@@ -129,7 +115,21 @@ const tree = {
                 }
             ],
             // "checked": true
-        }
+        },
+        {
+            "label": "河南省",
+            "id": "002",
+            "children": [
+                {
+                    "label": "郑州市",
+                    "id": "002001"
+                },
+                {
+                    "label": "开封市",
+                    "id": "002002"
+                }
+            ],
+        },
     ]
 }
 const manyData = {
@@ -183,7 +183,7 @@ const lazy = {
         }
     ]
 }
-
+var index = 1;
 module.exports = {
     'POST /api/tree': (req, res)=>{
         setTimeout(() => {
@@ -202,6 +202,7 @@ module.exports = {
     },
     'POST /api/lazyData': (req, res)=>{
         const { id } = req.body;
+        index++
         setTimeout(() => {
             let d=[
                 {

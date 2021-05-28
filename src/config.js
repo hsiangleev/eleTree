@@ -64,6 +64,13 @@ export const eleTreeConfig = {
         radioChecked: "radioChecked",
         radioDisabled: "radioDisabled"
     },
+    sort: false,            // 是否开启排序，开启则使用initSort参数（对于懒加载，如果开启排序，并且不传深度，则执行排序，如果传深度，需要手动执行sort方法）
+    initSort: {
+        id: null,           // 对某一个节点排序, 不传则对最外层节点
+        field: "label",     // 按某个字段排序
+        type: "asc",        // asc:升序, desc:降序 
+        depth: null,        // 深度，不传则为最深层，支持数字，1/2/3
+    }
 }
 // 节点内部变量名，防止被外部重名变量修改
 export const symbolAttr = {

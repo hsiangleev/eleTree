@@ -8,6 +8,7 @@ import { eleTreeConfig } from '~/config'
 import { init } from 'snabbdom'
 import ajax from '~/opera/ajax'
 import getAllNodeData from '~/methods/getAllNodeData'
+import { sort } from '~/methods/sort'
 import { isFun, isArray, isObject, dataToPid, deepCopy, dataExtend, changeParentCheckedStatus } from '~/opera/tools'
 var patch = init([
     require('snabbdom/modules/class').default,
@@ -57,6 +58,9 @@ class thisTree {
         this.config.data = dataToPid.call(this, this.config.data)
         changeParentCheckedStatus.call(this, this.config.data)
         renderData.call(this, true)
+        if(this.config.sort){
+            sort.call(this, this.config.initSort)
+        }
         // 判断重载
         if(type === 'reload'){
             let oldVnode = this.node

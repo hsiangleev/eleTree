@@ -8,6 +8,8 @@ import { paramDetection } from '~/opera/tools'
 import { symbolAttr } from '~/config'
 
 import append from '~/methods/append'
+import sort from '~/methods/sort'
+import { sort as sortFn } from '~/methods/sort'
 
 export default function(thisTree, v, event) {
     let options = thisTree.config
@@ -77,11 +79,17 @@ export default function(thisTree, v, event) {
                                 }
                             }
                             append.call(thisTree, null, v[key], childNodeData)
+                            if(thisTree.config.sort && !thisTree.config.initSort.depth){
+                                sort.call(thisTree, {}, Object.assign({},thisTree.config.initSort, {id: v[key]}))
+                            }
                             return
                         }
                         // 初始有数据
                         if(v[children].length > 0){
                             v[isOpen] = oldIsOpen
+                            if(thisTree.config.sort && !thisTree.config.initSort.depth){
+                                sortFn.call(thisTree, Object.assign({},thisTree.config.initSort, {id: v[key]}))
+                            }
                             reloadVnode.call(thisTree)
                             return
                         }
