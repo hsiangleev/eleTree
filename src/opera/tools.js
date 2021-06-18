@@ -131,7 +131,8 @@ export function changeParentCheckedStatus(data, pData) {
         // 父节点选中，子节点除了disabled的节点外全部没选中，则父节点变成选中状态
         let parent = pData
         while(parent){
-            parent[checked] = parent[children].filter(v=>!v[disabled]).every(v=>v[checked])
+            const filterData = parent[children].filter(v=>!v[disabled])
+            if(filterData.length > 0) parent[checked] = filterData.every(v=>v[checked])
             parent = parent[symbolAttr.parentNode]
         }
     }

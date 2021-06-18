@@ -13,6 +13,18 @@ export default function(methods, id, data) {
     // if(paramDetection(id, 'String|Number', 'updateKeySelf方法第一个参数必须为String|Number')) return methods
     // if(paramDetection(data, 'Object', 'updateKeySelf方法第二个参数必须为Object')) return methods
 
+    // 修改数据
+    const f = (data, cData) => {
+        Object.keys(data).forEach(v=>{
+            if(v === disabled) {
+                cData[v] = data[v]
+                if(!cData[v]) delete cData[symbolAttr.disabledParentStatus]     // 取消checkbox选中，则删除禁用属性
+            }else if(v !== children) {
+                cData[v] = data[v]
+            }
+        })
+    }
+
     // pid格式更新(更改pid则为移动节点)
     if(isObject(id) || isArray(id)){
         data = isObject(id) ? [id] : id
@@ -26,14 +38,14 @@ export default function(methods, id, data) {
 
             // 父节点不变，只更新节点，不移动
             if(pData && pId === pData[key]){
-                Object.keys(data[i]).forEach(v=>cData[v] = data[i][v])
+                f(data[i], cData)
                 continue
             }
             // 移动并更新节点（先删后插）
             let d = pData ? pData[children] : options.data
             let index = d.findIndex(v=>v[key]===cData[key])
             let removeDate = d.splice(index,1)
-            Object.keys(data[i]).forEach(v=>removeDate[0][v] = data[i][v])
+            f(data[i], removeDate)
             let newPData = getNodeDataById.call(this, pId)
             if(!newPData) {
                 // 移动到根节点
@@ -58,10 +70,10 @@ export default function(methods, id, data) {
     // 根节点判断
     if(!pData){
         let index = options.data.findIndex(v=>v[key]===id)
-        Object.keys(data).forEach(v=>(v !== children) && (options.data[index][v] = data[v]))
+        f(data, options.data[index])
         updateDate.call(this)
     }else{
-        Object.keys(data).forEach(v=>(v !== children) && (cData[v] = data[v]))
+        f(data, cData)
         updateDate.call(this, cData)
     }
     reloadVnode.call(this)
