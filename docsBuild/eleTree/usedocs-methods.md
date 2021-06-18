@@ -3,12 +3,12 @@
 | 方法名      | 说明          | 参数      |
 |---------- |-------------- |---------- |
 | on | 事件回调 | (type, callback)1.事件名，2.触发事件时的回调函数；[查看更多](/eleTree/usedocs-event.html) |
-| getChecked | 获取复选框选中的节点信息 | (leafOnly, includeHalfChecked)1.是否只选中叶子节点，默认false，2.是否包括半选节点，默认false |
+| getChecked | 获取复选框选中的节点信息 | (leafOnly, includeHalfChecked, includeHideChecked)1.是否只选中叶子节点，默认false，2.是否包括半选节点，默认false，3.是否包含隐藏节点，默认true |
 | setChecked | 设置复选框选中的节点 | (checkArr, isUnCheckAll)1.设置选中项数组，2.是否先清空原有的选中项，默认true |
 | unChecked | 取消复选框选中的节点 | (unCheckArr)1.取消选中的节点数组；不传参数则默认清空所有选中项； |
 | setAllChecked | checkbox选中所有节点，除了禁用的节点 | — |
 | reverseChecked | checkbox反选所有节点，除了禁用的节点 | — |
-| getRadioChecked | 获取单选框选中的节点信息 | — |
+| getRadioChecked | 获取单选框选中的节点信息 | (includeHideChecked)1.是否包含隐藏节点，默认true |
 | setRadioChecked | 设置单选框选中的节点 | (checkArr, isUnCheckAll)1.设置选中项数组，2.是否先清空原有的选中项，默认true |
 | unRadioChecked | 取消单选框选中的节点 | (unCheckArr)1.取消选中的节点数组；不传参数则默认清空所有选中项 |
 | expandAll | 展开所有节点 | — |

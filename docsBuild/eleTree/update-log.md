@@ -3,6 +3,16 @@
 <UpdateLog>
 <li>
 
+#### 2.2.19
+
+**2021-06-18**
+
+##### 新特性
+- getChecked方法和getRadioChecked方法添加参数includeHideChecked，是否包含隐藏节点，默认true
+
+</li>
+<li>
+
 #### 2.2.18
 
 **2021-05-28**
