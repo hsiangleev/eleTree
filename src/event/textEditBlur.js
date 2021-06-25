@@ -10,6 +10,7 @@ import remove from '~/methods/remove'
 
 export default function(thisTree, v, event) {
     let options = thisTree.config
+    if(event.type === 'keypress' && event.keyCode !== 13) return
     event.preventDefault()
     let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
     let editNodeType = v[symbolAttr.editNodeType]

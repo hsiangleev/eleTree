@@ -30,6 +30,7 @@ export default function(v) {
                 props: { type: 'text', value: v[name] },
                 on: {
                     blur: [textEditBlur, this, v],
+                    keypress: [textEditBlur, this, v],
                 }
             })
         : h('span.eleTree-text',{
