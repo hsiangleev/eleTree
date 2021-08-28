@@ -10,8 +10,8 @@ export default function(thisTree, v, event) {
     }
     if(options.rightMenuList.length === 0) return
     event.preventDefault()
-    let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
-    let rootEl = document.querySelector(options.el)
+    // let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
+    // let rootEl = document.querySelector(options.el)
 
     thisTree.isShowRightMenu = true
     thisTree.rightMenuCdata = v
@@ -20,14 +20,14 @@ export default function(thisTree, v, event) {
     let y = 0
     
     rightMenu.call(thisTree, x, y)
-    let menuEl = rootEl.querySelector('.eleTree-menu')
+    let menuEl = document.querySelector(`ul.eleTree-menu.menu-${thisTree.customIndex}`)
     let w = window.getComputedStyle(menuEl, null).getPropertyValue('width')
     let h = window.getComputedStyle(menuEl, null).getPropertyValue('height')
     w = parseInt(w) + 6
     h = parseInt(h) + 6
 
-    x  = event.clientX + window.pageXOffset - rootEl.offsetLeft
-    y = event.clientY + window.pageYOffset - rootEl.offsetTop
+    x  = event.clientX + window.pageXOffset
+    y = event.clientY + window.pageYOffset
     // 超出边界判断
     if((event.clientX + window.pageXOffset + w) > document.documentElement.scrollWidth) x -=  w
     if((event.clientY + window.pageYOffset + h) > document.documentElement.scrollHeight) y -= h

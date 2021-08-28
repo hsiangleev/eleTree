@@ -41,9 +41,9 @@ export default function(left, top) {
     let oldNode = this.rightMenuNode
     if(!oldNode){
         oldNode = document.createElement('div')
-        document.querySelector(options.el).appendChild(oldNode)
+        document.body.appendChild(oldNode)
     }
-    this.rightMenuNode = h('ul.eleTree-menu', {
+    this.rightMenuNode = h(`ul.eleTree-menu.menu-${this.customIndex}`, {
         style: {
             display: this.isShowRightMenu ? 'block' : 'none',
             left: left + 'px',

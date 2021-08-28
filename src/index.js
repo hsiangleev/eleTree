@@ -28,7 +28,7 @@ class thisTree {
         this.rightMenuNode = null      // 右键菜单的虚拟dom（为了之后的替换）
         this.isShowRightMenu = false      // 是否显示右键菜单
         this.resData = null             // 获取后台数据
-        this.customIndex = Date.now()      // 自定义索引，保证不重复
+        this.customIndex = Date.now() + Math.random().toString().substring(2,8)      // 自定义索引，保证不重复(时间戳加6位随机数)
         this.eventList = []        // 事件列表
         this.config = deepCopy(eleTreeConfig)
         this.init(opts)
