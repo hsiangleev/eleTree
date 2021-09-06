@@ -1,5 +1,5 @@
 import reloadVnode from '~/vnode/reloadVnode'
-import { getNodeDataById, paramDetection, updateDate } from '~/opera/tools'
+import { getNodeDataById, paramDetection, updateDate, isObject } from '~/opera/tools'
 import { symbolAttr } from '~/config'
 import { emit } from '~/event/customEvent'
 import { showLoding, removeLoding } from '~/vnode/loadingVnode'
@@ -37,7 +37,7 @@ const pasteInit = function(pasteType) {
     let f = (data)=>{
         let obj = Array.isArray(data) ? [] : {}
         Object.keys(data).forEach(v=>{
-            obj[v] = typeof data[v] === 'object' 
+            obj[v] = isObject(data[v])
                 ? f(data[v]) 
                 : (v===key && pasteType === 'paste') ? this.customIndex++ : data[v] 
         })
