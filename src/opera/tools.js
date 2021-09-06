@@ -106,10 +106,12 @@ export function deepCopy(data) {
 }
 // 深层对象继承(针对old含默认值，new含新属性)
 export function dataExtend(oldData, newData) {
+    // 不使用旧属性的数组
+    const exclude = ['where', 'headers']
     let target = {}
     let data = Object.assign({}, oldData, newData)
     for(let key in data){
-        if(isObject(oldData[key])){
+        if(isObject(oldData[key]) && !exclude.includes(key)){
             target[key] = dataExtend(oldData[key], newData[key] || {})
         }else{
             // 如果没有传入新数据，则使用旧数据
