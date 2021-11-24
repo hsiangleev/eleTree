@@ -98,3 +98,58 @@ eleTree({
 </script>
 ```
 :::
+
+
+
+### 针对不同的节点个性化设置不同的图标(2.3.1版本新增)
+
+#### 说明
+1. icon属性默认设置的是当前属节点的全局样式
+2. iconItem设置的是每一个节点的属性，iconItem优先级大于icon
+3. 使用: iconItem函数根据不同节点返回不同参数
+
+#### 示例(所有“省份”的节点使用字体图标，其他的使用icon选项的)
+
+::: demo
+```html
+<div class="eletree16"></div>
+
+<script>
+eleTree({
+    el: '.eletree16',
+    imgUrl: "/eleTree/images/",
+    url: '/eleTree/json/1.json?v=2.0.12',
+    highlightCurrent: true,
+    showCheckbox: true,
+    showRadio: true,
+    icon: {
+        dropdownOff: "dropdownOff.png",
+        dropdownOn: "dropdownOn.png",
+        checkFull: "checkFull.png",
+        checkHalf: "checkHalf.png",
+        checkNone: "checkNone.png",
+        fold: "fold.png",
+        leaf: "leaf.png",
+        radioCheck: "radioCheck.png",
+        radioCheckNone: "radioCheckNone.png",
+    },
+    iconItem: function(data) {
+        let s = `${data.label}`
+        if(data.label.indexOf("省")!==-1) {
+            return {
+                fold: ".eletree_icon-file_fold",
+                leaf: ".eletree_icon-file_leaf",
+                checkFull: ".eletree_icon-check_full",
+                checkHalf: ".eletree_icon-check_half",
+                checkNone: ".eletree_icon-check_none",
+                dropdownOff: ".eletree_icon-dropdown_right",
+                dropdownOn: ".eletree_icon-dropdown_bottom",
+                radioCheck: ".eletree_icon-radio_checked",
+                radioCheckNone: ".eletree_icon-radio_checked_none",
+            }
+        }
+    },
+})
+</script>
+```
+:::

@@ -149,3 +149,33 @@ el2.on("custom_checked", function(data) {
 </script>
 ```
 :::
+
+
+### 针对不同的节点个性化设置不同的菜单(2.3.1版本新增)
+
+#### 说明
+1. rightMenuList可以传递函数，并返回一个数组，内部根据返回不同的数组设置不同的菜单
+
+#### 示例
+
+::: demo
+```html
+<div class="eletree17"></div>
+
+<script>
+eleTree({
+    el: '.eletree17',
+    imgUrl: "/eleTree/images/",
+    url: '/eleTree/json/1.json?v=2.0.12',
+    highlightCurrent: true,
+    showCheckbox: true,
+    showRadio: true,
+    rightMenuList: function(data) {
+        let s = `${data.label}`
+        if(data.id.toString().indexOf("2")!==-1) return ["copy", "paste"]
+        return ["add_child", "add_before", "add_after"]
+    },
+})
+</script>
+```
+:::

@@ -3,6 +3,7 @@ export const eleTreeConfig = {
     data: [],                   // 静态数据
     emptText: "暂无数据",        // 内容为空的时候展示的文本
     highlightCurrent: false,    // 是否高亮当前选中节点，默认值是 false。       
+    highlightNode: "",          // 初始高亮选中的key
     defaultExpandAll: false,    // 是否默认展开所有节点                         
     expandOnClickNode: true,    // 是否在点击文本的时候展开或者收缩节点， 默认值为 true，如果为 false，则只有点箭头图标的时候才会展开或者收缩节点。
     checkOnClickNode: false,    // 复选框是否在点击文本的时候选中节点，默认值为 false，即只有在点击复选框时才会选中节点。
@@ -18,11 +19,10 @@ export const eleTreeConfig = {
     lazy: false,                // 当不是懒加载时，叶子节点由当前节点是否由子节点判断，如果为懒加载，则叶子节点由当前节点的属性isLeaf: true决定
     load: function() {},        // 加载子树数据的方法，仅当 lazy 属性为true 时生效
     draggable: false,           // 是否开启拖拽节点功能
-    contextmenuList: [],        // 启用右键菜单，支持的操作有："copy","add","edit","remove"
     searchNodeMethod: null,     // 对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏
     showLine: true,             // 是否显示连线，默认true
     imgUrl: "./images/",        // 图片所在的文件夹路径   
-    icon: {                     // 自定义图标
+    icon: {                     // 自定义图标(全局)
         fold: "",
         leaf: "",
         checkFull: "",
@@ -34,6 +34,7 @@ export const eleTreeConfig = {
         radioCheck: "",
         radioCheckNone: "",
     },
+    iconItem: null,             // 自定义图标(单独设置某一个节点)
     rightMenuList: [],          // 右键菜单("copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after")
     done: null,         // 树渲染完成之后的回调
     showRadio: false,               // 是否显示radio

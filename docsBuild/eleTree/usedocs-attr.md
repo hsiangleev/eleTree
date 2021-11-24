@@ -8,6 +8,7 @@
 | data | 静态数据 | array | — | — |
 | emptText | 当数据为空时显示的内容 | string | — | 暂无数据 |
 | highlightCurrent | 是否高亮当前选中节点 | boolean | — | false |
+| highlightNode | 初始高亮选中的key | string | — | — |
 | defaultExpandAll | 是否默认展开所有节点 | boolean | — | false |
 | autoExpandParent | 展开子节点的时候是否自动展开父节点 | boolean | — | false |
 | expandOnClickNode | 是否在点击文本的时候展开或者收缩节点，如果为 false，则只有点箭头图标的时候才会展开或者收缩节点 | boolean | — | true |
@@ -22,10 +23,11 @@
 | indent | 相邻级节点间的水平缩进，单位为像素 | number | — | 16 |
 | showLine | 是否显示虚线 | boolean | — | true |
 | imgUrl | 图片所在的文件夹路径 | string | — | ./images/ |
-| icon | 使用自定义图标或图片 | object | fold，leaf，checkFull，checkHalf，checkNone，dropdownOff，dropdownOn，loading，radioCheck，radioCheckNone | 每个属性默认值均为空字符串 |
+| icon | 使用自定义图标或图片(全局) | object | fold，leaf，checkFull，checkHalf，checkNone，dropdownOff，dropdownOn，loading，radioCheck，radioCheckNone | 每个属性默认值均为空字符串 |
+| iconItem | 自定义图标(单独设置某一个节点) | function | null |
 | done | 树渲染完成之后的回调，参数当异步时为后台返回数据，静态数据为{data: ...} | function | — | — |
 | lazy | 开启懒加载 | boolean | — | false |
-| rightMenuList | 开启右键菜单 | array | "copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after" | [] |
+| rightMenuList | 开启右键菜单 | array/function | "copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after" | [] |
 | showRadio | 是否显示radio | boolean | — | false |
 | radioType | 单选范围（是同一级还是整体只能选择一个） | string | level/all | level |
 | defaultRadioCheckedKeys | radio默认选中项 | array | — | — |
@@ -54,7 +56,8 @@
     el: "",                   // dom选择器
     data: [],                   // 静态数据
     emptText: "暂无数据",        // 内容为空的时候展示的文本
-    highlightCurrent: false,    // 是否高亮当前选中节点，默认值是 false。       
+    highlightCurrent: false,    // 是否高亮当前选中节点，默认值是 false。  
+    highlightNode: "",          // 初始高亮选中的key     
     defaultExpandAll: false,    // 是否默认展开所有节点                         
     expandOnClickNode: true,    // 是否在点击文本的时候展开或者收缩节点， 默认值为 true，如果为 false，则只有点箭头图标的时候才会展开或者收缩节点。
     checkOnClickNode: false,    // 复选框是否在点击文本的时候选中节点，默认值为 false，即只有在点击复选框时才会选中节点。
@@ -70,11 +73,10 @@
     lazy: false,                // 当不是懒加载时，叶子节点由当前节点是否由子节点判断，如果为懒加载，则叶子节点由当前节点的属性isLeaf: true决定
     load: function() {},        // 加载子树数据的方法，仅当 lazy 属性为true 时生效
     draggable: false,           // 是否开启拖拽节点功能
-    contextmenuList: [],        // 启用右键菜单，支持的操作有："copy","add","edit","remove"
     searchNodeMethod: null,     // 对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏
     showLine: true,             // 是否显示连线，默认true
     imgUrl: "./images/",        // 图片所在的文件夹路径   
-    icon: {                     // 自定义图标
+    icon: {                     // 自定义图标(全局)
         fold: "",
         leaf: "",
         checkFull: "",
@@ -86,6 +88,7 @@
         radioCheck: "",
         radioCheckNone: "",
     },
+    iconItem: null,             // 自定义图标(单独设置某一个节点)
     rightMenuList: [],          // 右键菜单("copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after")
     done: null,         // 树渲染完成之后的回调
     showRadio: false,               // 是否显示radio

@@ -15,6 +15,7 @@ let ele = eleTree({
     showCheckbox: true,
     // showLine: true,
     highlightCurrent: true,
+    highlightNode: "001002001",
     isDefaultChangePstatus: true,
     // defaultExpandAll: true,
     // expandOnClickNode: false,
@@ -42,11 +43,26 @@ let ele = eleTree({
         dropdownOff: "dropdownOff.png",
         dropdownOn: "dropdownOn.png",
         loading: "",
-        // radioCheck: "radioCheck.png",
-        // radioCheckNone: "radioCheckNone.png",
+        radioCheck: "radioCheck.png",
+        radioCheckNone: "radioCheckNone.png",
     },
+    // iconItem: function(data) {
+    //     let s = `${data.label}`
+    //     if(data.id.toString().indexOf("2")!==-1) {
+    //         return {
+    //             checkFull: ".eletree_icon-check_full",
+    //             checkHalf: ".eletree_icon-check_half",
+    //             checkNone: ".eletree_icon-check_none",
+    //         }
+    //     }
+    // },
     // lazy: true,
     rightMenuList: ["copy", "paste", "paste_before", "paste_after", "cut_paste", "edit", "remove", "add_child", "add_before", "add_after", {name: '选中', value: 'checked'}],
+    // rightMenuList: function(data) {
+    //     let s = `${data.label}`
+    //     if(data.id.toString().indexOf("2")!==-1) return ["copy", "paste"]
+    //     return ["add_child", "add_before", "add_after"]
+    // },
     // showRadio: true,
     // isOnlyShowLeafRadio: true,
     // radioType: "level", // all
@@ -62,12 +78,12 @@ let ele = eleTree({
         return s
     },
     // sort: true,
-    initSort: {
-        // id: null,
-        field: "label",
-        type: "asc",
-        // depth: null,
-    }
+    // initSort: {
+    //     // id: null,
+    //     field: "sort_",
+    //     type: "desc",
+    //     // depth: null,
+    // }
 })
 let index = 1
 btn.onclick = function() {
@@ -265,13 +281,13 @@ btn.onclick = function() {
         // console.log(res)
         // console.groupEnd()
     }
-    // edit
+    // sort
     {
         console.group('sort: ')
         let res = ele.sort({
             // id: "001002",
-            field: "label", 
-            type: "asc", 
+            field: "sort_", 
+            type: "desc", 
             // depth: 2
         })
         console.log(res)

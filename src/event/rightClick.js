@@ -1,4 +1,5 @@
 import rightMenu from '~/vnode/rightMenu'
+import { isArray, isFun } from '~/opera/tools'
 
 export default function(thisTree, v, event) {
     let options = thisTree.config
@@ -8,7 +9,10 @@ export default function(thisTree, v, event) {
         this.elm.classList.add('eleTree-title-active')
         thisTree.activeElm = this.elm
     }
-    if(options.rightMenuList.length === 0) return
+    let menu = options.rightMenuList
+    // 右键菜单是函数
+    if(isFun(menu) && v) menu = menu(v)
+    if(!isArray(menu) || isArray(menu) && menu.length === 0) return
     event.preventDefault()
     // let {name, key, isOpen, checked, children, disabled, isLeaf } = options.request
     // let rootEl = document.querySelector(options.el)
@@ -19,7 +23,7 @@ export default function(thisTree, v, event) {
     let x = 0
     let y = 0
     
-    rightMenu.call(thisTree, x, y)
+    rightMenu.call(thisTree, x, y, menu)
     let menuEl = document.querySelector(`ul.eleTree-menu.menu-${thisTree.customIndex}`)
     let w = window.getComputedStyle(menuEl, null).getPropertyValue('width')
     let h = window.getComputedStyle(menuEl, null).getPropertyValue('height')
@@ -31,5 +35,5 @@ export default function(thisTree, v, event) {
     // 超出边界判断
     if((event.clientX + window.pageXOffset + w) > document.documentElement.scrollWidth) x -=  w
     if((event.clientY + window.pageYOffset + h) > document.documentElement.scrollHeight) y -= h
-    rightMenu.call(thisTree, x, y)
+    rightMenu.call(thisTree, x, y, menu)
 }

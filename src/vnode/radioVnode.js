@@ -1,5 +1,5 @@
 import { h } from 'snabbdom'
-import { isArray } from '~/opera/tools'
+import { isArray, isFun } from '~/opera/tools'
 export default function(v) {
     let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf, radioChecked, radioDisabled} = options.request
@@ -8,17 +8,18 @@ export default function(v) {
     let radioCheckedStr = v[radioChecked] === 2 ? '.eleTree-radio-code_checked' : ''
     let originStr = `span.eleTree-radio.eleTree-radio-code${radioCheckedStr}${disabledStr}`
     let isFold = v[children] && isArray(v[children]) && v[children].length > 0
+    const cIcon = Object.assign({}, options.icon, (isFun(options.iconItem) ? options.iconItem(v) : {}))
     let fn = async(type)=>{
-        if(!options.icon[type]){
+        if(!cIcon[type]){
             node = h(originStr)
-        }else if(/\.(jpg|png|gif)$/.test(options.icon[type])){
+        }else if(/\.(jpg|png|gif)$/.test(cIcon[type])){
             node = disabledStr 
                 ? h(originStr) 
-                : h('span.eleTree-radio', {style: {'background-image': `url("${options.imgUrl + options.icon[type]}")`, 'background-size': 'contain'}})
-        }else if(/^(\.)/.test(options.icon[type])){
+                : h('span.eleTree-radio', {style: {'background-image': `url("${options.imgUrl + cIcon[type]}")`, 'background-size': 'contain'}})
+        }else if(/^(\.)/.test(cIcon[type])){
             node = disabledStr 
                 ? h(originStr) 
-                : h(`span.eleTree-radio${disabledStr}${options.icon[type]}`, {style: {'font-size': '16px'}})
+                : h(`span.eleTree-radio${disabledStr}${cIcon[type]}`, {style: {'font-size': '16px'}})
         }
     }
 

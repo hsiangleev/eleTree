@@ -14,12 +14,12 @@
 
 ::: demo
 ```html
-<div class="eletree13"></div>
+<div class="eletree15"></div>
 
 <script>
 var index = 0;
 var el = eleTree({
-    el: '.eletree13',
+    el: '.eletree15',
     url: '/eleTree/json/1.json?v=2.0.12',
     highlightCurrent: true,
     showCheckbox: true,

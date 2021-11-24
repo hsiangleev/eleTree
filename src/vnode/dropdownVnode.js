@@ -1,5 +1,5 @@
 import { h } from 'snabbdom'
-import { isArray } from '~/opera/tools'
+import { isArray, isFun } from '~/opera/tools'
 export default function(v) {
     let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
@@ -9,20 +9,21 @@ export default function(v) {
     if(options.lazy && v[isLeaf] || !options.lazy && !isFold){
         return h('span.eleTree-dropdown.eleTree-dropdown-hide')
     }
+    const cIcon = Object.assign({}, options.icon, (isFun(options.iconItem) ? options.iconItem(v) : {}))
     
     let node = null
     let fn = async(type)=>{
-        if(!options.icon[type]){
+        if(!cIcon[type]){
             let s = type === 'dropdownOn' 
                 ? '.eleTree-dropdown-code.eleTree-dropdown-open' 
                 : type === 'loading' 
                     ? '.eleTree-loading.eleTree-animate-rotate.eleTree-loading-code' 
                     : '.eleTree-dropdown-code'
             node = h('span.eleTree-dropdown' + s)
-        }else if(/\.(jpg|png|gif)$/.test(options.icon[type])){
-            node = h('span.eleTree-dropdown', {style: {'background-image': `url("${options.imgUrl + options.icon[type]}")`, 'background-size': 'contain'}})
-        }else if(/^(\.)/.test(options.icon[type])){
-            node = h(`span.eleTree-dropdown${options.icon[type]}`)
+        }else if(/\.(jpg|png|gif)$/.test(cIcon[type])){
+            node = h('span.eleTree-dropdown', {style: {'background-image': `url("${options.imgUrl + cIcon[type]}")`, 'background-size': 'contain'}})
+        }else if(/^(\.)/.test(cIcon[type])){
+            node = h(`span.eleTree-dropdown${cIcon[type]}`)
         }
     }
     // 当前节点是否展开

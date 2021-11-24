@@ -8,9 +8,8 @@ var patch = init([
 import { symbolAttr } from '~/config'
 import rightClickEvent from '~/event/rightClickEvent'
 
-export default function(left, top) {
+export default function(left, top, menu = []) {
     let options = this.config
-    let menu = options.rightMenuList
     const defaultList = [
         {name: '复制', value: 'copy'},
         {name: '粘贴', value: 'paste'},

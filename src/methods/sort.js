@@ -34,9 +34,9 @@ export function sort(opts) {
             }
         }
         type === "asc" 
-            ? d.sort((a, b) => typeof a[field] === "number" ? a-b : a[field].localeCompare(b[field]))
+            ? d.sort((a, b) => typeof a[field] === "number" ? a[field]-b[field] : a[field].localeCompare(b[field]))
             : type === "desc"
-                ? d.sort((a, b) => typeof a[field] === "number" ? b-a : b[field].localeCompare(a[field]))
+                ? d.sort((a, b) => typeof a[field] === "number" ? b[field]-a[field] : b[field].localeCompare(a[field]))
                 : ""
     }
     f(cData, 0)

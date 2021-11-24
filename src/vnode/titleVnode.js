@@ -10,7 +10,14 @@ import { mousedown, mouseup } from '~/event/drag'
 import { h } from 'snabbdom'
 export default function(v, isFirst) {
     let options = this.config
-    return h('div.eleTree-title',{
+    let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
+    let nodeStr = 'div.eleTree-title'
+    // 初始高亮选中
+    if(v[key] === options.highlightNode) {
+        nodeStr+='.eleTree-title-active'
+        setTimeout(() => this.activeElm = document.querySelector(`${options.el} ${nodeStr}`), 0);
+    }
+    return h(nodeStr, {
         on: {
             click: [nodeClick, this, v],
             contextmenu: [rightClick, this, v],
