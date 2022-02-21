@@ -1,24 +1,41 @@
 
 import { renderData, changeData } from '~/opera/renderData'
 import { symbolAttr } from '~/config'
+import queryChildren from '~/opera/queryChildren'
 // 通过id查找数据和索引
 export function getNodeDataById(id) {
     let {name, key, isOpen, checked, children, disabled, isLeaf } = this.config.request
     let resultData = null
+    const nodeFloorIndex = []
     // 函数返回值为了跳出递归，即条件成立返回true，如果递归函数为true返回true，其他情况一律返回false
     let fn = function(data) {
         for(let i=0,len=data.length;i<len;i++){
+            nodeFloorIndex.push(i)
             if(data[i][key] === id){
                 resultData = data[i]
                 return true
             }else if(isArray(data[i][children]) && data[i][children].length > 0){
                 if(fn(data[i][children])) return true
             }
+            nodeFloorIndex.pop()
         }
         return false
     }
     fn(this.config.data)
+    // 保存节点的索引
+    this[symbolAttr.nodeFloorIndex] = nodeFloorIndex
     return resultData
+}
+/**
+ * 通过索引数组查找dom节点
+ * @param {*} indexArray 索引数组
+ */
+export function getDomByIndex(indexArray) {
+    let dom = document.querySelector(this.config.el)
+    for(let i=0;i<indexArray.length;i++){
+        dom = queryChildren(dom, '.eleTree-group>.eleTree-node')[indexArray[i]]
+    }
+    return dom
 }
 /**
  * 递归遍历树节点

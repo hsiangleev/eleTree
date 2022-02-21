@@ -38,6 +38,9 @@
 	<option value="copy">复制和县，并粘贴到江苏省</option>
 	<option value="cutPaste">剪贴和县，并粘贴到江苏省</option>
 	<option value="getClipboardData">获取剪贴板数据</option>
+	<option value="setHighlightNode">设置湖东路节点高亮</option>
+	<option value="expandNode">展开马鞍山市及其父节点</option>
+	<option value="unExpandNode">合并马鞍山市及其父节点</option>
 </select>
 <div class="eletree2"></div>
 
@@ -177,6 +180,15 @@ var methods = {
     },
     getClipboardData: function() {
         alert(JSON.stringify(el.getClipboardData()))
+    },
+    setHighlightNode: function() {
+        el.setHighlightNode("001002002003")
+    },
+    expandNode: function() {
+        el.expandNode(["001002"], true)
+    },
+    unExpandNode: function() {
+        el.unExpandNode(["001002"], true)
     },
 }
 document.querySelector(".sel").onchange = function() {

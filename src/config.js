@@ -82,4 +82,5 @@ export const symbolAttr = {
     isHideNode: Symbol('isHideNode'),                       // 节点是否隐藏
     isPasteNode: Symbol('isPasteNode'),                     // 节点是否被剪贴（被剪贴的节点颜色变浅）
     editNodeType: Symbol('editNodeType'),                   // 节点正在编辑的类型（edit,add_child,add_before,add_after）
+    nodeFloorIndex: Symbol('nodeFloorIndex'),               // 节点的层级(如[1,2])
 }

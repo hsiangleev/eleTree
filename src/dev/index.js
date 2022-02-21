@@ -17,7 +17,7 @@ let ele = eleTree({
     highlightCurrent: true,
     highlightNode: "001002001",
     isDefaultChangePstatus: true,
-    // defaultExpandAll: true,
+    defaultExpandAll: true,
     // expandOnClickNode: false,
     // checkOnClickNode: true,
     // radioOnClickNode: true,
@@ -157,10 +157,24 @@ btn.onclick = function() {
         // console.log(res)
         // console.groupEnd()
     }
+    // expandNode
+    {
+        // console.group('expandNode: ')
+        // let res = ele.expandNode(['001', '003001'], true, true)
+        // console.log(res)
+        // console.groupEnd()
+    }
     // unExpandAll
     {
         // console.group('unExpandAll: ')
         // let res = ele.unExpandAll()
+        // console.log(res)
+        // console.groupEnd()
+    }
+    // unExpandNode
+    {
+        // console.group('unExpandNode: ')
+        // let res = ele.unExpandNode(['001002'], false, true)
         // console.log(res)
         // console.groupEnd()
     }
@@ -283,15 +297,22 @@ btn.onclick = function() {
     }
     // sort
     {
-        console.group('sort: ')
-        let res = ele.sort({
-            // id: "001002",
-            field: "sort_", 
-            type: "desc", 
-            // depth: 2
-        })
-        console.log(res)
-        console.groupEnd()
+        // console.group('sort: ')
+        // let res = ele.sort({
+        //     // id: "001002",
+        //     field: "sort_", 
+        //     type: "desc", 
+        //     // depth: 2
+        // })
+        // console.log(res)
+        // console.groupEnd()
+    }
+    // setHighlightNode
+    {
+        // console.group('setHighlightNode: ')
+        // let res = ele.setHighlightNode('')
+        // console.log(res)
+        // console.groupEnd()
     }
 }
 

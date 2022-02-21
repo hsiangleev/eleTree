@@ -5,7 +5,9 @@ import updateKeySelf from '~/methods/updateKeySelf'
 import setChecked from '~/methods/setChecked'
 import unChecked from '~/methods/unChecked'
 import expandAll from '~/methods/expandAll'
+import expandNode from '~/methods/expandNode'
 import unExpandAll from '~/methods/unExpandAll'
+import unExpandNode from '~/methods/unExpandNode'
 import remove from '~/methods/remove'
 import insert from '~/methods/insert'
 import reload from '~/methods/reload'
@@ -18,6 +20,7 @@ import getClipboardData from '~/methods/getClipboardData'
 import { copy, cutPaste, paste } from '~/methods/copy'
 import setAllChecked from '~/methods/setAllChecked'
 import reverseChecked from '~/methods/reverseChecked'
+import setHighlightNode from '~/methods/setHighlightNode'
 import edit from '~/methods/edit'
 import sort from '~/methods/sort'
 export default function() {
@@ -31,7 +34,9 @@ export default function() {
         reverseChecked: (...args)=>reverseChecked.call(this, methods, ...args),
 
         expandAll: (...args)=>expandAll.call(this, methods, ...args),
+        expandNode: (...args)=>expandNode.call(this, methods, ...args),
         unExpandAll: (...args)=>unExpandAll.call(this, methods, ...args),
+        unExpandNode: (...args)=>unExpandNode.call(this, methods, ...args),
 
         append: (...args)=>append.call(this, methods, ...args),
         updateKeySelf: (...args)=>updateKeySelf.call(this, methods, ...args),
@@ -44,6 +49,7 @@ export default function() {
         setRadioChecked: (...args)=>setRadioChecked.call(this, methods, ...args),
         unRadioChecked: (...args)=>unRadioChecked.call(this, methods, ...args),
         getAllNodeData: (...args)=>getAllNodeData.call(this, methods, ...args),
+        setHighlightNode: (...args)=>setHighlightNode.call(this, methods, ...args),
 
         copy: (...args)=>copy.call(this, methods, ...args),
         cutPaste: (...args)=>cutPaste.call(this, methods, ...args),
