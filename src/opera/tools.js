@@ -1,7 +1,7 @@
 
 import { renderData, changeData } from '~/opera/renderData'
 import { symbolAttr } from '~/config'
-import queryChildren from '~/opera/queryChildren'
+import queryChildren, { queryIndex } from '~/opera/queryChildren'
 // 通过id查找数据和索引
 export function getNodeDataById(id) {
     let {name, key, isOpen, checked, children, disabled, isLeaf } = this.config.request
@@ -36,6 +36,36 @@ export function getDomByIndex(indexArray) {
         dom = queryChildren(dom, '.eleTree-group>.eleTree-node')[indexArray[i]]
     }
     return dom
+}
+/**
+ * 通过dom节点查找索引数组
+ * @param {*} elm dom节点(含eleTree-node的class节点)
+ * const indexArray = getIndexByDom.call(this, that.elm.parentNode)
+ */
+ export function getIndexByDom(elm) {
+    const arr = []
+    const rootElm = document.querySelector(this.config.el)
+    while(!elm.isEqualNode(rootElm)){
+        arr.unshift(queryIndex(elm, '.eleTree-node'))
+        elm = elm.parentNode.parentNode
+    }
+    return arr
+}
+/**
+ * 通过索引数组取数
+ * @param {*} elm indexArray 索引数组
+ * getDataByIndexArray.call(this, indexArray)
+ */
+ export function getDataByIndexArray(indexArray) {
+     let data = this.config.data
+    for(let i=0,len=indexArray.length;i<len;i++){
+        if(i === len - 1){
+            data = data[indexArray[i]]
+        }else{
+            data = data[indexArray[i]].children
+        }
+    }
+    return data
 }
 /**
  * 递归遍历树节点

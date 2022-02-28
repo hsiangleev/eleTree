@@ -9,6 +9,7 @@ let v = null
 let that = null
 let isOnce = false
 let isDrag = false
+// let beforeMoveElm = null
 // 一次性函数
 function once(callback) {
     if(isOnce) return
@@ -58,6 +59,18 @@ export function mousemove(event) {
     if(cloneEl){
         cloneEl.style['top'] = y + 3 + 'px'
         cloneEl.style['left'] = x + 3 + 'px'
+
+        // let nodeElm = event.target
+        // while(!nodeElm.classList.contains('eleTree-node')){
+        //     nodeElm = nodeElm.parentNode
+        // }
+        // if(beforeMoveElm){
+        //     beforeMoveElm.style['border-top'] = 'none'
+        //     beforeMoveElm.style['margin-top'] = 'none'
+        // }
+        // nodeElm.style['border-top'] = '1px solid #ff4200'
+        // nodeElm.style['margin-top'] = '-1px'
+        // beforeMoveElm = nodeElm
     }
 }
 
