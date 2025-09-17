@@ -73,7 +73,8 @@ let ele = eleTree({
         if(data.id.toString().indexOf("2")!==-1){
             s+=`<i class="eletree_icon-add addchild_test"></i>
             <i class="eletree_icon-edit edit_test"></i>
-            <i class="eletree_icon-delete delete_test"></i>`
+            <i class="eletree_icon-delete delete_test"></i>
+            <span class="bbb"><img src="./images/fold.jpg" class="aaa" /></span>`
         }
         return s
     },

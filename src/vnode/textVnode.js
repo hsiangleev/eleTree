@@ -21,7 +21,8 @@ export default function(v) {
         customEl.innerHTML = customStr
         let nodeArr = []
         for(let i = 0;i<customEl.childNodes.length;i++){
-            nodeArr.push(toVNode(customEl.childNodes[i]))
+            let n = toVNode(customEl.childNodes[i])
+            nodeArr.push(normalizeVNode(n))
         }
         return nodeArr
     }
@@ -39,4 +40,52 @@ export default function(v) {
     
     // console.log(node)
     return node
+}
+
+const PROP_KEYS = new Set(['src', 'value', 'checked', 'selected', 'disabled', 'readonly', 'multiple'])
+/** 递归修改嵌套的节点中的class和img的路径问题 */
+const normalizeVNode = (vnode) => {
+    if (!vnode || !vnode.data) return vnode
+    const d = vnode.data
+    // --- 处理 attrs ---
+    if (d.attrs) {
+        const attrs = d.attrs
+        for (const [key, val] of Object.entries(attrs)) {
+            if (key === 'class') {
+                // class: 'a b c' -> class: { a:true, b:true, c:true }
+                d.class = {}
+                val.split(/\s+/).forEach(c => {
+                    if (c) d.class[c] = true
+                })
+                delete attrs.class
+            } else if (key === 'style' && typeof val === 'string') {
+                // style: 'color:red; font-size:14px' -> style: { color:'red', fontSize:'14px' }
+                d.style = {}
+                val.split(';').forEach(pair => {
+                    const [k, v] = pair.split(':').map(s => s.trim())
+                    if (k && v) {
+                        const camel = k.replace(/-([a-z])/g, (_, c) => c.toUpperCase())
+                        d.style[camel] = v
+                    }
+                })
+                delete attrs.style
+
+            } else if (PROP_KEYS.has(key)) {
+                // 移动到 props
+                d.props = d.props || {}
+                d.props[key] = val
+                delete attrs[key]
+            }
+        }
+        // 如果 attrs 空了可以删掉（可选）
+        if (Object.keys(attrs).length === 0) {
+            delete d.attrs
+        }
+    }
+
+    // --- 递归 children ---
+    if (vnode.children && vnode.children.length) {
+        vnode.children.forEach(normalizeVNode)
+    }
+    return vnode
 }

@@ -35,5 +35,8 @@ export default function(thisTree, v, event) {
     // 超出边界判断
     if((event.clientX + window.pageXOffset + w) > document.documentElement.scrollWidth) x -=  w
     if((event.clientY + window.pageYOffset + h) > document.documentElement.scrollHeight) y -= h
+    // 判断超出顶部
+    if(x < 0) x = 0
+    if(y < 0) y = 0
     rightMenu.call(thisTree, x, y, menu)
 }
