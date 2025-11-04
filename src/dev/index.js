@@ -74,7 +74,7 @@ let ele = eleTree({
             s+=`<i class="eletree_icon-add addchild_test"></i>
             <i class="eletree_icon-edit edit_test"></i>
             <i class="eletree_icon-delete delete_test"></i>
-            <span class="bbb"><img src="./images/fold.jpg" class="aaa" /></span>`
+            <span class="bbb" title="${data.label}"><img src="./images/fold.jpg" class="aaa" /></span>`
         }
         return s
     },

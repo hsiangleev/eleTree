@@ -42,7 +42,7 @@ export default function(v) {
     return node
 }
 
-const PROP_KEYS = new Set(['src', 'value', 'checked', 'selected', 'disabled', 'readonly', 'multiple'])
+const PROP_KEYS = new Set(['src', 'value', 'checked', 'selected', 'disabled', 'readonly', 'multiple', 'title'])
 /** 递归修改嵌套的节点中的class和img的路径问题 */
 const normalizeVNode = (vnode) => {
     if (!vnode || !vnode.data) return vnode
