@@ -356,6 +356,10 @@ ele.on('click', function(data) {
     }
     // console.log(data)
 })
+ele.on('dblclick', function(data) {
+    // console.log(this)
+    // console.log(data)
+})
 ele.on('drag', function(data) {
     console.log(this)
     console.log(data)

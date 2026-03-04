@@ -6,6 +6,7 @@ import textVnode from '~/vnode/textVnode'
 import lineHorizontal from '~/vnode/lineHorizontal'
 import nodeClick from '~/event/nodeClick'
 import rightClick from '~/event/rightClick'
+import nodeDblclick from '~/event/nodeDblclick'
 import { mousedown, mouseup } from '~/event/drag'
 import { h } from 'snabbdom'
 export default function(v, isFirst) {
@@ -21,6 +22,7 @@ export default function(v, isFirst) {
         on: {
             click: [nodeClick, this, v],
             contextmenu: [rightClick, this, v],
+            dblclick: [nodeDblclick, this, v],
             mousedown: options.draggable ? [mousedown, this, v] : null,
             mouseup: options.draggable ? [mouseup, this, v] : null,
         }
