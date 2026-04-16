@@ -67,6 +67,21 @@ export function getDomByIndex(indexArray) {
     }
     return data
 }
+
+/** 获取当前节点对应的索引数组 */
+export const getIndexList = (node, options) => {
+    let {key, children} = options.request
+    let pData = node[symbolAttr.parentNode]
+    let data = node
+    const indexList = []
+    while (pData) {
+        indexList.unshift(pData[children].findIndex(val=>val[key]===data[key]))
+        data = pData
+        pData = pData[symbolAttr.parentNode]
+    }
+    indexList.unshift(options.data.findIndex(val=>val[key]===data[key]))
+    return indexList
+}
 /**
  * 递归遍历树节点
  * @param {*} options 

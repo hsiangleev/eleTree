@@ -68,8 +68,8 @@ let ele = eleTree({
     // radioType: "level", // all
     // defaultRadioCheckedKeys: ['002', '001002002002'],
     draggable: true,
-    customText: function(data) {
-        let s = `${data.label}`
+    customText: function(data, indexList) {
+        let s = `${data.label}--${indexList.map(v => `${v+1}`).join('.')}`
         if(data.id.toString().indexOf("2")!==-1){
             s+=`<i class="eletree_icon-add addchild_test"></i>
             <i class="eletree_icon-edit edit_test"></i>

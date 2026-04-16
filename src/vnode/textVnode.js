@@ -4,19 +4,20 @@ import { toVNode } from 'snabbdom/tovnode'
 import { symbolAttr } from '~/config'
 import textEditBlur from '~/event/textEditBlur'
 import getCurrentNodeData from '~/opera/getCurrentNodeData'
+import { getIndexList } from '~/opera/tools'
 export default function(v) {
     let options = this.config
     let {name, key, isOpen, checked, children, disabled, isLeaf} = options.request
     let node =null
     if(options.customText){
-        let customStr = options.customText(getCurrentNodeData.call(this, v)).trim()
+        let customStr = options.customText(getCurrentNodeData.call(this, v), getIndexList(v, options)).trim()
         let customArr = customStr.split(/\%\<[\w|\W]+\>\%/)
         let customEl = document.createElement('span')
         customEl.innerHTML = customStr.replace(/\%\<[\w|\W]+\>\%/, "")
     }
     let fn = () => {
         if(!options.customText) return v[name]
-        let customStr = options.customText(getCurrentNodeData.call(this, v)).trim()
+        let customStr = options.customText(getCurrentNodeData.call(this, v), getIndexList(v, options)).trim()
         let customEl = document.createElement('span')
         customEl.innerHTML = customStr
         let nodeArr = []
